@@ -115,6 +115,11 @@
                         <strong>Email</strong> - geral@datasync.co.mz
                     </p>
                 </v-row>
+                <v-row class="pl-6 pt-1">
+                    <p class="font-weight-light">
+                        <strong>Web</strong> - www.datasync.co.mz
+                    </p>
+                </v-row>
 
 
             </v-col>

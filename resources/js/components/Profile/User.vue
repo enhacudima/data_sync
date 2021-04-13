@@ -67,6 +67,10 @@
                             <v-list-item-title>{{meal.meal_user.email}}</v-list-item-title>
                             <v-list-item-subtitle>Enterprise</v-list-item-subtitle>
                             </v-list-item-content>
+
+                            <v-list-item-icon>
+                            </v-list-item-icon>
+
                         </v-list-item>
 
                         <v-divider inset></v-divider>
@@ -79,22 +83,31 @@
                             </v-list-item-icon>
 
                             <v-list-item-content>
+                            <v-list-item-title></v-list-item-title>
                             <v-list-item-subtitle>{{meal.meal_user.fullAddress}}</v-list-item-subtitle>
                             </v-list-item-content>
+
+                            <v-list-item-icon>
+                            </v-list-item-icon>
                         </v-list-item>
-                        <div v-if="chef">
-                            <v-divider inset></v-divider>
 
-                            <v-list-item dense >
-                                <v-list-item-icon>
-                                <v-icon color="indigo">
-                                </v-icon>
-                                </v-list-item-icon>
 
-                                <v-list-item-content>
-                                <v-list-item-title>Pub</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
+                        <v-divider inset></v-divider>
+
+                        <v-list-item dense >
+                            <v-list-item-icon>
+                            <v-icon color="indigo">
+                            </v-icon>
+                            </v-list-item-icon>
+
+                            <v-list-item-content>
+                            <v-list-item-title>Pub</v-list-item-title>
+                            <v-list-item-subtitle></v-list-item-subtitle>
+                            </v-list-item-content>
+
+                            <v-list-item-icon>
+                            </v-list-item-icon>
+                        </v-list-item>
 
                         <v-list-item dense>
                             <v-list-item-icon>
@@ -106,43 +119,69 @@
                             </v-list-item-content>
                         </v-list-item>
                         <v-divider inset></v-divider>
-                        <div v-if="chef.cv_school" >
-
                         <v-list-item dense>
                             <v-list-item-icon>
                             <v-icon color="indigo">
-                                mdi-school
+                                mdi-file-pdf
                             </v-icon>
                             </v-list-item-icon>
+                            <v-list-item-content >
+                                <v-list-item-title>
+                                    <input v-model.number="currentPage" type="number" style="width: 3em" /> /{{pageCount}}
+                                    <v-btn
+                                    icon
+                                    color="pink"
+                                    @click="page('previous')"
+                                    >
+                                    <v-icon>mdi-skip-previous</v-icon>
+                                    </v-btn>
 
-                            <v-list-item-content>
-                            <v-list-item-title>School</v-list-item-title>
+                                    <v-btn
+                                    icon
+                                    color="pink"
+                                    @click="page('next')"
+                                    >
+                                    <v-icon>mdi-skip-next</v-icon>
+                                    </v-btn>
+
+
+                                    <v-btn
+                                    small
+                                    icon
+                                    color="pink"
+                                    @click="zoon('previous')"
+                                    >
+                                    <v-icon>mdi-magnify-minus</v-icon>
+                                    </v-btn>
+
+                                    <v-btn
+                                    small
+                                    icon
+                                    color="pink"
+                                    @click="zoon('next')"
+                                    >
+                                    <v-icon>mdi-magnify-plus</v-icon>
+                                    </v-btn>
+                                    {{percent}}%
+                                </v-list-item-title>
+                                <v-list-item-action-text>
+                                <template>
+                                <vue-pdf
+                                    src="http://localhost/data_sync/public/storage/uploads/application-pdf/2021-03-10/Lei+n%C2%BA+20-2013-IRPS_221fea335f508e1e16a07d92d91b83be.pdf"
+                                    @num-pages="pageCount = $event"
+                                    @page-loaded="currentPage = $event"
+                                    :page="currentPage"
+                                    @progress="loadedRatio = $event"
+                                    @error="error"
+                                    @link-clicked="currentPage = $event"
+                                    :style="'border: 1px solid red; display: inline-block; width: '+percent+'%'"
+                                />
+                                </template>
+                                </v-list-item-action-text>
                             </v-list-item-content>
-
                         </v-list-item>
-                        <v-list-item dense  v-for="(experience, index) in chef.cv_school" :key="experience.key">
-                            <v-list-item-action></v-list-item-action>
+                         <v-divider inset></v-divider>
 
-                            <v-list-item-content>
-                                <div class="overline mb-4">
-                                    {{experience.school_name}}
-                                </div>
-                            <v-list-item-subtitle>{{experience.country.entity}} · From {{experience.start}} to {{experience.end}}</v-list-item-subtitle>
-                            <v-list-item-title>
-                                {{experience.education}}
-                            </v-list-item-title>
-                            <v-list-item-action-text>{{experience.description}}</v-list-item-action-text>
-                            </v-list-item-content>
-
-
-                            <v-list-item-icon>
-                            <v-icon>mdi-book-open-outline</v-icon>
-                            </v-list-item-icon>
-
-                        </v-list-item>
-                        <v-divider inset></v-divider>
-                        </div>
-                        </div>
 
 
             </v-row>
@@ -152,7 +191,13 @@
 </template>
 
 <script>
+import vuePdf from 'vue-pdf-worker-fix'
   export default {
+
+
+    components: {
+        vuePdf
+    },
 
     data() {
 
@@ -162,13 +207,38 @@
             meal:[],
             profile:[],
             chef:[],
+            currentPage: 1,
+            pageCount: 0,
+            percent:100,
         }
 
     },
+
     computed: {
         token(){
             return this.$route.params.token;
         },
+    },
+    methods: {
+        error: function(err) {
+        console.log(err);
+        },
+        page(action){
+            if(action == "next"){
+
+                this.currentPage = ++this.currentPage;
+            }else{
+                this.currentPage = --this.currentPage;
+            }
+        },
+        zoon(action){
+            if(action == "next"){
+
+                this.percent = this.percent+10;
+            }else{
+                this.percent = this.percent-10;
+            }
+        }
     },
     mounted() {
     axios
