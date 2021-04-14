@@ -44,6 +44,7 @@ Route::get('getCurrencyArr','CurrencyController@getCurrencyArr');
 
 Route::group(['namespace' => 'Tools','middleware' => []], function() {
     Route::get('user/profile/{token}','UserProfileController@userProfile');
+    Route::get('pub/{token}','PubController@pub');
 });
 
 Route::group(['namespace' => 'Auth'], function() {

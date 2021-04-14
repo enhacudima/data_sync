@@ -3,8 +3,8 @@
     <v-tabs
     v-model="tab"
     >
-      <v-tab href="#tab-1">List</v-tab>
-      <v-tab href="#tab-2">New</v-tab>
+      <v-tab href="#tab-1">My PUB</v-tab>
+      <v-tab href="#tab-2">New PUB</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab" class="pt-4">
         <v-tab-item
@@ -12,7 +12,7 @@
             :value="'tab-' + 1"
         >
         <mealList />
-        </v-tab-item>        
+        </v-tab-item>
         <v-tab-item
             :key="2"
             :value="'tab-' + 2"
@@ -20,7 +20,7 @@
         <mealNew />
         </v-tab-item>
     </v-tabs-items>
-          
+
 </div>
 </template>
 <script>
@@ -38,9 +38,9 @@ export default {
 
         },
     mounted() {
-     
+
     },
-        
+
     watch: {
     }
 }

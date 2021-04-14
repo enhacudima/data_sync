@@ -9,7 +9,7 @@
                         small
                         icon
                         color="green"
-                        :to="'/'+props.row.key"
+                        :to="'profile/'+props.row.key"
                         target="_blank"
                     >
                     <v-icon small>mdi-eye-outline</v-icon>
@@ -67,7 +67,7 @@
                 {{formatDate(props.row.updated_at)}}
             </div>
             <div slot="child_row" slot-scope="props">
-                <div><b>Chef Type:</b> {{ props.row.title}}</div>
+                <div><b>Detales:</b> </div>
             </div>
             <div slot="user_type" slot-scope="props">
                 <v-btn
@@ -202,17 +202,6 @@
                 label="Status"
                 item-text="name"
                 item-value="id"
-                return-object
-              >
-              </v-autocomplete>
-            </v-col>
-            <v-col cols="12">
-              <v-autocomplete
-                v-model="formList.chefType"
-                :items="experiences"
-                label="Chef Type"
-                :item-text="item => '('+item.ref+')' + item.title + ' - '+ item.description"
-                item-value="key"
                 return-object
               >
               </v-autocomplete>
@@ -386,7 +375,7 @@
                 userType:[
                     {type:"Admin",id:"1"},
                     {type:"Client",id:"2"},
-                    {type:"Chef",id:"3"}
+                    {type:"Visitor",id:"3"}
                 ],
 
                 userStatus:[
@@ -399,9 +388,9 @@
                 tableData: [],
                 options: {
                 headings: {
-                        name: 'Name',
-                        lastName: 'Surname',
-                        dataBrith: 'Data Brith',
+                        name: 'Company Name',
+                        lastName: 'Aliase',
+                        dataBrith: 'Foundation date',
                         country: 'Country',
                         phone1: 'Phone',
                         updated_at: 'Updated',

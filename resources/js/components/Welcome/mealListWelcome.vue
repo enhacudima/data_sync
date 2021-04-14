@@ -49,16 +49,16 @@
         >
        <v-card
             class="mx-auto"
-            max-width="344"
+            max-width="200"
         >
             <v-img
             v-if="meal.meal_file"
             :src="'storage/'+meal.meal_user.avatar"
             :lazy-src="'storage/'+meal.meal_user.avatar"
-            aspect-ratio="1"
+            aspect-ratio="2"
             class="white--text align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="200px"
+            height="150px"
             >
             <template v-slot:placeholder>
             <v-row
@@ -84,7 +84,7 @@
                     class="mx-0 pt-2"
                 >
                     <v-icon small>mdi-eye-outline</v-icon>
-                    <v-list-item-action-text>500</v-list-item-action-text>
+                    <v-list-item-action-text>{{meal.views}}</v-list-item-action-text>
                 </v-row>
             </v-card-subtitle>
 
@@ -143,6 +143,7 @@
 </template>
 <script>
   import dialogView from './dialogCart.vue';
+
 export default {
     components: { dialogView },
     data() {

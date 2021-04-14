@@ -65,8 +65,6 @@
                                             <v-date-picker
                                               ref="picker"
                                               v-model="formReg.dataBrith"
-                                              :max="new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().substr(0, 10)"
-                                              min="1950-01-01"
                                               @change="save"
                                               dense
                                             ></v-date-picker>

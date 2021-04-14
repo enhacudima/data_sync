@@ -5,7 +5,7 @@
             <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
-            label="Search"
+            :label="$t('search')"
             single-line
             hide-details
             class="pl-10 pr-10"
@@ -47,18 +47,19 @@
             lg="3"
             xl="3"
         >
+
        <v-card
             class="mx-auto"
-            max-width="344"
+            max-width="200"
         >
             <v-img
             v-if="meal.meal_file"
-            :src="'storage/'+meal.meal_file.path+meal.meal_file.name"
-            :lazy-src="'storage/'+meal.meal_file.path+meal.meal_file.name"
-            aspect-ratio="1"
+            :src="'storage/'+meal.meal_user.avatar"
+            :lazy-src="'storage/'+meal.meal_user.avatar"
+            aspect-ratio="2"
             class="white--text align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="200px"
+            height="150px"
             >
             <template v-slot:placeholder>
             <v-row
@@ -74,30 +75,20 @@
             </template>
             </v-img>
 
-            <v-card-title>
-            {{meal.name}}
-            </v-card-title>
-
             <v-card-subtitle>
-                <div> {{meal.alias}}</div>
+            <div class="overline mb-1">
+            <strong>{{meal.meal_user.name}}</strong>
+            </div>
+                <div> {{meal.name}}</div>
                 <v-row
                     align="center"
                     class="mx-0 pt-2"
                 >
-                    <v-rating
-                    :value="4.5"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"
-                    ></v-rating>
-
-                    <div class="grey--text ml-4">
-                    4.5 (413)
-                    </div>
+                    <v-icon small>mdi-eye-outline</v-icon>
+                    <v-list-item-action-text>{{meal.views}}</v-list-item-action-text>
                 </v-row>
             </v-card-subtitle>
+
 
 
             <v-card-actions>
@@ -106,10 +97,12 @@
                     small
                     icon
 
+                    :to="'pub/'+meal.key"
+                    target="_blank"
                 >
                     <v-icon
-                    small
-                    >mdi-thumb-up</v-icon>
+
+                    >mdi-eye-outline</v-icon>
                 </v-btn>
                 <v-btn
                     small
@@ -133,64 +126,9 @@
             <div v-show="show && postUserId == meal.id">
                 <v-divider></v-divider>
 
-                <v-card-text>
-
-                    <v-timeline
-                        dense
-                    >
-                        <v-timeline-item
-                        small
-                        >
-                        <div>
-                            <div class="font-weight-normal">
-                            <strong>Cuisine</strong>
-                            </div>
-                            <div>{{meal.meal_cuisine.name}}</div>
-                        </div>
-                        </v-timeline-item><v-timeline-item
-                        small
-                        >
-                        <div>
-                            <div class="font-weight-normal">
-                            <strong>Type</strong>
-                            </div>
-                            <div>{{meal.meal_type.meal_type}}</div>
-                        </div>
-                        </v-timeline-item><v-timeline-item
-                        small
-                        >
-                        <div>
-                            <div class="font-weight-normal">
-                            <strong>Common timing</strong>
-                            </div>
-                            <div>{{meal.mealtiming.common_timing}}</div>
-                        </div>
-                        </v-timeline-item>
-                    </v-timeline>
-
-
+                <v-card-text dense>
                     <v-list-item-action-text>{{meal.details}}</v-list-item-action-text>
                 </v-card-text>
-                <v-divider class="mx-4"></v-divider>
-
-                <v-card-title>Allergies</v-card-title>
-
-                <v-card-text>
-                <v-chip-group
-                    active-class="deep-purple accent-4 white--text"
-                    column
-                >
-                    <v-chip
-                    v-for="(allergies, index) in meal.meal_allergies"
-                    :key="index"
-                    >
-                     {{allergies.allergies_ingredients.name}}
-                    </v-chip>
-                </v-chip-group>
-                </v-card-text>
-
-
-
             </div>
             </v-expand-transition>
         </v-card>

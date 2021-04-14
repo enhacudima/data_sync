@@ -82,7 +82,7 @@
                                     <v-icon>mdi-camera-account</v-icon>
                                 </v-btn>
                                 </v-list-item-action>
-                                <v-list-item-title>Update avatar</v-list-item-title>
+                                <v-list-item-title>{{$t('update_avatar')}}</v-list-item-title>
                             </v-list-item>
                             <v-list-item>
                                 <v-list-item-action>
@@ -90,7 +90,7 @@
                                     <v-icon>mdi-theme-light-dark</v-icon>
                                 </v-btn>
                                 </v-list-item-action>
-                                <v-list-item-title>Sleep mode</v-list-item-title>
+                                <v-list-item-title>{{$t('dark_moee')}}</v-list-item-title>
                             </v-list-item>
 
                         <v-list-item>
@@ -103,7 +103,7 @@
                                 <v-icon>mdi-power</v-icon>
                             </v-btn>
                             </v-list-item-action>
-                            <v-list-item-title>Logout All Devices</v-list-item-title>
+                            <v-list-item-title>{{$t('logout_all_devi')}}</v-list-item-title>
                         </v-list-item>
                         </v-list>
 
@@ -197,20 +197,25 @@
       <v-divider></v-divider>
 
       <v-list>
+        <template
+        v-for="(linkName, index)  in linksNames">
         <v-list-item
-          v-for="(linkName, index)  in linksNames"
+           v-if="$can(can[index])"
           :key="linkName"
           :to="links[index]"
           link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ icons[index] }}</v-icon>
-          </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ linkName }}</v-list-item-title>
-          </v-list-item-content>
+        >
+                <v-list-item-icon>
+                    <v-icon>{{ icons[index] }}</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content >
+                    <v-list-item-title>{{ linkName }}</v-list-item-title>
+                </v-list-item-content>
+
         </v-list-item>
+        </template>
       </v-list>
     </v-navigation-drawer>
 
@@ -234,7 +239,7 @@
         class="text-center"
         cols="12"
       >
-        &copy;{{ new Date().getFullYear() }} — <strong>DataSync</strong>
+        &copy;{{ new Date().getFullYear() }} — <strong>DataSync Limitada</strong>
       </v-col>
     </v-footer>
     <!--dialog-->
@@ -267,19 +272,24 @@
       message: false,
       hints: false,
       linksNames: [
-        'Dashboard',
         'My Pub',
+        'Dashboard',
         'Tools',
       ],
       links:[
         'home',
-        'mealIndex',
+        'Statistics',
         'tools',
       ],
       icons: [
-        'mdi-chart-pie',
         'mdi-view-grid',
+        'mdi-chart-pie',
         'mdi-hammer-screwdriver',
+      ],
+      can: [
+        'home',
+        'statistics',
+        'admin',
       ],
       states:[],
       drawer: null,
@@ -426,7 +436,7 @@
     }else if (this.userType == 2 ) {
       this.userTypeName = "Client"
     }else if(this.userType == 3){
-      this.userTypeName = "Chef"
+      this.userTypeName = "Visitor"
     }else{
       this.userTypeName = "No category"
     }

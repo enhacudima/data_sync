@@ -69,7 +69,7 @@ class GetMealController extends Controller
 
     public function getPagmMals()
     {
-    	$data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('id','desc')->paginate(9);
+    	$data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('id','desc')->paginate(20);
 
         return response()->json($data, 200);
     }
@@ -77,8 +77,12 @@ class GetMealController extends Controller
     {
         $data=Meals::limit(20)
         ->where('name','like',"%".$search."%")
-        ->orwhere('alias','like',"%".$search."%")
-        ->with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')
+        ->orwhere('email','like',"%".$search."%")
+        ->orwhere('phone','like',"%".$search."%")
+        ->orwhere('location','like',"%".$search."%")
+        ->orwhere('start_date','like',"%".$search."%")
+        ->orwhere('end_date','like',"%".$search."%")
+        ->with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('id','desc')
         ->get();
     	return response()->json($data, 200);
     }

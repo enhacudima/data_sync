@@ -3,10 +3,10 @@
         <v-form ref="registerForm" v-model="valid" lazy-validation>
             <v-row>
                 <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="formReg.name"  label="First Name" maxlength="255" :counter="255" required :rules="[rules.required]"></v-text-field>
+                    <v-text-field v-model="formReg.name"  :label="$t('f_name')" maxlength="255" :counter="255" required :rules="[rules.required]"></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="formReg.lastName"  label="Last Name" maxlength="255" :counter="255" :rules="[rules.required]" required></v-text-field>
+                    <v-text-field v-model="formReg.lastName"  :label="$t('l_name')" maxlength="255" :counter="255" :rules="[rules.required]" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
                     <v-text-field disabled v-model="formReg.email" :rules="emailRules" label="E-mail" :counter="255" required></v-text-field>
@@ -24,7 +24,7 @@
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="12" sm="8" md="8">
-                    <v-text-field v-model="formReg.phone1" type="number"  :rules="[rulesPhone.required,rulesPhone.min,rulesPhone.max]" label="Phone Number" maxlength="9" :counter="9" required></v-text-field>
+                    <v-text-field v-model="formReg.phone1" type="number"  :rules="[rulesPhone.required,rulesPhone.min,rulesPhone.max]" :label="$t('phone_number')" maxlength="9" :counter="9" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
                     <v-menu
@@ -38,7 +38,7 @@
                     <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                         v-model="formReg.dataBrith"
-                        label="Birthday date"
+                        :label="$t('b_date')"
                         prepend-icon="mdi-calendar"
                         readonly
                         v-bind="attrs"
@@ -49,15 +49,13 @@
                     <v-date-picker
                         ref="picker"
                         v-model="formReg.dataBrith"
-                        :max="new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().substr(0, 10)"
-                        min="1950-01-01"
                         @change="save"
                     ></v-date-picker>
                     </v-menu>
                 </v-col>
 
                 <v-col cols="12">
-                    <v-text-field v-model="formReg.fullAddress" type="text"  label="Full Address" :rules="[]" maxlength="255" :counter="255" ></v-text-field>
+                    <v-text-field v-model="formReg.fullAddress" type="text"  :label="$t('full_address')" :rules="[]" maxlength="255" :counter="255" ></v-text-field>
                 </v-col>
                 <v-col cols="12">
                 <v-spacer></v-spacer>
@@ -76,17 +74,17 @@
                 </v-col>
 
                 <v-col cols="12">
-                    <v-text-field :disabled="!formReg.isEditing" v-model="formReg.old_password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Old Password"  counter @click:append="show1 = !show1"></v-text-field>
+                    <v-text-field :disabled="!formReg.isEditing" v-model="formReg.old_password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[]" :type="show1 ? 'text' : 'password'" name="input-10-1" :label="$t('o_password')"  counter @click:append="show1 = !show1"></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                    <v-text-field :disabled="!formReg.isEditing" v-model="formReg.password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Password" counter @click:append="show1 = !show1"></v-text-field>
+                    <v-text-field :disabled="!formReg.isEditing" v-model="formReg.password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[]" :type="show1 ? 'text' : 'password'" name="input-10-1" :label="$t('password')" counter @click:append="show1 = !show1"></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                    <v-text-field :disabled="!formReg.isEditing" block v-model="formReg.password_confirmation" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[ passwordMatch]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Confirm Password" counter @click:append="show1 = !show1"></v-text-field>
+                    <v-text-field :disabled="!formReg.isEditing" block v-model="formReg.password_confirmation" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[ passwordMatch]" :type="show1 ? 'text' : 'password'" name="input-10-1" :label="$t('password_confirm')" counter @click:append="show1 = !show1"></v-text-field>
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col class="d-flex ml-auto" cols="12" sm="1" xsm="12">
-                    <v-btn elevation="1" large :disabled="!valid" color="success" @click="validate">Save</v-btn>
+                    <v-btn elevation="1" large :disabled="!valid" color="success" @click="validate">{{$t('save')}}</v-btn>
                 </v-col>
             </v-row>
         </v-form>

@@ -1,6 +1,6 @@
 require('./bootstrap');
 window.Vue = require('vue');
-window.moment = require('moment');//para funcionar o moment fora do js
+
 
 import App from './App.vue';
 import VueRouter from 'vue-router';
@@ -46,6 +46,9 @@ Vue.use(require('vue-moment'));
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(abilitiesPlugin, ability);
+
+
+window.moment = require('moment');//para funcionar o moment fora do js
 
 axios.defaults.baseURL = 'http://localhost/data_sync/public/api';
 //axios.defaults.baseURL = 'https://greenisle.co.za/api';

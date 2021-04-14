@@ -27,12 +27,12 @@
                         <v-list-item dense>
                         <v-list-item-avatar size="100">
                             <img
-                                :src="baseUrl+'storage/'+meal.meal_user.avatar"
-                                :lazy-src="baseUrl+'storage/'+meal.meal_user.avatar"
+                                :src="baseUrl+'storage/'+user.avatar"
+                                :lazy-src="baseUrl+'storage/'+user.avatar"
                             >
                             </v-list-item-avatar>
                             <v-list-item-content>
-                            <v-list-item-title class="title" style="margin-top:20px;">{{meal.meal_user.name}} {{meal.meal_user.lastName}} </v-list-item-title>
+                            <v-list-item-title class="title" style="margin-top:20px;">{{user.name}} {{user.lastName}} </v-list-item-title>
 
                             </v-list-item-content>
                         </v-list-item>
@@ -44,7 +44,7 @@
                             </v-list-item-icon>
 
                             <v-list-item-content>
-                            <v-list-item-title>+{{meal.meal_user.phone1}}</v-list-item-title>
+                            <v-list-item-title>+{{user.phone1}}</v-list-item-title>
                             <v-list-item-subtitle>Phone</v-list-item-subtitle>
                             </v-list-item-content>
 
@@ -52,6 +52,9 @@
                             <v-icon>mdi-message-text</v-icon>
                             </v-list-item-icon>
                         </v-list-item>
+
+
+                        <v-divider inset></v-divider>
 
 
                         <v-divider inset></v-divider>
@@ -64,8 +67,8 @@
                             </v-list-item-icon>
 
                             <v-list-item-content>
-                            <v-list-item-title>{{meal.meal_user.email}}</v-list-item-title>
-                            <v-list-item-subtitle>Enterprise</v-list-item-subtitle>
+                            <v-list-item-title>{{user.email}}</v-list-item-title>
+                            <v-list-item-subtitle>Email</v-list-item-subtitle>
                             </v-list-item-content>
 
                             <v-list-item-icon>
@@ -83,8 +86,8 @@
                             </v-list-item-icon>
 
                             <v-list-item-content>
-                            <v-list-item-title></v-list-item-title>
-                            <v-list-item-subtitle>{{meal.meal_user.fullAddress}}</v-list-item-subtitle>
+                            <v-list-item-title>{{user.country}}</v-list-item-title>
+                            <v-list-item-subtitle>{{user.address}}</v-list-item-subtitle>
                             </v-list-item-content>
 
                             <v-list-item-icon>
@@ -93,97 +96,6 @@
 
 
                         <v-divider inset></v-divider>
-
-                        <v-list-item dense >
-                            <v-list-item-icon>
-                            <v-icon color="indigo">
-                            </v-icon>
-                            </v-list-item-icon>
-
-                            <v-list-item-content>
-                            <v-list-item-title>Pub</v-list-item-title>
-                            <v-list-item-subtitle></v-list-item-subtitle>
-                            </v-list-item-content>
-
-                            <v-list-item-icon>
-                            </v-list-item-icon>
-                        </v-list-item>
-
-                        <v-list-item dense>
-                            <v-list-item-icon>
-                            </v-list-item-icon>
-
-                            <v-list-item-content v-if="meal.details">
-                            <v-list-item-title> {{meal.name}}</v-list-item-title>
-                            <v-list-item-action-text>{{meal.details}}</v-list-item-action-text>
-                            </v-list-item-content>
-                        </v-list-item>
-                        <v-divider inset></v-divider>
-                        <v-list-item dense>
-                            <v-list-item-icon>
-                            <v-icon color="indigo">
-                                mdi-file-pdf
-                            </v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content >
-                                <v-list-item-title>
-                                    <input v-model.number="currentPage" type="number" style="width: 3em" /> /{{pageCount}}
-                                    <v-btn
-                                    icon
-                                    color="pink"
-                                    @click="page('previous')"
-                                    >
-                                    <v-icon>mdi-skip-previous</v-icon>
-                                    </v-btn>
-
-                                    <v-btn
-                                    icon
-                                    color="pink"
-                                    @click="page('next')"
-                                    >
-                                    <v-icon>mdi-skip-next</v-icon>
-                                    </v-btn>
-
-
-                                    <v-btn
-                                    small
-                                    icon
-                                    color="pink"
-                                    @click="zoon('previous')"
-                                    >
-                                    <v-icon>mdi-magnify-minus</v-icon>
-                                    </v-btn>
-
-                                    <v-btn
-                                    small
-                                    icon
-                                    color="pink"
-                                    @click="zoon('next')"
-                                    >
-                                    <v-icon>mdi-magnify-plus</v-icon>
-                                    </v-btn>
-                                    {{percent}}%
-                                </v-list-item-title>
-                                <v-list-item-action-text>
-                                <template>
-                                <vue-pdf
-                                    src="http://localhost/data_sync/public/storage/uploads/application-pdf/2021-03-10/Lei+n%C2%BA+20-2013-IRPS_221fea335f508e1e16a07d92d91b83be.pdf"
-                                    @num-pages="pageCount = $event"
-                                    @page-loaded="currentPage = $event"
-                                    :page="currentPage"
-                                    @progress="loadedRatio = $event"
-                                    @error="error"
-                                    @link-clicked="currentPage = $event"
-                                    :style="'border: 1px solid red; display: inline-block; width: '+percent+'%'"
-                                />
-                                </template>
-                                </v-list-item-action-text>
-                            </v-list-item-content>
-                        </v-list-item>
-                         <v-divider inset></v-divider>
-
-
-
             </v-row>
         </v-card>
     </v-main>
@@ -191,25 +103,17 @@
 </template>
 
 <script>
-import vuePdf from 'vue-pdf-worker-fix'
   export default {
 
-
-    components: {
-        vuePdf
-    },
 
     data() {
 
         return {
             baseUrl:'http://localhost/data_sync/public/',
             drawer:true,
-            meal:[],
+            user:[],
             profile:[],
             chef:[],
-            currentPage: 1,
-            pageCount: 0,
-            percent:100,
         }
 
     },
@@ -220,30 +124,11 @@ import vuePdf from 'vue-pdf-worker-fix'
         },
     },
     methods: {
-        error: function(err) {
-        console.log(err);
-        },
-        page(action){
-            if(action == "next"){
-
-                this.currentPage = ++this.currentPage;
-            }else{
-                this.currentPage = --this.currentPage;
-            }
-        },
-        zoon(action){
-            if(action == "next"){
-
-                this.percent = this.percent+10;
-            }else{
-                this.percent = this.percent-10;
-            }
-        }
     },
     mounted() {
     axios
         .get('user/profile/'+this.token)
-        .then(response => (this.meal = response.data));
+        .then(response => (this.user = response.data));
     },
 
   }

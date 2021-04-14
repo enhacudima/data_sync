@@ -22,7 +22,7 @@ class CreateMealController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('role_or_permission:meal_create', ['only' => ['newMeal']]);
+        //$this->middleware('role_or_permission:pub_create', ['only' => ['newMeal']]);
     }
 
     public function newMeal(Request $request)
@@ -42,19 +42,19 @@ class CreateMealController extends Controller
         $myRequest->request->add($mealData);
 
         $validator = Validator::make($myRequest->all(), [
-            'name' => 'required|string|max:50|unique:meals,name',
-            'alias' => 'required|string|max:255',
+            'file_id' => 'required|numeric',
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|max:255',
+            'web' => 'nullable|url|max:255',
+            'location' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
             'details' => 'required|string|max:255',
             'commonTiming'=>'required',
-            'time' => 'required|numeric',
-            'people' => 'required|numeric',
             'experience' => 'required|numeric|exists:experiences,id',
             'tags' => 'required',
-            'file_id' => 'required|numeric',
-            'mealType' => 'required|numeric',
         ],
         [
-     	    'file_id.required'=>'Please add a picture of meal.'
+     	    'file_id.required'=>'Please add PDF file.'
         ]
     	);
     if ($validator->fails()) {
@@ -65,19 +65,27 @@ class CreateMealController extends Controller
             $input['user_id'] = Auth::user()->id;
             $input['key'] = md5(time()).Auth::user()->id;
 
+
+            //start date
+            $startDate=new Carbon($input['commonTiming'][0]);
+            $startDate=$startDate->format('Y-m-d H:i:s');
+            //end date
+            $endDate=new Carbon($input['commonTiming'][1]);
+            $endDate=$endDate->format('Y-m-d H:i:s');
+
             $meal=Meals::Create(
             	[
                     'user_id'=> $input['user_id'],
                     'name'=> $input['name'],
-                    'alias'=> $input['alias'],
+                    'email'=> $input['email'],
             		'details' => $input['details'],
-            		'common_timing_id' => $input['commonTiming'],
-            		'time' => $input['time'],
-            		'people' => $input['people'],
+            		'start_date' => $startDate,
+            		'end_date' => $endDate,
+            		'location' => $input['location'],
+            		'web' => $input['web'],
             		'experience_id' => $input['experience'],
             		'key' => $input['key'],
-            		'cuisine_id' =>$input['cuisine'],
-                    'type_meal_id'=>$input['mealType'],
+                    'phone'=>$input['phone'],
 
             	]
             );
@@ -87,14 +95,14 @@ class CreateMealController extends Controller
             $file_id = $myRequest['file_id'];
             $file->useFile($file_id,$meal->id, 'meals', 0);
 
-           foreach($input['ingredients'] as $key => $ingredient){
+          /* foreach($input['ingredients'] as $key => $ingredient){
                //add ingredients to meal
                SyncMealAllergies::create([
                    'meal_id' => $meal->id ,
                    'ingredients_id' => $ingredient,
                ]);
 
-           }
+           }*/
 
 
            foreach($input['options'] as $key => $option){

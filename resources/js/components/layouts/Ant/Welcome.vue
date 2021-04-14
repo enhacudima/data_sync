@@ -139,7 +139,7 @@
         class="text-center"
         cols="12"
       >
-        &copy;{{ new Date().getFullYear() }} — <strong>DataSync</strong>
+        &copy;{{ new Date().getFullYear() }} — <strong>DataSync Limitada</strong>
       </v-col>
     </v-footer>
     <div class="main-wrapper">

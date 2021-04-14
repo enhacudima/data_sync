@@ -14,6 +14,7 @@ import Tools from './components/Tools/index.vue';
 import ForgotPasswordResult from './components/Auth/ForgotPasswordResult.vue';
 import NotFound from './components/NotFound';
 import ResetPassword from './components/Auth/ResetPassword.vue';
+import Pub from  './components/Pub/Pub.vue';
 import UserProfile from  './components/Profile/User.vue';
 import NoPermission from './components/NoPermission'
 
@@ -109,7 +110,7 @@ export const routes = [
     {
         name: 'home',
         path: '/home',
-        component: Home,
+        component: MealIndex,
         props: true,
         meta: {
             antMasterLayout: true,
@@ -128,13 +129,14 @@ export const routes = [
         },
     },
     {
-        name: 'meal/index',
-        path: '/mealIndex',
-        component: MealIndex,
+        name: 'statistics',
+        path: '/Statistics',
+        component: Home,
         props: true,
         meta: {
             antMasterLayout: true,
             auth: true,
+            resource: 'statistics',
         },
     },
     {
@@ -145,6 +147,7 @@ export const routes = [
         meta: {
             antMasterLayout: true,
             auth: true,
+            resource: 'admin',
         },
     },
     {
@@ -159,6 +162,12 @@ export const routes = [
     {
         name: 'pub/',
         path: '/pub/:token',
+        component: Pub,
+        props: true,
+    },
+    {
+        name: 'profile/',
+        path: '/profile/:token',
         component: UserProfile,
         props: true,
     },
