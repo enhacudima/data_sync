@@ -40,7 +40,7 @@ class RegisterController extends Controller
             'lastName' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/',
-            'dataBrith' => 'required|date|date_format:Y-m-d|before:18 years ago',
+            'dataBrith' => 'nullable|date|date_format:Y-m-d',
             'phone1'=>'required|numeric|unique:users,phone1',
             //'prefix_phone_1'=>'required', //removed
             //'type'=>'required|numeric', //removed

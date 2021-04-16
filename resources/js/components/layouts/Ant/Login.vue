@@ -5,8 +5,8 @@
       <v-container>
             <v-row align="center" justify="center" class="pt-16 pt-md-16 mt-md-16" >
                 <v-img
-                    src="storage/icons/110x92px.png"
-                    lazy-src="storage/icons/110x92px.png"
+                    src="storage/icons/110x92px.jpg"
+                    lazy-src="storage/icons/110x92px.jpg"
                     aspect-ratio="2"
                     max-height="200"
                     max-width="130"

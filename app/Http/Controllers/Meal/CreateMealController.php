@@ -42,9 +42,10 @@ class CreateMealController extends Controller
             $mealData['location'] = null;
         }
 
-        if(!isset($request->data['nullable'])){
-            $mealData['nullable'] = null;
+        if(!isset($request->data['phone'])){
+            $mealData['phone'] = null;
         }
+
 
         $mealData['tags'] = $tags;
         $mealData['file_id'] = $file_id;

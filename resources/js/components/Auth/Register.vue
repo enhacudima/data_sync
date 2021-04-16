@@ -58,7 +58,7 @@
                                                 readonly
                                                 v-bind="attrs"
                                                 v-on="on"
-                                                :rules="[rules.required]"
+                                                :rules="[]"
                                                 dense
                                               ></v-text-field>
                                             </template>

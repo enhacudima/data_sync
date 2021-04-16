@@ -19,10 +19,10 @@
 
     <v-main>
         <v-card class="mx-auto" max-width="1000" tile>
-            <v-img height="200" :src="baseUrl+'storage/icons/fundo.jpg'"
+            <!--<v-img height="200" :src="baseUrl+'storage/icons/fundo.jpg'"
             lazy-src="storage/icons/fundo.jpeg"
-            ></v-img>
-            <v-row style="margin:2.5%;position:absolute; top: 130px">
+            ></v-img>-->
+            <v-row style="margin:2.5%;position:absolute; top: 0px">
 
                         <v-list-item dense>
                         <v-list-item-avatar size="100">

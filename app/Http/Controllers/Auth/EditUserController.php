@@ -34,7 +34,7 @@ class EditUserController extends Controller
         $validator = Validator::make($myRequest->all(), [
             'name' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
-            'dataBrith' => 'required|date|date_format:Y-m-d|before:18 years ago',
+            'dataBrith' => 'nullable|date|date_format:Y-m-d',
             'phone1'=>'required|numeric|digits:9|unique:users,phone1,'.Auth::user()->id.',id',
             'isEditing'=>'required',
             'fullAddress'=>'nullable|string|min:12|max:255',

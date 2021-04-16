@@ -32,6 +32,19 @@ class UpdateMealController extends Controller
         if(isset($request->data['fileData']['file_id'])){
             $file_id = $request->data['fileData']['file_id'];
         }
+
+        if(!isset($request->data['web'])){
+            $mealData['web'] = null;
+        }
+
+        if(!isset($request->data['location'])){
+            $mealData['location'] = null;
+        }
+
+        if(!isset($request->data['phone'])){
+            $mealData['phone'] = null;
+        }
+
         $mealData['tags'] = $tags;
         $mealData['file_id'] = $file_id;
         $mealData['id'] =$id;
@@ -44,9 +57,9 @@ class UpdateMealController extends Controller
             'file_id' => 'nullable|numeric',
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:255',
-            'web' => 'required|url|max:255',
-            'location' => 'required|string|max:255',
-            'phone' => 'required|numeric',
+            'web' => 'nullable|url|max:255',
+            'location' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
             'details' => 'required|string|max:255',
             'commonTiming'=>'required',
             'experience' => 'required|numeric|exists:experiences,id',

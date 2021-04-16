@@ -100,7 +100,7 @@
                   'phone',
                   { initialValue:this.thisMeal.phone,rules: [
 
-                  { required: true, message: 'Please input Phone!' }] },
+                  { required: false, message: 'Please input Phone!' }] },
                 ]"
                 placeholder="Phone"
                 allow-clear
