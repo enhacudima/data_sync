@@ -23,6 +23,8 @@ class PubController extends Controller
 
         $data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName')
                     ->where('key',$token)->first();
+        //add IP
+
         if($data){
            $view=$data->views;
            $view=++$view;

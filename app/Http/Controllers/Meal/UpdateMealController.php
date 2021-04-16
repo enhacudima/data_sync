@@ -91,7 +91,7 @@ class UpdateMealController extends Controller
             $meal=Meals::where('id',$id)
                 ->update(
             	[
-                    'user_id'=> $input['user_id'],
+                    //'user_id'=> $input['user_id'],
                     'name'=> $input['name'],
                     'email'=> $input['email'],
             		'details' => $input['details'],

@@ -50,6 +50,7 @@
        <v-card
             class="mx-auto"
             max-width="240"
+            :to="'pub/'+meal.key"
         >
             <v-img
             v-if="meal.meal_file"
@@ -85,7 +86,7 @@
 
 
             <v-card-actions>
-                <v-list-item-action-text class="pl-2 " >{{meal.views}}</v-list-item-action-text>
+                <v-list-item-action-text class="pl-2 " >{{meal.views}} views</v-list-item-action-text>
                 <v-spacer></v-spacer>
                 <v-btn
                     small
