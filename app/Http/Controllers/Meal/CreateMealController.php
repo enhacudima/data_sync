@@ -34,12 +34,25 @@ class CreateMealController extends Controller
         if(isset($request->data['fileData']['file_id'])){
             $file_id = $request->data['fileData']['file_id'];
         }
+        if(!isset($request->data['web'])){
+            $mealData['web'] = null;
+        }
+
+        if(!isset($request->data['location'])){
+            $mealData['location'] = null;
+        }
+
+        if(!isset($request->data['nullable'])){
+            $mealData['nullable'] = null;
+        }
+
         $mealData['tags'] = $tags;
         $mealData['file_id'] = $file_id;
 
         $myRequest = new Request();
         $myRequest->setMethod('POST');
         $myRequest->request->add($mealData);
+
 
         $validator = Validator::make($myRequest->all(), [
             'file_id' => 'required|numeric',

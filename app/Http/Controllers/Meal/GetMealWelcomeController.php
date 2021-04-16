@@ -20,7 +20,7 @@ class GetMealWelcomeController extends Controller
 
     public function getPagmMals()
     {
-    	$data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName')->orderby('id','desc')->paginate(12);
+    	$data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName')->orderby('id','desc')->paginate(20);
 
         return response()->json($data, 200);
     }
@@ -28,7 +28,11 @@ class GetMealWelcomeController extends Controller
     {
         $data=Meals::limit(20)
         ->where('name','like',"%".$search."%")
-        ->orwhere('alias','like',"%".$search."%")
+        ->orwhere('email','like',"%".$search."%")
+        ->orwhere('phone','like',"%".$search."%")
+        ->orwhere('location','like',"%".$search."%")
+        ->orwhere('start_date','like',"%".$search."%")
+        ->orwhere('end_date','like',"%".$search."%")
         ->with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName')
         ->get();
     	return response()->json($data, 200);

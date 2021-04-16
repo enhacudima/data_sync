@@ -49,7 +49,7 @@
         >
        <v-card
             class="mx-auto"
-            max-width="200"
+            max-width="240"
         >
             <v-img
             v-if="meal.meal_file"
@@ -74,28 +74,23 @@
             </template>
             </v-img>
 
+
             <v-card-subtitle>
             <div class="overline mb-1">
-            <strong>{{meal.meal_user.name}}</strong>
+            <strong>{{  meal.meal_user.name && meal.meal_user.name.length < 10 ? meal.meal_user.name : meal.meal_user.name.substring(0,10)+".."}}</strong>
             </div>
-                <div> {{meal.name}}</div>
-                <v-row
-                    align="center"
-                    class="mx-0 pt-2"
-                >
-                    <v-icon small>mdi-eye-outline</v-icon>
-                    <v-list-item-action-text>{{meal.views}}</v-list-item-action-text>
-                </v-row>
+                <div>  <v-list-item-action-text >{{meal.name && meal.name.length < 38 ? meal.name : meal.name.substring(0,38)+".." }}</v-list-item-action-text> </div>
             </v-card-subtitle>
 
 
 
             <v-card-actions>
+                <v-list-item-action-text class="pl-2 " >{{meal.views}}</v-list-item-action-text>
                 <v-spacer></v-spacer>
                 <v-btn
                     small
                     icon
-
+                    color="orange lighten-2"
                     :to="'pub/'+meal.key"
                     target="_blank"
                 >
