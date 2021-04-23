@@ -25,6 +25,7 @@
             <router-link to="/login" tag="button">
             <v-btn
             tile
+            small
             >
             <v-icon>mdi-login</v-icon>
             {{$t('login')}}
