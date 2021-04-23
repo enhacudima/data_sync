@@ -50,7 +50,6 @@
        <v-card
             class="mx-auto"
             max-width="240"
-            :to="'pub/'+meal.key"
         >
             <v-img
             v-if="meal.meal_file"

@@ -3,8 +3,9 @@
     <v-row>
     <v-col cols="12" >
     <p class="font-weight-black">
-      TERMS AND CONDITIONS. (Ver 1.0 2020)
+      TERMS AND CONDITIONS. (Ver 1.0 2021)
     </p>
+    <!--
     <section id="considerations">
         <p class="font-weight-medium">
         Initial considerations.
@@ -223,7 +224,7 @@
         These Terms have been drafted in Republic of South Africa, in accordance with South African law.
         </p>
     </section>
-
+    -->
     </v-col>
 
     <v-navigation-drawer
@@ -287,7 +288,6 @@
           { title: 'Available',link:'#available', icon: 'mdi-airplane-takeoff' },
           { title: 'Cancellation',link:'#cancellation', icon: 'mdi-sword-cross' },
           { title: 'Cancellation by User',link:'#cancellationuser', icon: 'mdi-account-minus' },
-          { title: 'Cancellation by EatInMore',link:'#cancellationEatInMore', icon: 'mdi-account-question' },
           { title: 'Privacy',link:'#Privacy', icon: 'mdi-vpn' },
           { title: 'Liability',link:'#liability', icon: 'mdi-billiards-rack' },
           { title: 'Property',link:'#property', icon: 'mdi-shield-sun-outline' },

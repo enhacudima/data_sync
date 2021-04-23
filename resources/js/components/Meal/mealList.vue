@@ -52,7 +52,6 @@
             class="mx-auto"
             max-width="240"
             :to="'pub/'+meal.key"
-
         >
             <v-img
             v-if="meal.meal_file"
@@ -94,8 +93,6 @@
                     small
                     icon
                     color="orange lighten-2"
-                    :to="'pub/'+meal.key"
-                    target="_blank"
                 >
                     <v-icon
 

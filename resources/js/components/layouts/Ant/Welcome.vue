@@ -133,7 +133,7 @@
         </v-row>
       </v-container>
     </v-main>
-    <v-footer padless fixed >
+    <v-footer padless fixed app>
 
       <v-col
         class="text-center"

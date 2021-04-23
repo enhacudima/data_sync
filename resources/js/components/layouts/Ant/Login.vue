@@ -30,7 +30,7 @@
                  <slot/>
                  <v-row class="mt-6">
                     <v-col cols="4">
-
+                    <!--
                     <div class="locale-changer">
                         <select v-model="$i18n.locale">
                         <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
@@ -38,7 +38,7 @@
                         </option>
                         </select>
                     </div>
-                    <!--
+
                         <v-select
                         v-model="my_lang"
                         :items="langs"

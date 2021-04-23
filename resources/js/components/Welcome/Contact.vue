@@ -112,12 +112,12 @@
                 </v-row>
                 <v-row class="pl-6 pt-3">
                     <p class="font-weight-light">
-                        <strong>Email</strong> - geral@datasync.co.mz
+                        <strong>Email</strong> - geral@moz-concursopublico.info
                     </p>
                 </v-row>
                 <v-row class="pl-6 pt-1">
                     <p class="font-weight-light">
-                        <strong>Web</strong> - www.datasync.co.mz
+                        <strong>Web</strong> - moz-concursopublico.info
                     </p>
                 </v-row>
 

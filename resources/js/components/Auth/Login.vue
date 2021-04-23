@@ -43,14 +43,34 @@
               </v-row>
           </v-form>
       </v-card-text>
+    <v-divider></v-divider>
+    <v-card-actions>
+        <v-btn text>
+            <div class="locale-changer">
+                <select v-model="$i18n.locale">
+                <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+                    {{ lang.replaceAll('_', ' ').toUpperCase()}}
+                </option>
+                </select>
+            </div>
+        </v-btn>
+      <v-spacer></v-spacer>
+      <v-btn text
+       to="/"
+      >
+        Cancel
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 export default {
-name: 'locale-changer',
+ name: 'locale-changer',
   data() {
     return {
+      my_lang:'en',
+      langs: ['en', 'pt_BR'] ,
       dialogW:false,
       loginError:null,
       dialog: true,
@@ -85,6 +105,9 @@ name: 'locale-changer',
     this.form = this.$form.createForm(this, { name: 'normal_login' });
   },
   methods: {
+    changeLocale(locale) {
+        i18n.locale = locale;
+    },
     validate() {
       if (this.$refs.loginForm.validate()) {
         // submit form to server/API here...

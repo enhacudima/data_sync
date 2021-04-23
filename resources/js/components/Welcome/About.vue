@@ -5,6 +5,7 @@
     <p class="font-weight-black">
       ABOUT US
     </p>
+    <!--
     <section id="Brand">
         <p class="font-weight-medium">
         Our Brand: EatInMore.
@@ -74,7 +75,7 @@
             Wait for contacts, manage your customer portfolio and leverage revenue.
         </p>
     </section>
-
+-->
 
     </v-col>
 
