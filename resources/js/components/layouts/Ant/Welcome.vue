@@ -24,10 +24,12 @@
         <div class="pr-2">
             <router-link to="/login" tag="button">
             <v-btn
-            icon
+            tile
             >
             <v-icon>mdi-login</v-icon>
+            {{$t('login')}}
             </v-btn>
+
             </router-link>
         </div>
     </v-app-bar>
@@ -173,7 +175,7 @@ import {i18n} from '../../../i18n.js'
         'mdi-instagram',
       ],
       linksNames: [
-        'Pub',
+        'Publicações',
         'about_us',
         'contact',
         'terms_and_conditions',

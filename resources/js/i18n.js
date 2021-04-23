@@ -49,7 +49,7 @@ const messages = {
         login:'Iniciar sessão',
         search: 'Pesquisa',
         welcome: 'Bem Vindo',
-        about_us:'Acerca de nós',
+        about_us:'Sobre nós',
         contact:'Contactos',
         terms_and_conditions:'Termos e condições',
         cusine:'Culinária',
