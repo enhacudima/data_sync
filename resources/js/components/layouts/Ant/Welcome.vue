@@ -167,7 +167,7 @@ import {i18n} from '../../../i18n.js'
       my_lang:'pt_BR',
       langs: ['en', 'pt_BR'] ,
       states:[],
-      drawer: true,
+      drawer: false,
       iconsFoot: [
         'mdi-facebook',
         'mdi-twitter',
