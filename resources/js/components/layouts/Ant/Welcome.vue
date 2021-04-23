@@ -162,7 +162,7 @@ import {i18n} from '../../../i18n.js'
     },
 
     data: () => ({
-      my_lang:'en',
+      my_lang:'pt_BR',
       langs: ['en', 'pt_BR'] ,
       states:[],
       drawer: true,
