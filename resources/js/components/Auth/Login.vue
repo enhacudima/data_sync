@@ -69,7 +69,7 @@ export default {
  name: 'locale-changer',
   data() {
     return {
-      my_lang:'en',
+      my_lang:'pt_BR',
       langs: ['en', 'pt_BR'] ,
       dialogW:false,
       loginError:null,

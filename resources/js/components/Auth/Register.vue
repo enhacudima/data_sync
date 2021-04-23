@@ -206,7 +206,7 @@ export default {
 
   },
   data: () => ({
-    my_lang:'en',
+    my_lang:'pt_BR',
     langs: ['en', 'pt_BR'] ,
     formReg:{
       name:null,

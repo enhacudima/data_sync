@@ -87,8 +87,8 @@ const messages = {
 };
 
 const i18n = new VueI18n({
-    locale: 'en', // set locale
-    fallbackLocale: 'pt_BR', // set fallback locale
+    locale: 'pt_BR', // set locale
+    fallbackLocale: 'en', // set fallback locale
     messages, // set locale messages
 });
 
