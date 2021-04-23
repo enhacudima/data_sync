@@ -239,7 +239,13 @@
         class="text-center"
         cols="12"
       >
-        &copy;{{ new Date().getFullYear() }} — <strong>DataSync Limitada</strong>
+
+       <div
+            :class="[`text-caption`]"
+            class="transition-swing"
+        >
+         &copy;{{ new Date().getFullYear() }} — Um produto da <b>Data Sync, Limitada</b>
+        </div>
       </v-col>
     </v-footer>
     <!--dialog-->
