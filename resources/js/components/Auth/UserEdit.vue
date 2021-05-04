@@ -24,7 +24,7 @@
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="12" sm="8" md="8">
-                    <v-text-field v-model="formReg.phone1" type="number"  :rules="[rulesPhone.required,rulesPhone.min,rulesPhone.max]" :label="$t('phone_number')" maxlength="9" :counter="9" required></v-text-field>
+                    <v-text-field v-model="formReg.phone1" type="number"  :rules="[rulesPhone.required]" :label="$t('phone_number')" maxlength="21"  required></v-text-field>
                 </v-col>
                 <v-col cols="12">
                     <v-menu

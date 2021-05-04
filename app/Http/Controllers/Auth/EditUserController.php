@@ -35,7 +35,7 @@ class EditUserController extends Controller
             'name' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'dataBrith' => 'nullable|date|date_format:Y-m-d',
-            'phone1'=>'required|numeric|digits:9|unique:users,phone1,'.Auth::user()->id.',id',
+            'phone1'=>'required|numeric|unique:users,phone1,'.Auth::user()->id.',id',
             'isEditing'=>'required',
             'fullAddress'=>'nullable|string|min:12|max:255',
         ],

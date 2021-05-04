@@ -54,23 +54,22 @@ class UpdateMealController extends Controller
         $myRequest->request->add($mealData);
 
         $validator = Validator::make($myRequest->all(), [
-            'file_id' => 'nullable|numeric',
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:255',
             'web' => 'nullable|url|max:255',
             'location' => 'nullable|string|max:255',
             'phone' => 'nullable|numeric',
-            'details' => 'required|string|max:255',
+            'details' => 'required|string',
             'commonTiming'=>'required',
             'experience' => 'required|numeric|exists:experiences,id',
-            'tags' => 'required',
+            'tags' => 'nullable',
             'id' =>'required|numeric|exists:meals,id',
         ],
         [
-     	    'file_id.required'=>'Please add a picture of meal.',
-            'id.required'=>"This meal don't exist.",
-            'id.numeric'=>"This meal don't exist.",
-            'id.required'=>"This meal don't exist.",
+     	    'file_id.required'=>'Please add a pdf file.',
+            'id.required'=>"This publicidade don't exist.",
+            'id.numeric'=>"This publicidade don't exist.",
+            'id.required'=>"This publicidade don't exist.",
         ]
     	);
     if ($validator->fails()) {

@@ -62,10 +62,10 @@ class CreateMealController extends Controller
             'web' => 'nullable|url|max:255',
             'location' => 'nullable|string|max:255',
             'phone' => 'nullable|numeric',
-            'details' => 'required|string|max:255',
+            'details' => 'required|string',
             'commonTiming'=>'required',
             'experience' => 'required|numeric|exists:experiences,id',
-            'tags' => 'required',
+            'tags' => 'nullable',
         ],
         [
      	    'file_id.required'=>'Please add PDF file.'
@@ -118,21 +118,23 @@ class CreateMealController extends Controller
 
            }*/
 
+           if(isset($input['options'])){
 
-           foreach($input['options'] as $key => $option){
-            //add options to meal
-            $optiKey = md5(time()).Auth::user()->id;
-            Options::updateOrInsert(
-                [
-                    'name' => $option,
-                    'meal_id' =>$meal->id,
-                ],
-                [
-                    'user_id'=> $input['user_id'],
-                    'key' => $optiKey
-                ]
-            );
+            foreach($input['options'] as $key => $option){
+                //add options to meal
+                $optiKey = md5(time()).Auth::user()->id;
+                Options::updateOrInsert(
+                    [
+                        'name' => $option,
+                        'meal_id' =>$meal->id,
+                    ],
+                    [
+                        'user_id'=> $input['user_id'],
+                        'key' => $optiKey
+                    ]
+                );
 
+            }
             }
 
 

@@ -145,12 +145,9 @@
        <div
             :class="[`text-caption`]"
             class="transition-swing"
-
         >
          &copy;{{ new Date().getFullYear() }} — Um produto da <b>Data Sync, Limitada</b>
         </div>
-
-
       </v-col>
     </v-footer>
     <div class="main-wrapper">

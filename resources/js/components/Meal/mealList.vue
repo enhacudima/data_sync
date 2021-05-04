@@ -51,16 +51,16 @@
        <v-card
             class="mx-auto"
             max-width="240"
-            :to="'pub/'+meal.key"
         >
             <v-img
-            v-if="meal.meal_file"
-            :src="'storage/'+meal.meal_user.avatar"
-            :lazy-src="'storage/'+meal.meal_user.avatar"
-            aspect-ratio="2"
-            class="white--text align-end"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="150px"
+                v-if="meal.meal_user"
+                :src="'storage/'+meal.meal_user.avatar"
+                :lazy-src="'storage/'+meal.meal_user.avatar"
+                aspect-ratio="2"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="150px"
+                @click.stop="open('pub/'+meal.key)"
             >
             <template v-slot:placeholder>
             <v-row
@@ -81,6 +81,8 @@
             <strong>{{  meal.meal_user.name && meal.meal_user.name.length < 10 ? meal.meal_user.name : meal.meal_user.name.substring(0,10)+".."}}</strong>
             </div>
                 <div>  <v-list-item-action-text >{{meal.name && meal.name.length < 38 ? meal.name : meal.name.substring(0,38)+".." }}</v-list-item-action-text> </div>
+                <div>  <v-list-item-action-text >Inicio - {{meal.start_date | moment("d-M-Y")}}</v-list-item-action-text> </div>
+                <div>  <v-list-item-action-text >Fim - {{meal.end_date | moment("d-M-Y")}}</v-list-item-action-text> </div>
             </v-card-subtitle>
 
 
@@ -168,6 +170,11 @@ export default {
         }
     },
     methods: {
+        open(url){
+            let routeData = this.$router.resolve({path: url});
+            window.open(routeData.href, '_blank');
+
+        },
         modfShowDialog(mealId){
             this.showDialog=true;
             this.mealIDShow=mealId;

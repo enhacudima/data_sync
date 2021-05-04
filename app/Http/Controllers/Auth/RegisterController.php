@@ -42,7 +42,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/',
             'dataBrith' => 'nullable|date|date_format:Y-m-d',
             'phone1'=>'required|numeric|unique:users,phone1',
-            //'prefix_phone_1'=>'required', //removed
+            'prefix_phone_1'=>'required', //removed
             //'type'=>'required|numeric', //removed
             'terms_conditions' =>'required|accepted',
         ],

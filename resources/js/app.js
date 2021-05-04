@@ -1,5 +1,6 @@
 require('./bootstrap');
 window.Vue = require('vue');
+window.moment = require('moment');//para funcionar o moment fora do js
 
 
 import App from './App.vue';

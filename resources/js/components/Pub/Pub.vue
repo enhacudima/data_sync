@@ -27,12 +27,13 @@
                         <v-list-item dense>
                         <v-list-item-avatar size="100">
                             <img
+                                v-if="meal.meal_user"
                                 :src="baseUrl+'storage/'+meal.meal_user.avatar"
                                 :lazy-src="baseUrl+'storage/'+meal.meal_user.avatar"
                             >
                             </v-list-item-avatar>
                             <v-list-item-content>
-                            <v-list-item-title class="title" style="margin-top:20px;">{{meal.meal_user.name}} {{meal.meal_user.lastName}} </v-list-item-title>
+                            <v-list-item-title class="title" style="margin-top:20px;" v-if="meal.meal_user">{{meal.meal_user.name}} {{meal.meal_user.lastName}} </v-list-item-title>
 
                             </v-list-item-content>
                         </v-list-item>
@@ -172,6 +173,7 @@
                                 <v-list-item-action-text>
                                 <template>
                                 <vue-pdf
+                                    v-if="meal.meal_file"
                                     :src="baseUrl+'storage/'+meal.meal_file.path+meal.meal_file.name"
                                     @num-pages="pageCount = $event"
                                     @page-loaded="currentPage = $event"
@@ -248,7 +250,7 @@ import vuePdf from 'vue-pdf-worker-fix'
     mounted() {
     axios
         .get('pub/'+this.token)
-        .then(response => (this.meal = response.data));
+        .then(response => (this.meal = response.data, console.log(this.meal)));
     },
 
   }

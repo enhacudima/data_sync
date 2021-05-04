@@ -208,6 +208,12 @@ export default {
     });
   },
   methods: {
+    reset() {
+      this.$refs.formBooking.reset();
+    },
+    resetValidation() {
+      this.$refs.formBooking.resetValidation();
+    },
     filterOption(input, option) {
       return (
         option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -326,6 +332,7 @@ export default {
           } else {
 
               this.openNotification('success', 'Save', 'You have been store all data successfully');
+              this.form.resetFields()
               //this.$router.push({ name: 'register/result' });
           }
       })
