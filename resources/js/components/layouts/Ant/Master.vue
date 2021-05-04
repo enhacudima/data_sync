@@ -211,7 +211,7 @@
                 </v-list-item-icon>
 
                 <v-list-item-content >
-                    <v-list-item-title>{{ linkName }}</v-list-item-title>
+                    <v-list-item-title>{{ $t(linkName) }}</v-list-item-title>
                 </v-list-item-content>
 
         </v-list-item>
@@ -278,9 +278,9 @@
       message: false,
       hints: false,
       linksNames: [
-        'My Pub',
-        'Dashboard',
-        'Tools',
+        'Publicações',
+        'Painel',
+        'Definições',
       ],
       links:[
         'home',

@@ -3,8 +3,8 @@
     <v-tabs
     v-model="tab"
     >
-      <v-tab href="#tab-1">My PUB</v-tab>
-      <v-tab href="#tab-2">New PUB</v-tab>
+      <v-tab href="#tab-1">Publicações</v-tab>
+      <v-tab href="#tab-2">Nova Publicação</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab" class="pt-4">
         <v-tab-item

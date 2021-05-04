@@ -44,6 +44,7 @@ const messages = {
 
         send_link: "Send Link",
         reset: "Reset",
+        views: "Views",
     },
     'pt_BR': {
         login:'Iniciar sessão',
@@ -83,6 +84,7 @@ const messages = {
 
         send_link: "Enviar Link",
         reset: "Redifinir",
+        views: "Visualizações",
     }
 };
 
