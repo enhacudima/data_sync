@@ -3,18 +3,34 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      class="pt-4"
-      color="grey lighten-3"
-      mini-variant
+      color="white"
     >
-      <v-avatar
-        class="d-block text-center mx-auto mb-9"
-      >
-      <img
-        :src="baseUrl+'storage/icons/40x40px.jpg'"
-        :lazy-src="baseUrl+'storage/icons/40x40px.jpg'"
-        alt="logo"
-      ></v-avatar>
+        <v-sheet
+            class="pa-4"
+            color="white"
+        >
+            <v-img
+                :src="baseUrl+'storage/icons/110x92px.png'"
+                :lazy-src="baseUrl+'storage/icons/110x92px.png'"
+                aspect-ratio="2"
+                max-height="95"
+                max-width="250"
+                contain
+            >
+                <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                    <v-progress-circular
+                    indeterminate
+                    color="grey lighten-5"
+                    ></v-progress-circular>
+                </v-row>
+                </template>
+            </v-img>
+        </v-sheet>
     </v-navigation-drawer>
 
     <v-main>
@@ -39,7 +55,7 @@
                         </v-list-item>
                         <v-list-item dense>
                             <v-list-item-icon>
-                            <v-icon color="indigo">
+                            <v-icon color="#867666">
                                 mdi-phone
                             </v-icon>
                             </v-list-item-icon>
@@ -59,7 +75,7 @@
 
                         <v-list-item dense>
                             <v-list-item-icon>
-                            <v-icon color="indigo">
+                            <v-icon color="#867666">
                                 mdi-web
                             </v-icon>
                             </v-list-item-icon>
@@ -79,7 +95,7 @@
 
                         <v-list-item dense>
                             <v-list-item-icon>
-                            <v-icon color="indigo">
+                            <v-icon color="#867666">
                                 mdi-email
                             </v-icon>
                             </v-list-item-icon>
@@ -98,7 +114,7 @@
 
                         <v-list-item dense>
                             <v-list-item-icon>
-                            <v-icon color="indigo">
+                            <v-icon color="#867666">
                                 mdi-map-marker
                             </v-icon>
                             </v-list-item-icon>
@@ -127,7 +143,7 @@
                         <v-divider inset></v-divider>
                         <v-list-item dense>
                             <v-list-item-icon>
-                            <v-icon color="indigo">
+                            <v-icon color="#867666">
                                 mdi-file-pdf
                             </v-icon>
                             </v-list-item-icon>

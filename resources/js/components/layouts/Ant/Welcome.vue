@@ -1,13 +1,23 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" >
     <v-app-bar
       app
       clipped-right
       flat
       height="72"
+      color="#867666"
     >
-    <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon color="white"  @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
+            <v-img
+             v-if="!drawer"
+                src="storage/icons/CP - AF_70px negative.png"
+                lazy-src="storage/icons/CP - AF_70px negative.png"
+                aspect-ratio="2"
+                max-height="70"
+                max-width="200"
+                contain
+            ></v-img>
     <!--
       <v-responsive max-width="500">
         <v-text-field
@@ -24,10 +34,11 @@
         <div class="pr-2">
             <router-link to="/login" tag="button">
             <v-btn
-            tile
+            text
             small
+            color="white"
             >
-            <v-icon>mdi-login</v-icon>
+            <v-icon>mdi-account</v-icon>
             {{$t('login')}}
             </v-btn>
 
@@ -38,15 +49,17 @@
     <v-navigation-drawer
       v-model="drawer"
       app
+      color="grey lighten-4"
     >
         <v-sheet
             class="pa-4"
+            color="grey lighten-4"
         >
-      <v-img
-        src="storage/icons/icon.jpg"
-        lazy-src="storage/icons/icon.jpg"
+    <v-img
+        src="storage/icons/110x92px.png"
+        lazy-src="storage/icons/110x92px.png"
         aspect-ratio="2"
-        max-height="150"
+        max-height="95"
         max-width="250"
         contain
       >
@@ -136,7 +149,7 @@
         </v-row>
       </v-container>
     </v-main>
-    <v-footer padless fixed app>
+    <v-footer padless fixed app color="#867666">
 
       <v-col
         class="text-center"
@@ -144,7 +157,7 @@
       >
        <div
             :class="[`text-caption`]"
-            class="transition-swing"
+            class="transition-swing white--text ml-4"
         >
          &copy;{{ new Date().getFullYear() }} — Um produto da <b>Data Sync, Limitada</b>
         </div>
@@ -201,3 +214,12 @@ import {i18n} from '../../../i18n.js'
     }),
   }
 </script>
+
+<style >
+.theme--light.v-application {
+    background: #f5f5f5;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+</style>
+

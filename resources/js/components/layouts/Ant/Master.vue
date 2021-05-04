@@ -7,7 +7,7 @@
       height="72"
       color="#867666"
     >
-    <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon color="white"  @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
             <v-img
@@ -143,9 +143,11 @@
     <v-navigation-drawer
       v-model="drawer"
       app
+      color="grey lighten-4"
     >
         <v-sheet
             class="pa-4"
+            color="grey lighten-4"
         >
       <v-img
         src="storage/icons/110x92px.png"
@@ -469,3 +471,10 @@
   },
   }
 </script>
+<style >
+.theme--light.v-application {
+    background: #f5f5f5;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+</style>

@@ -51,14 +51,17 @@
        <v-card
             class="mx-auto"
             max-width="240"
+            color="#E1B80D"
         >
+        <v-sheet>
+
             <v-img
+
                 v-if="meal.meal_user"
                 :src="'storage/'+meal.meal_user.avatar"
                 :lazy-src="'storage/'+meal.meal_user.avatar"
                 aspect-ratio="2"
                 class="white--text align-end"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="150px"
                 @click.stop="open('pub/'+meal.key)"
             >
@@ -76,31 +79,34 @@
             </template>
             </v-img>
 
+        </v-sheet>
+
             <v-card-subtitle>
-            <div class="overline mb-1">
+            <div class="overline mb-1 black--text">
             <strong>{{  meal.meal_user.name && meal.meal_user.name.length < 10 ? meal.meal_user.name : meal.meal_user.name.substring(0,10)+".."}}</strong>
             </div>
-                <div>  <v-list-item-action-text >{{meal.name && meal.name.length < 38 ? meal.name : meal.name.substring(0,38)+".." }}</v-list-item-action-text> </div>
-                <div>  <v-list-item-action-text >Início de submissões- {{meal.start_date | moment("d-M-Y")}}</v-list-item-action-text> </div>
-                <div>  <v-list-item-action-text >Fim de submissões - {{meal.end_date | moment("d-M-Y")}}</v-list-item-action-text> </div>
+                <div  class="black--text">  <v-list-item-action-text >{{meal.name && meal.name.length < 38 ? meal.name : meal.name.substring(0,38)+".." }}</v-list-item-action-text> </div>
+                <div  class="black--text">  <v-list-item-action-text >Início de submissões- {{meal.start_date | moment("d-M-Y")}}</v-list-item-action-text> </div>
+                <div  class="black--text">  <v-list-item-action-text >Fim de submissões - {{meal.end_date | moment("d-M-Y")}}</v-list-item-action-text> </div>
             </v-card-subtitle>
 
 
 
             <v-card-actions>
-               <v-list-item-action-text class="pl-2 " >{{meal.views}} {{$t('views')}}</v-list-item-action-text>
+               <v-list-item-action-text class="pl-2  black--text" >{{meal.views}} {{$t('views')}}</v-list-item-action-text>
 
                 <v-spacer></v-spacer>
                 <v-btn
                         small
                         icon
-                        color="orange lighten-2"
-                      :to="'pub/'+meal.key"
+                        color="#2D4262"
+                        :to="'pub/'+meal.key"
                 >
                     <v-icon
                     >mdi-eye-outline</v-icon>
                 </v-btn>
                 <v-btn
+                    color="#2D4262"
                     small
                     icon
                     @click.stop="modfShowDialog(meal.id)"
@@ -114,7 +120,7 @@
                 icon
                 @click="postUserId = meal.id; show = !show"
             >
-                <v-icon>{{ show && postUserId == meal.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                <v-icon class="black--text">{{ show && postUserId == meal.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
             </v-card-actions>
 
@@ -123,7 +129,7 @@
                 <v-divider></v-divider>
 
                 <v-card-text dense>
-                    <v-list-item-action-text>{{meal.details}}</v-list-item-action-text>
+                    <v-list-item-action-text class="black--text">{{meal.details}}</v-list-item-action-text>
                 </v-card-text>
             </div>
             </v-expand-transition>
