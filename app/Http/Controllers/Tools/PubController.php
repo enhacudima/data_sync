@@ -7,6 +7,8 @@ use App\UserV;
 use App\CV;
 use App\CVSchool;
 use App\Meals;
+use Illuminate\Http\Request;
+use App\Read;
 
 class PubController extends Controller
 {
@@ -17,20 +19,30 @@ class PubController extends Controller
 
     }
 
-    public function pub($token)
+
+    public function pub(Request $request, $token)
     {
 
 
         $data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName')
                     ->where('key',$token)->first();
-        //add IP
 
-        if($data){
-           $view=$data->views;
-           $view=++$view;
-           $data->views=$view;
-           $data->save();
+
+
+
+        if(Read::where('pub_key', $token )->exists()){
+        }else{
+            $result=Read::make($token);
+            if(isset($data)){
+                $view=$data->views;
+                $view=++$view;
+                $data->views=$view;
+                $data->save();
+            }
+
         }
+
+
 
 
         return response()->json($data, 200);

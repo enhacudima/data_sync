@@ -53,29 +53,33 @@
             color="#E1B80D"
 
         >
-            <v-img
-                v-if="meal.meal_user"
-                :src="'storage/'+meal.meal_user.avatar"
-                :lazy-src="'storage/'+meal.meal_user.avatar"
-                aspect-ratio="2"
-                class="white--text align-end"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                height="150px"
-                @click.stop="open('pub/'+meal.key)"
-            >
-            <template v-slot:placeholder>
-            <v-row
-                class="fill-height ma-0"
-                align="center"
-                justify="center"
-            >
-                <v-progress-circular
-                indeterminate
-                color="grey lighten-5"
-                ></v-progress-circular>
-            </v-row>
-            </template>
-            </v-img>
+            <v-sheet>
+
+                <v-img
+
+                    v-if="meal.meal_user"
+                    :src="'storage/'+meal.meal_user.avatar"
+                    :lazy-src="'storage/'+meal.meal_user.avatar"
+                    contain
+                    class="white--text align-end"
+                    height="150px"
+                    @click.stop="open('pub/'+meal.key)"
+                >
+                <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                    <v-progress-circular
+                    indeterminate
+                    color="grey lighten-5"
+                    ></v-progress-circular>
+                </v-row>
+                </template>
+                </v-img>
+
+            </v-sheet>
 
 
             <v-card-subtitle>

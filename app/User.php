@@ -8,12 +8,14 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Yadahan\AuthenticationLog\AuthenticationLogable;
+use Rinvex\Subscriptions\Traits\HasSubscriptions;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens;
     use HasRoles;
     use AuthenticationLogable;
+    use HasSubscriptions;
     /**
      * The attributes that are mass assignable.
      *

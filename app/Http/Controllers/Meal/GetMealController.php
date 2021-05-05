@@ -17,6 +17,12 @@ use App\MealType;
 class GetMealController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+        //$this->middleware('role_or_permission:pub_create', ['only' => ['newMeal']]);
+    }
     public function getAllMeals()
     {
     	$data=Meals::with('mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->get();
@@ -69,13 +75,14 @@ class GetMealController extends Controller
 
     public function getPagmMals()
     {
-    	$data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
+    	$data=Meals::where('user_id',Auth::user()->id)->with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
 
         return response()->json($data, 200);
     }
     public function searchMeals($search)
     {
         $data=Meals::limit(20)
+        ->where('user_id',Auth::user()->id)
         ->where('name','like',"%".$search."%")
         ->orwhere('email','like',"%".$search."%")
         ->orwhere('phone','like',"%".$search."%")
