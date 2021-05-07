@@ -2,7 +2,7 @@ import Welcome from './components/welcome/mealListWelcome.vue';
 import About from './components/Welcome/About.vue';
 import Terms from './components/Welcome/Terms.vue';
 import Contact from './components/Welcome/Contact.vue';
-import Home from './components/Home.vue';
+import Home from './components/Home/Home.vue';
 import Login from './components/Auth/Login.vue';
 import Register from './components/Auth/Register.vue';
 import ForgotPassword from './components/Auth/ForgotPassword.vue';

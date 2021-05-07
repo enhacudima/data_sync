@@ -221,7 +221,7 @@
 
         >
                 <v-list-item-icon>
-                    <v-icon>{{ icons[index] }}</v-icon>
+                    <v-icon color="#e1b80d">{{ icons[index] }}</v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content >
@@ -292,23 +292,23 @@
       message: false,
       hints: false,
       linksNames: [
+          'Painel',
         'Publicações',
-        'Painel',
         'Definições',
       ],
       links:[
+          'Statistics',
         'home',
-        'Statistics',
         'tools',
       ],
       icons: [
+          'mdi-chart-pie',
         'mdi-view-grid',
-        'mdi-chart-pie',
         'mdi-hammer-screwdriver',
       ],
       can: [
+          'statistics',
         'home',
-        'statistics',
         'admin',
       ],
       states:[],

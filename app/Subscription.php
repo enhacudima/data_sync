@@ -13,6 +13,24 @@ class Subscription extends Model
     use HasFactory;
     use HasSubscriptions;
 
+    protected $table = 'plan_invoice';
+
+    public $primaryKey = 'id';
+
+    public $timestamps=true;
+
+    protected $guarded =array();
+
+    public function plan()
+    {
+        return $this->belongsTo(app('rinvex.subscriptions.plan'),'plan_id','id');
+    }
+
+
+    public function file()
+    {
+        return $this->belongsTo('App\Files','id','source_id')->where('files.table','plan_invoice');
+    }
 
 
 
@@ -38,7 +56,10 @@ class Subscription extends Model
             new PlanFeature(['name' => 'listing_title_bold', 'value' => 'Y', 'sort_order' => 15])
         ]);
     }
-
+    public static function getPlans(){
+        $plans = app('rinvex.subscriptions.plan')->get();
+        return $plans;
+    }
     public static function getPlanDetails($plan,$type){
         $plan = app('rinvex.subscriptions.plan')->find($plan);
         switch ($type) {
@@ -186,8 +207,14 @@ class Subscription extends Model
                 break;
 
             default:
+            //By default the subscription will remain active until the end of the period, you may pass true to end the subscription immediately
                 $user->subscription($subscription)->cancel(true);
                 break;
         }
+    }
+
+    public static function getInvoices($user){
+        $data = self::with('plan','file')->get();
+        return $data;
     }
 }

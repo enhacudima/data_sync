@@ -66,9 +66,11 @@ Route::group(['namespace' => 'Subscriptions','middleware' => []], function() {
     Route::get('plan-subscription-feature-usage/{type}/{subscription}/{feature}/{user}','PlansController@subscriptionFeatureUsage');
     Route::get('plan-subscription-record-feature-usage/{type}/{subscription}/{feature}/{user}/{value}','PlansController@recordFeatureUsage');
     Route::get('plan-subscription-record-feature-cleare/{subscription}/{user}','PlansController@recordFeatureCleare');
-
     Route::get('plan-subscription-check-status/{type}/{subscription}/{feature}/{user}','PlansController@checkSubscriptionStatus');
-    Route::get('plan-subscription-renew/{type}/{subscription}/{feature}/{user}','PlansController@renewSubscription');
+    Route::get('plan-subscription-renew/{type}/{subscription}/{user}','PlansController@renewSubscription');
+    Route::get('plan-get-plans','PlansController@getPlans');
+    Route::post('plan-pre-subscription','PlansController@preSubscription');
+    Route::get('plan-get-invoices','PlansController@getInvoices');
 });
 
 Route::group(['namespace' => 'Auth','middleware' => ['auth.api']], function() {
