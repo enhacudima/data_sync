@@ -38,7 +38,7 @@
                   </v-col>
                   <v-spacer></v-spacer>
                   <v-col class="d-flex" cols="6" sm="6" xsm="12" align-end>
-                      <v-btn elevation="1"  block  color="primary" type="submit"> {{$t('login')}} </v-btn>
+                      <v-btn elevation="1"  block  color="#e1b80d" type="submit"> {{$t('login')}} </v-btn>
                   </v-col>
               </v-row>
           </v-form>

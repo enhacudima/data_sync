@@ -9,33 +9,51 @@ use Auth;
 use App\Http\Controllers\Helpers\FilesController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Subscription;
 
 
 class PlansController extends Controller{
 
 
     public function create(Request $request){
-        $plan = app('rinvex.subscriptions.plan')->create([
-            'name' => 'Pro',
-            'description' => 'Pro plan',
-            'price' => 9.99,
-            'signup_fee' => 1.99,
-            'invoice_period' => 1,
-            'invoice_interval' => 'month',
-            'trial_period' => 15,
-            'trial_interval' => 'day',
-            'sort_order' => 1,
-            'currency' => 'USD',
-        ]);
-
-        // Create multiple plan features at once
-        $plan->features()->saveMany([
-            new PlanFeature(['name' => 'listings', 'value' => 50, 'sort_order' => 1]),
-            new PlanFeature(['name' => 'pictures_per_listing', 'value' => 10, 'sort_order' => 5]),
-            new PlanFeature(['name' => 'listing_duration_days', 'value' => 30, 'sort_order' => 10, 'resettable_period' => 1, 'resettable_interval' => 'month']),
-            new PlanFeature(['name' => 'listing_title_bold', 'value' => 'Y', 'sort_order' => 15])
-        ]);
+        Subscription::make();
     }
 
+    public function getDetails($plan,$type){
+        $data = Subscription::getPlanDetails($plan,$type);
+        return response()->json($data, 200);
+    }
+
+
+    public function getFeatureValue($subscription,$feature){
+        $data = Subscription::getFeatureValue($subscription,$feature);
+        return response()->json($data, 200);
+    }
+    public function creatSubscription($plan,$subscription, $user){
+        $data = Subscription::creatSubscription($plan,$subscription, $user);
+    }
+
+    public function  changePlanSubscription($plan, $subscription){
+        $data = Subscription::changePlanSubscription($plan, $subscription);
+    }
+
+    public function subscriptionFeatureUsage($type,$subscription,$feature,$user){
+        $data = Subscription::subscriptionFeatureUsage($type,$subscription,$feature,$user);
+         return response()->json($data, 200);
+    }
+
+    public function recordFeatureUsage($type,$subscription,$feature,$user,$value){
+        $data = Subscription::recordFeatureUsage($type,$subscription,$feature,$user,$value);
+    }
+    public function recordFeatureCleare($subscription,$user){
+        $data = Subscription::recordFeaturecleare($subscription,$user);
+    }
+    public function checkSubscriptionStatus($type,$subscription,$planId,$user){
+        $data = Subscription::checkSubscriptionStatus($type,$subscription,$planId,$user);
+        return response()->json($data, 200);
+    }
+    public function renewSubscription($type,$subscription,$user){
+        $data = Subscription::renewSubscription($type,$subscription,$user);
+    }
 }
 

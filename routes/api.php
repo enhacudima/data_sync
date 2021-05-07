@@ -57,6 +57,19 @@ Route::group(['namespace' => 'Auth'], function() {
     Route::get('abilities','AbilitiesController@abilities');
 });
 
+Route::group(['namespace' => 'Subscriptions','middleware' => []], function() {
+    Route::get('plan-create','PlansController@create');
+    Route::get('plan-details/{plane}/{type}','PlansController@getDetails');
+    Route::get('plan-feature-value/{subscription}/{feature}','PlansController@getFeatureValue');
+    Route::get('plan-create-subscription/{plane}/{subscription}/{user}','PlansController@creatSubscription');
+    Route::get('plan-change-subscription/{plane}/{subscription}','PlansController@changePlanSubscription');
+    Route::get('plan-subscription-feature-usage/{type}/{subscription}/{feature}/{user}','PlansController@subscriptionFeatureUsage');
+    Route::get('plan-subscription-record-feature-usage/{type}/{subscription}/{feature}/{user}/{value}','PlansController@recordFeatureUsage');
+    Route::get('plan-subscription-record-feature-cleare/{subscription}/{user}','PlansController@recordFeatureCleare');
+
+    Route::get('plan-subscription-check-status/{type}/{subscription}/{feature}/{user}','PlansController@checkSubscriptionStatus');
+    Route::get('plan-subscription-renew/{type}/{subscription}/{feature}/{user}','PlansController@renewSubscription');
+});
 
 Route::group(['namespace' => 'Auth','middleware' => ['auth.api']], function() {
     Route::post('logout', 'AuthController@logout');
