@@ -88,10 +88,10 @@
                         <v-divider></v-divider>
 
                         <v-list dense>
-                            <v-list-item>
+                            <v-list-item >
                                 <v-list-item-action>
                                 <v-btn icon @click="changeAvatar()">
-                                    <v-icon>mdi-camera-account</v-icon>
+                                    <v-icon>mdi-camera-outline</v-icon>
                                 </v-btn>
                                 </v-list-item-action>
                                 <v-list-item-title>{{$t('update_avatar')}}</v-list-item-title>

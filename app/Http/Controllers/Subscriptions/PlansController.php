@@ -178,15 +178,15 @@ class PlansController extends Controller{
         $check_plan = Subscription::getUserSubscriptions($user,$plan_id);
         $check_amount = $plan->price == $myRequest->amount;
 
-        $subscription = app('rinvex.subscriptions.plan_subscription')
+        /*$subscription = app('rinvex.subscriptions.plan_subscription')
         ->where('subscriber_id',$user)
         ->where('plan_id',$plan_id)
-        ->first();
+        ->first();*/
 
         switch ($myRequest['operation']) {
             case 'Renew':
-                if(!isset($subscription)){
-                    return response()->json(['errors'=>["You cannot renew subscription because is not existe."]], 422);
+                if(!$check_plan){
+                    return response()->json(['errors'=>["You cannot renew subscription because is not existe or is canceled."]], 422);
                 }
                 $type = "renew";
                 $this->renewSubscription($type,$subscription->slug,$user);
@@ -242,8 +242,6 @@ class PlansController extends Controller{
                break;
             }
         }
-
-
         return $checked;
     }
 

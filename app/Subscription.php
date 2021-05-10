@@ -216,10 +216,12 @@ class Subscription extends Model
             case 'cancel':
                 $user->subscription($subscription)->cancel();
                 break;
+            case 'cancelRigthNow':
+                //By default the subscription will remain active until the end of the period, you may pass true to end the subscription immediately
+                $user->subscription($subscription)->cancel(true);
+                break;
 
             default:
-            //By default the subscription will remain active until the end of the period, you may pass true to end the subscription immediately
-                $user->subscription($subscription)->cancel(true);
                 break;
         }
     }

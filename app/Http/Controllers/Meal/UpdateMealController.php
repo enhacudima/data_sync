@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\SyncMealAllergies;
 use App\SyncTags;
 use App\Options;
+use App\Http\Controllers\Subscriptions\PlansController;
 
 class UpdateMealController extends Controller
 {
@@ -25,6 +26,11 @@ class UpdateMealController extends Controller
 
     public function updateMeal(Request $request,$id)
     {
+        $plan = new PlansController();
+        $checkPlan =$plan->checkAnyUserPlan(Auth::user()->id);
+        if(!$checkPlan){
+            return response()->json(['errors'=>["Voce não esta subscrito a nenhum plano."]], 422);
+        }
 
     	$mealData=$request->data['mealData'];
         $tags=$request->data['tags'];

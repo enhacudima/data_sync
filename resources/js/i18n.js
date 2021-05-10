@@ -79,7 +79,7 @@ const messages = {
         save:"Salvar",
         o_password:"Password Atual",
         full_address:"Endereço completo",
-        update_avatar:"Atualizar Foto de perfile",
+        update_avatar:"Foto do perfil",
         dark_moee:"Modo Escuro",
         logout_all_devi:"Sair em todos os dispositivos",
 

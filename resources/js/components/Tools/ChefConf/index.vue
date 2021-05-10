@@ -3,7 +3,7 @@
     <v-tabs
     v-model="tab"
     >
-      <v-tab href="#tab-1">Pub Category</v-tab>
+      <v-tab href="#tab-1">Pub Category/ Group</v-tab>
       <v-tab href="#tab-2">Other Options</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab" class="pt-4">

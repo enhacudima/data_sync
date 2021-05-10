@@ -83,7 +83,7 @@
       <v-card>
         <v-form ref="priceForm" v-model="valid" lazy-validation>
         <v-card-title>
-          <span class="headline">Add Experience</span>
+          <span class="headline">Add Group</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -144,7 +144,7 @@
                   :rules="[rules.required]"
                 ></v-text-field>
               </v-col>
-              
+
             </v-row>
           </v-container>
           <small>*indicates required field</small>
@@ -173,7 +173,7 @@
   </v-row>
 
   <!--edit form-->
-  
+
     <v-dialog
       v-model="dialogEdit"
       persistent
@@ -182,7 +182,7 @@
       <v-card>
         <v-form ref="editForm" v-model="validEdit" lazy-validation>
         <v-card-title>
-          <span class="headline">Edit Experience - {{formEditPrice.title}}</span>
+          <span class="headline">Edit Group - {{formEditPrice.title}}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -243,7 +243,7 @@
                   :rules="[rules.required]"
                 ></v-text-field>
               </v-col>
-              
+
             </v-row>
           </v-container>
           <small>*indicates required field</small>
@@ -269,13 +269,13 @@
         </v-form>
       </v-card>
     </v-dialog>
-    
+
   </div>
 </template>
 <script>
   export default {
     props: {
-        
+
     },
     data () {
       return {
@@ -337,11 +337,11 @@
         this.formEditPrice.title = data.title,
         this.formEditPrice.range = [data.experience_from, data.experience_to],
         this.formEditPrice.ref = data.ref,
-        this.formEditPrice.description = data.description 
-        this.formEditPrice.key = data.key                                                     
+        this.formEditPrice.description = data.description
+        this.formEditPrice.key = data.key
 
       }
-  
+
     },
     getExperiences(){
       axios
@@ -369,7 +369,7 @@
     },
     resetValidation() {
       this.$refs.form.resetValidation();
-    },  
+    },
     sendData(data) {
       axios
       .post("tools/experience/create", { data: { experienceData: data} })
@@ -380,11 +380,11 @@
           if (response.data.errors) {
               //console.log(response.data.errors);
               response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
-              
+
           } else {
-              
+
               this.openNotification('success', 'Save', 'You have been store all data successfully');
-              
+
           }
       })
       .catch((error) => {
@@ -400,7 +400,7 @@
             this.openNotification('error','Error on Save',error);
           }
       });
-  }, 
+  },
     sendEditData(data) {
          axios
         .post("tools/experience/update/"+this.formEditPrice.key , { data: { experienceData: data} })
@@ -411,11 +411,11 @@
             if (response.data.errors) {
                 //console.log(response.data.errors);
                 response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
-                
+
             } else {
-                
+
                 this.openNotification('success', 'Save', 'You have been store all data successfully');
-                
+
             }
         })
         .catch((error) => {
@@ -442,11 +442,11 @@
           if (response.data.errors) {
               //console.log(response.data.errors);
               response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
-              
+
           } else {
-              
+
               this.openNotification('success', 'Save', 'You have been updated all data successfully');
-              
+
           }
       })
       .catch((error) => {

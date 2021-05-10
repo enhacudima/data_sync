@@ -28,9 +28,6 @@
                             name
                         </th>
                         <th class="text-left">
-                            slug
-                        </th>
-                        <th class="text-left">
                             created_at
                         </th>
                         <th class="text-left">
@@ -48,22 +45,42 @@
                         <th class="text-left">
                             canceled_at
                         </th>
+
+                        <th class="text-left">
+                            actions
+                        </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr
                         v-for="item in plans"
-                        :key="item.name"
+                        :key="item.id"
                         >
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
-                        <td>{{ item.slug }}</td>
                         <td>{{formatDate(item.created_at)}}</td>
                         <td> {{formatDate(item.updated_at)}}</td>
                         <td>{{formatDate(item.starts_at)}}</td>
                         <td>{{formatDate(item.ends_at)}}</td>
                         <td>{{formatDate(item.trial_ends_at)}}</td>
                         <td>{{formatDate(item.canceled_at)}}</td>
+                        <td>
+                            <v-btn
+                            small
+                            color="#e1b80d"
+                            @click="dialogApply(item.id,item.slug)"
+                            >
+                                <v-icon
+                                    v-if="item.canceled_at != null"
+                                >
+                                    mdi-close-octagon-outline
+                                </v-icon>
+                                <template v-else>
+                                    Cancel
+                                </template>
+                            </v-btn>
+
+                        </td>
                         </tr>
                     </tbody>
                     </template>
@@ -85,6 +102,19 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog v-model="showConfimation" max-width="500px">
+        <v-card>
+        <v-card-title class="headline">Are you sure you want to cancel this subscription?</v-card-title>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red darken-1" text @click="now">Yes Rigth now</v-btn>
+            <v-btn color="blue darken-1" text @click="yes">Yes</v-btn>
+            <v-btn color="blue darken-1" text @click="showConfimation=!showConfimation">No</v-btn>
+            <v-spacer></v-spacer>
+        </v-card-actions>
+        </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -105,6 +135,9 @@
         return {
             showDialogoPlanPlan:false,
             plans: null,
+            showConfimation: false,
+            id:null,
+            subscription:null,
 
         }
     },
@@ -120,7 +153,27 @@
         },
     },
     methods: {
+        dialogApply(id, slug){
+            this.id =id,
+            this.subscription = slug;
+            this.showConfimation= !this.showConfimation
+        },
+        yes(){
+        axios
+            .get('plan-subscription-renew/cancel/'+this.subscription+'/'+this.user)
+            .then(
+                response => (this.showConfimation= !this.showConfimation, this.getData())
+            );
 
+        },
+        now(){
+        axios
+            .get('plan-subscription-renew/cancelRigthNow/'+this.subscription+'/'+this.user)
+            .then(
+                response => (this.showConfimation= !this.showConfimation, this.getData())
+            );
+
+        },
         formatDate(date) {
             return moment(date).format('DD-MM-YYYY HH:mm:ss');
         },
