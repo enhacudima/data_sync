@@ -242,10 +242,19 @@ class Subscription extends Model
     }
 
     public static function getUserSubscriptions($user_id,$planId){
-         $user = User::find($user_id);
+        $user = User::find($user_id);
         $data = $user->subscribedTo($planId); //app('rinvex.subscriptions.plan_subscription')->where('subscriber_id',$user)->get();
         return $data;
     }
 
+    public static function checkAnyUserPlan($plan_id,$user){
+
+        $plan = app('rinvex.subscriptions.plan')->find($plan_id);
+        $plan_id = $plan->id;
+        $subscription_title=$plan->slug;
+        $check_plan = Subscription::getUserSubscriptions($user,$plan_id);
+
+        return $check_plan;
+    }
 
 }

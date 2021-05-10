@@ -2,7 +2,7 @@
 <div class="text-center">
     <v-dialog
       v-model="showDialogoPlan"
-      width="1000"
+      width="1200"
 
     >
 
