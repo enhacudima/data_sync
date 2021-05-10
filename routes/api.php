@@ -70,7 +70,10 @@ Route::group(['namespace' => 'Subscriptions','middleware' => []], function() {
     Route::get('plan-subscription-renew/{type}/{subscription}/{user}','PlansController@renewSubscription');
     Route::get('plan-get-plans','PlansController@getPlans');
     Route::post('plan-pre-subscription','PlansController@preSubscription');
+    Route::get('plan-get-invoice','PlansController@getInvoice');
     Route::get('plan-get-invoices','PlansController@getInvoices');
+    Route::get('plan-get-user-plan/{user}','PlansController@getUserPlan');
+    Route::post('plan-subscription','PlansController@applyInvoce');
 });
 
 Route::group(['namespace' => 'Auth','middleware' => ['auth.api']], function() {

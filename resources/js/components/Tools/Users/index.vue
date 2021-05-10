@@ -104,6 +104,17 @@
              <div slot="phone1" slot-scope="props">
                  +{{ props.row.phone1 }}
              </div>
+             <div slot="Subscription" slot-scope="props">
+                <v-btn
+                    small
+                    icon
+                    color="green"
+                    @click="showcheckPlan(props.row.id)"
+                >
+                    <v-icon>mdi-playlist-check</v-icon>
+                </v-btn>
+
+             </div>
         </v-server-table>
     </v-col>
 
@@ -231,6 +242,7 @@
         </v-form>
       </v-card>
     </v-dialog>
+    <dialogoPlan v-model="checkPlan" :show.sync="checkPlan" :user="user_id"/>
 
     </div>
 
@@ -239,7 +251,10 @@
 
 <script>
 
+  import dialogoPlan from '../../Home/dialogoPlan.vue';
+
     export default {
+        components:{dialogoPlan},
 
         mounted() {
             this.initialize (),
@@ -248,6 +263,11 @@
                 .then(response => (this.experiences = response.data));
         },
          methods: {
+
+            showcheckPlan($user){
+                this.user_id = $user;
+                this.checkPlan = !this.checkPlan;
+            },
             userRoles(name,key){
             axios
                 .get('getUserRoles/'+key)
@@ -346,6 +366,8 @@
 
         data() {
             return {
+                checkPlan:false,
+                user_id:null,
                 userName:null,
                 userHasRoles:null,
                 editedItem:{
@@ -384,7 +406,7 @@
                 ],
                 dialogType:false,
                 dialogRoles:false,
-                columns: ["id","name","lastName","dataBrith","country","phone1","updated_at","email_verified_at","user_type","status","Roles"],
+                columns: ["id","name","lastName","dataBrith","country","phone1","updated_at","email_verified_at","user_type","status","Roles","Subscription"],
                 tableData: [],
                 options: {
                 headings: {

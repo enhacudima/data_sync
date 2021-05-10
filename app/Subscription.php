@@ -34,6 +34,17 @@ class Subscription extends Model
 
 
 
+    public function statusName()
+    {
+        return $this->belongsTo('App\PlanStatus','status','id');
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id','id');
+    }
+
     public static function make(){
         $plan = app('rinvex.subscriptions.plan')->create([
             'name' => 'Pro',
@@ -213,8 +224,28 @@ class Subscription extends Model
         }
     }
 
-    public static function getInvoices($user){
-        $data = self::with('plan','file')->get();
+    public static function getInvoice($user){
+        $data = self::with('plan','file','statusName')->where('user_id',$user)->orderby('id','desc')->get();
         return $data;
     }
+
+
+    public static function getInvoices(){
+        $data = self::with('plan','file','statusName','user')->orderby('id','desc')->get();
+        return $data;
+    }
+
+    public static function getUserPlan($user){
+      $user = User::find($user);
+      $data = app('rinvex.subscriptions.plan_subscription')->ofSubscriber($user)->get();
+      return $data;
+    }
+
+    public static function getUserSubscriptions($user_id,$planId){
+         $user = User::find($user_id);
+        $data = $user->subscribedTo($planId); //app('rinvex.subscriptions.plan_subscription')->where('subscriber_id',$user)->get();
+        return $data;
+    }
+
+
 }

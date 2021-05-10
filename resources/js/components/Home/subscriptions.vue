@@ -32,6 +32,8 @@
               New Invoice
             </v-btn>
           </template>
+
+
           <v-card>
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
@@ -97,6 +99,7 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
@@ -119,20 +122,8 @@
             <v-icon
                 small
                 class="mr-2"
-
-
             >
                 mdi-file-pdf
-            </v-icon>
-        </v-btn>
-        <v-btn
-            icon
-        >
-            <v-icon
-                small
-                @click="deleteItem(item)"
-            >
-                mdi-eye
             </v-icon>
         </v-btn>
     </template>
@@ -176,11 +167,12 @@ function hasErrors(fieldsError) {
         { text: 'Price', value: 'plan.price' },
         { text: 'Currency', value: 'plan.currency' },
         { text: 'Period', value: 'plan.invoice_interval' },
-        { text: 'Trial Period', value: 'plan.trial_period' },
-        { text: 'Trial', value: 'plan.trial_interval' },
         { text: 'Grace Period', value: 'plan.grace_period' },
         { text: 'Grace Interval', value: 'plan.grace_interval' },
+        { text: 'Reference', value: 'reference' },
+        { text: 'Status', value: 'status_name.name'},
         { text: 'Actions', value: 'actions', sortable: false },
+        { text: 'Note', value: 'note'},
       ],
       desserts: [],
       editedID:null,
@@ -221,7 +213,7 @@ function hasErrors(fieldsError) {
         },
       initialize () {
          axios
-          .get('plan-get-invoices')
+          .get('plan-get-invoice')
           .then(response => (this.invoices = response.data));
 
          axios

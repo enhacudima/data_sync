@@ -98,6 +98,14 @@
                             </v-list-item>
                             <v-list-item>
                                 <v-list-item-action>
+                                <v-btn icon @click="showcheckPlan()">
+                                    <v-icon>mdi-playlist-check</v-icon>
+                                </v-btn>
+                                </v-list-item-action>
+                                <v-list-item-title>{{$t('my_plan')}}</v-list-item-title>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-action>
                                 <v-btn icon @click="toggle_dark_mode">
                                     <v-icon>mdi-theme-light-dark</v-icon>
                                 </v-btn>
@@ -265,6 +273,7 @@
     <!--dialog-->
     <dialogo v-model="showDialog" v-bind:show="showDialog"/>
     <dialogoAvatar v-model="showDialogAvatar" v-bind:show="showDialogAvatar"/>
+    <dialogoPlan v-model="checkPlan" :show.sync="checkPlan" :user="user_id"/>
     <div class="main-wrapper">
         <cookie-law theme="blood-orange--rounded"></cookie-law>
     </div>
@@ -273,15 +282,17 @@
 
 <script>
   import dialogo from '../../Auth/dialogUser.vue';
+  import dialogoPlan from '../../Home/dialogoPlan.vue';
   import dialogoAvatar from '../../Auth/dialogAvatar.vue';
   import CookieLaw from 'vue-cookie-law';
   import { AbilityBuilder, Ability } from '@casl/ability';
   import {i18n} from '../../../i18n.js'
 
   export default {
-    components: { dialogo,dialogoAvatar, CookieLaw },
+    components: { dialogo,dialogoAvatar, CookieLaw, dialogoPlan },
 
     data: () => ({
+      checkPlan: false,
       new_lang:null,
       my_lang:null,
       langs: ['en', 'pt_BR'] ,
@@ -321,8 +332,13 @@
       iniName: null,
       userAvatar:null,
       modeGet: '',
+      user_id: null,
     }),
   methods: {
+    showcheckPlan(){
+
+        this.checkPlan = !this.checkPlan;
+    },
     changeLocale(new_lang) {
         if(new_lang != this.my_lang){
             i18n.locale = new_lang;
@@ -337,7 +353,7 @@
         .then();
     },
     changeAvatar(){
-        this.showDialogAvatar = true;
+        this.showDialogAvatar = !this.showDialogAvatar;
     },
     editUser(){
         this.menu = false;
@@ -449,7 +465,7 @@
     this.abilities();
     this.userModeGet();
     this.darkmode();
-
+    this.user_id = userData.logged_in_user.id;
     this.userType = userData.logged_in_user.type;
     if (this.userType == 1) {
       this.userTypeName = "Admin"

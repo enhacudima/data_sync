@@ -40,7 +40,9 @@ class PlansController extends Controller{
         $data = Subscription::creatSubscription($plan,$subscription, $user);
     }
 
-    public function  changePlanSubscription($plan, $subscription){
+    public function  changePlanSubscription($plan, $user){
+        $subscription = app('rinvex.subscriptions.plan_subscription')->latest()->first();
+        $subscription =$subscription->id;
         $data = Subscription::changePlanSubscription($plan, $subscription);
     }
 
@@ -122,12 +124,108 @@ class PlansController extends Controller{
     }
 
 
-    public function getInvoices(){
+    public function getInvoice(){
         $user = Auth::user()->id;
-        $data = Subscription::getInvoices($user);
+        $data = Subscription::getInvoice($user);
         return response()->json($data, 200);
     }
 
+    public function getInvoices(){
+        $data = Subscription::getInvoices();
+        return response()->json($data, 200);
+    }
+
+    public function getUserPlan($user){
+        $data = Subscription::getUserPlan($user);
+        return response()->json($data, 200);
+
+    }
+
+    public function applyInvoce(Request $request){
+        $applyData=$request->data['applyData'];
+
+        $myRequest = new Request();
+        $myRequest->setMethod('POST');
+        $myRequest->request->add($applyData);
+
+        $validator = Validator::make($myRequest->all(), [
+            'operation' => 'required|string|max:50',
+            'invoice_id' => 'required',
+            'notes' =>'required_if:operation,==,Not Apply',
+            'amount' =>'required_if:operation,!=,Not Apply|numeric'
+        ],
+        [
+
+        ]
+    	);
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()->all()], 422);
+        }
+        $data = Subscription::find($myRequest['invoice_id']);
+
+        if (!isset($data)) {
+            return response()->json(['errors'=>["This invoice does not exist."]], 422);
+        }
+        if ($data->status != 1) {
+            return response()->json(['errors'=>["You cannot change this invoice because is not pending."]], 422);
+        }
+
+
+        $plan = app('rinvex.subscriptions.plan')->find($data->plan_id);
+        $plan_id = $plan->id;
+        $subscription_title=$plan->slug;
+        $user=$data->user_id;
+        $check_plan = Subscription::getUserSubscriptions($user,$plan_id);
+        $check_amount = $plan->price == $myRequest->amount;
+
+
+        switch ($myRequest['operation']) {
+            case 'Renew':
+                if(!$check_plan){
+                    return response()->json(['errors'=>["You cannot renew subscription because is not existe."]], 422);
+                }
+                $type = "renew";
+                $this->renewSubscription($type,$subscription_title,$user);
+                $this->update_invoice($data,$myRequest,2);
+                break;
+            case 'New':
+                if($check_plan){
+                    return response()->json(['errors'=>["You cannot create new subscription because is ready existe."]], 422);
+                }
+                $this->creatSubscription($plan_id,$subscription_title, $user);
+                $this->update_invoice($data,$myRequest,2);
+                break;
+            case 'Change':
+                if(!isset($plan)){
+                    return response()->json(['errors'=>["You cannot change subscription because don't existe any subscription."]], 422);
+                }
+                if($check_plan){
+                    return response()->json(['errors'=>["You cannot change subscription because is ready existe."]], 422);
+                }
+                $this->changePlanSubscription($plan_id, $user);
+                $this->update_invoice($data,$myRequest,2);
+                break;
+            case 'Not Apply':
+                $this->update_invoice($data,$myRequest,3);
+                break;
+
+            default:
+                # code...
+                break;
+        }
+        return response()->json(['success'=>'Added new records.'], 200);
+    }
+
+    public function update_invoice($data,$myRequest,$status){
+        $reference = time() . '-' . Auth::user()->id;
+
+        $data["reference"] = $reference;
+        $data["notes"] = $myRequest['notes'];
+        $data["operation"] = $myRequest['operation'];
+        $data["amount"] = $myRequest['amount'];
+        $data["status"] = $status;
+        $data->save();
+    }
 
 }
 
