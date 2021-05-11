@@ -32,6 +32,11 @@ class PlansController extends Controller{
     }
 
 
+    public function getPlansFull(){
+    $data = Subscription::getPlansFull();
+    return response()->json($data, 200);
+    }
+
     public function getFeatureValue($subscription,$feature){
         $data = Subscription::getFeatureValue($subscription,$feature);
         return response()->json($data, 200);

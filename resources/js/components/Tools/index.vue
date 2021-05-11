@@ -15,9 +15,15 @@
             <v-tabs class="pt-6" >
                 <v-tab>
                     <v-icon left>
-                    mdi-playlist-check
+                    mdi-receipt
                     </v-icon>
                     Invoices
+                </v-tab>
+                <v-tab>
+                    <v-icon left>
+                    mdi-playlist-check
+                    </v-icon>
+                    Plans Maneger
                 </v-tab>
                 <v-tab>
                     <v-icon left>
@@ -45,24 +51,32 @@
                     </v-card-text>
                     </v-card>
                 </v-tab-item>
+
                 <v-tab-item>
                     <v-card flat>
                     <v-card-text>
-                        <Users/>
+                        <plans/>
+                    </v-card-text>
+                    </v-card>
+                </v-tab-item>
+
+                <v-tab-item>
+                    <v-card flat>
+                    <v-card-text>
+                        <users/>
                     </v-card-text>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
                     <v-card flat>
                     <v-card-text>
-                        <Roles/>
+                        <roles/>
                     </v-card-text>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
                     <v-card flat>
-                        <!---->
-                        <ChefConf/>
+                        <chefConf/>
                     </v-card>
                 </v-tab-item>
                 </v-tabs>
@@ -70,15 +84,16 @@
     </div>
 </template>
 <script>
-    import ChefConf from './ChefConf/index.vue';
-    import Users from './Users/index.vue';
-    import Roles from './Permissions/rolos.vue';
-    import graf from './graf.vue';
-    import grafPostsReads from './grafPostsReads.vue';
-    import grafUser from './grafUser.vue';
+    import chefConf from './ChefConf/index.vue';
+    import users from './Users/index.vue';
+    import roles from './Permissions/rolos.vue';
+    import graf from './graf/graf.vue';
+    import grafPostsReads from './graf/grafPostsReads.vue';
+    import grafUser from './graf/grafUser.vue';
     import subscriptions from './invoices/invoicePlan.vue';
+    import plans from './Plans/plans.vue';
 export default {
-    components: { Users,ChefConf,Roles,graf,grafPostsReads,grafUser, subscriptions },
+    components: { users,chefConf,roles,graf,grafPostsReads,grafUser, subscriptions, plans },
     data() {
         return {
             tab:null,

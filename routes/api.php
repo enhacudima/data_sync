@@ -74,6 +74,7 @@ Route::group(['namespace' => 'Subscriptions','middleware' => []], function() {
     Route::get('plan-get-invoices','PlansController@getInvoices');
     Route::get('plan-get-user-plan/{user}','PlansController@getUserPlan');
     Route::post('plan-subscription','PlansController@applyInvoce');
+    Route::get('plan-get-full','PlansController@getPlansFull');
 });
 
 Route::group(['namespace' => 'Auth','middleware' => ['auth.api']], function() {
@@ -160,6 +161,9 @@ Route::group(['namespace' => 'Tools','middleware' => []], function() {
     Route::get('getUserRoles/{key}','RolesPermissionsController@getUserRoles');
     Route::post('roles/users/create/{id}','RolesPermissionsController@setUserRoles');
 	Route::get('grafUser','UserListController@grafUser');
+    Route::post('plan-create-validate','PlansController@create');
+    Route::get('plan-delete/{id}','PlansController@delete');
+    Route::get('plan-restor-delete/{id}','PlansController@recoverPlan');
 });
 
 Route::group(['namespace' => 'Meal','middleware' => []], function() {
