@@ -4,6 +4,7 @@
     :items="roles"
     sort-by="crated_at"
     class="elevation-1"
+    dense
   >
     <template v-slot:top>
       <v-toolbar

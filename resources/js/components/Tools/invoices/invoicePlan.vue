@@ -4,6 +4,7 @@
     :items="invoices"
     sort-by="crated_at"
     class="elevation-1"
+    dense
   >
     <template v-slot:top>
       <v-toolbar
@@ -151,9 +152,10 @@
         { text: 'Currency', value: 'plan.currency' },
         { text: 'Period', value: 'plan.invoice_interval' },
         { text: 'Reference', value: 'reference' },
-        { text: 'Note', value: 'note' },
         { text: 'Status', value: 'status'},
+        { text: 'Amount', value: 'amount'},
         { text: 'File', value: 'actions', sortable: false },
+        { text: 'Note', value: 'note' },
       ],
       desserts: [],
       editedID:null,

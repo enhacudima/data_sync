@@ -298,7 +298,7 @@ class Subscription extends Model
 
     public static function getUserPlan($user){
       $user = User::find($user);
-      $data = app('rinvex.subscriptions.plan_subscription')->ofSubscriber($user)->get();
+      $data = app('rinvex.subscriptions.plan_subscription')->ofSubscriber($user)->withTrashed()->get();
       return $data;
     }
 

@@ -240,7 +240,7 @@ class PlansController extends Controller{
         $data["operation"] = $myRequest['operation'];
         $data["amount"] = $myRequest['amount'];
         $data["status"] = $status;
-        //$data->save();
+        $data->save();
     }
 
     public function checkAnyUserPlan($user){

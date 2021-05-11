@@ -44,4 +44,8 @@ class MessageController extends Controller
 
     return response()->json(['success'=>'Message received successfully'], 200);
     }
+    public function getMessages(){
+        $data = Message::get();
+        return response()->json($data, 200);
+    }
 }

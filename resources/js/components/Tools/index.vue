@@ -43,6 +43,12 @@
                     </v-icon>
                     Options
                 </v-tab>
+                <v-tab>
+                    <v-icon left>
+                    mdi-email-outline
+                    </v-icon>
+                    Messages
+                </v-tab>
 
                 <v-tab-item>
                     <v-card flat>
@@ -79,6 +85,11 @@
                         <chefConf/>
                     </v-card>
                 </v-tab-item>
+                <v-tab-item>
+                    <v-card flat>
+                        <messages/>
+                    </v-card>
+                </v-tab-item>
                 </v-tabs>
         </v-row>
     </div>
@@ -92,8 +103,9 @@
     import grafUser from './graf/grafUser.vue';
     import subscriptions from './invoices/invoicePlan.vue';
     import plans from './Plans/plans.vue';
+    import messages from './messages/messages.vue';
 export default {
-    components: { users,chefConf,roles,graf,grafPostsReads,grafUser, subscriptions, plans },
+    components: { users,chefConf,roles,graf,grafPostsReads,grafUser, subscriptions, plans, messages },
     data() {
         return {
             tab:null,

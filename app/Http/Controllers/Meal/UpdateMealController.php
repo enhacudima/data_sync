@@ -32,7 +32,7 @@ class UpdateMealController extends Controller
             return response()->json(['errors'=>["Voce não esta subscrito a nenhum plano."]], 422);
         }
 
-        $checkPlan = $plan->recordFeatureUsageHelper(Auth::user()->id,'posts',1,'usage');
+
 
         $checkPlan = $plan->checkAnyUserPlanCan(Auth::user()->id,'posts');
         if(!$checkPlan){

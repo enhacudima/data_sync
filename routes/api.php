@@ -178,6 +178,7 @@ Route::group(['namespace' => 'Meal','middleware' => []], function() {
 
 Route::group(['namespace' => 'Wellcome','middleware' => []], function() {
 	Route::post('contact/send/message','MessageController@sendMessage');
+	Route::get('contact/get/messages','MessageController@getMessages');
 
 });
 
