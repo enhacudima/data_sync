@@ -13,6 +13,9 @@ use App\Options;
 use App\MealPrices;
 use Auth;
 use App\MealType;
+use Carbon\Carbon;
+use DB;
+use App\Read;
 
 class GetMealController extends Controller
 {
@@ -113,4 +116,76 @@ class GetMealController extends Controller
         $data=MealType::get();
         return response()->json($data, 200);
     }
+
+
+    public function getPosts(){
+        $date=Carbon::now();
+        $data=Meals::whereYear('created_at','=',$date->format('Y'))
+        ->select(DB::raw('count(*) as value'), DB::raw("DATE_FORMAT(created_at, '%m')  month"))
+        ->groupby('month')
+        ->get();
+
+        $last =Meals::latest()->first();
+        $last=($last->created_at)->diffForHumans();
+
+
+        return response()->json(["data"=>$data,"last"=>$last], 200);
+    }
+    public function getPost(){
+        $date=Carbon::now();
+        $data=Meals::whereYear('created_at','=',$date->format('Y'))
+        ->select(DB::raw('count(*) as value'), DB::raw("DATE_FORMAT(created_at, '%m')  month"))
+        ->groupby('month')
+        ->where('user_id',Auth::user()->id)
+        ->get();
+
+        $last =Meals::where('user_id',Auth::user()->id)->latest()->first();
+        $last=($last->created_at)->diffForHumans();
+
+
+        return response()->json(["data"=>$data,"last"=>$last], 200);
+    }
+
+
+    public function getPostRead(){
+        $date=Carbon::now();
+        $data=Read::join('meals','meals.key','read.pub_key')
+        ->whereYear('read.created_at','=',$date->format('Y'))
+        ->where('meals.user_id',Auth::user()->id)
+        ->select(DB::raw("count('read.*') as value"), DB::raw("DATE_FORMAT(read.created_at, '%m')  month"))
+        ->groupby('month')
+        ->get();
+
+        $last =Read::join('meals','meals.key','read.pub_key')
+        ->where('meals.user_id',Auth::user()->id)
+        ->select('read.created_at')
+        ->latest('read.created_at')
+        ->first();
+
+        $last=($last->created_at)->diffForHumans();
+
+
+        return response()->json(["data"=>$data,"last"=>$last], 200);
+    }
+
+
+    public function getPostsReads(){
+        $date=Carbon::now();
+        $data=Read::
+        whereYear('read.created_at','=',$date->format('Y'))
+        ->select(DB::raw("count('read.*') as value"), DB::raw("DATE_FORMAT(read.created_at, '%m')  month"))
+        ->groupby('month')
+        ->get();
+
+        $last =Read::
+        select('read.created_at')
+        ->latest('read.created_at')
+        ->first();
+
+        $last=($last->created_at)->diffForHumans();
+
+
+        return response()->json(["data"=>$data,"last"=>$last], 200);
+    }
+
 }

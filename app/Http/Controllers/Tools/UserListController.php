@@ -14,6 +14,7 @@ use App\EloquentVueTablesUsersList;
 use App\Http\Controllers\Helpers\BackUpUserController;
 use App\CV;
 use App\Http\Controllers\Tools\RolesPermissionsController;
+use DB;
 
 class UserListController extends Controller
 {
@@ -105,6 +106,21 @@ class UserListController extends Controller
         }
 
         return response()->json(['success'=>'Updated records.'], 200);
+    }
+
+
+    public function grafUser(){
+        $date=Carbon::now();
+        $data=User::whereYear('created_at','=',$date->format('Y'))
+        ->select(DB::raw('count(*) as value'), DB::raw("DATE_FORMAT(created_at, '%m')  month"))
+        ->groupby('month')
+        ->get();
+
+        $last =User::latest()->first();
+        $last=($last->created_at)->diffForHumans();
+
+
+        return response()->json(["data"=>$data,"last"=>$last], 200);
     }
 
 

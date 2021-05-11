@@ -1,14 +1,11 @@
 <template>
     <div>
         <v-row>
-            <v-col cols="4">
+            <v-col cols="6">
                 <graf/>
             </v-col>
-            <v-col cols="4">
-                <graf/>
-            </v-col>
-            <v-col cols="4">
-                <graf/>
+            <v-col cols="6">
+                <grafPostRead/>
             </v-col>
         </v-row>
         <v-row>
@@ -20,9 +17,10 @@
 </template>
 <script>
 import graf from './graf.vue';
+import grafPostRead from './grafPostRead.vue';
 import subscriptions from './subscriptions.vue';
 export default {
-    components:{graf,subscriptions}
+    components:{graf,subscriptions,grafPostRead}
 
 
 }

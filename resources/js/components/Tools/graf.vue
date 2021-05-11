@@ -20,10 +20,10 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        User Registrations
+        Post Creation
       </div>
       <div class="subheading font-weight-light grey--text">
-        Last Campaign Performance
+        Last Post Performance
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -32,13 +32,15 @@
       >
         mdi-clock
       </v-icon>
-      <span class="caption grey--text font-weight-light">last registration 26 minutes ago</span>
+      <span class="caption grey--text font-weight-light">last registration {{last}}</span>
     </v-card-text>
   </v-card>
 </template>
 <script>
   export default {
     data: () => ({
+      last:null,
+      data:[],
       labels: [
         '12am',
         '3am',
@@ -60,6 +62,31 @@
         240,
       ],
     }),
+    methods:{
+        getData(){
+            console.log(this.labels);
+        axios
+            .get('grafPosts')
+            .then(
+                response => (this.data = response.data.data,this.last=response.data.last,this.read() )
+            );
+
+        },
+        read(){
+            let arrvalue = [];
+            let arrlabels = [];
+            this.data.forEach((value, index) => {
+               arrvalue.push(value.value);
+               arrlabels.push(value.month+'Mon');
+            });
+            this.value = arrvalue
+            this.labels = arrlabels
+        }
+    },
+    mounted(){
+        this.getData()
+
+    }
   }
 </script>
 <style>

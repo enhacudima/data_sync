@@ -5,10 +5,10 @@
                 <graf/>
             </v-col>
             <v-col cols="4">
-                <graf/>
+                <grafPostsReads/>
             </v-col>
             <v-col cols="4">
-                <graf/>
+                <grafUser/>
             </v-col>
         </v-row>
         <v-row>
@@ -74,9 +74,11 @@
     import Users from './Users/index.vue';
     import Roles from './Permissions/rolos.vue';
     import graf from './graf.vue';
+    import grafPostsReads from './grafPostsReads.vue';
+    import grafUser from './grafUser.vue';
     import subscriptions from './invoices/invoicePlan.vue';
 export default {
-    components: { Users,ChefConf,Roles,graf, subscriptions },
+    components: { Users,ChefConf,Roles,graf,grafPostsReads,grafUser, subscriptions },
     data() {
         return {
             tab:null,

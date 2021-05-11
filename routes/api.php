@@ -159,6 +159,7 @@ Route::group(['namespace' => 'Tools','middleware' => []], function() {
     Route::get('role/delete/{id}','RolesPermissionsController@deleteRole');
     Route::get('getUserRoles/{key}','RolesPermissionsController@getUserRoles');
     Route::post('roles/users/create/{id}','RolesPermissionsController@setUserRoles');
+	Route::get('grafUser','UserListController@grafUser');
 });
 
 Route::group(['namespace' => 'Meal','middleware' => []], function() {
@@ -185,6 +186,10 @@ Route::group(['namespace' => 'Meal','middleware' => []], function() {
 	Route::get('getMealType','GetMealController@getMealType');
 	Route::post('meal/price/new/{idMeal}','CreateMealController@addprices');
 	Route::post('meal/price/status/{status}','CreateMealController@pricesStatus');
+    Route::get('grafPost','GetMealController@getPost');
+    Route::get('grafPosts','GetMealController@getPosts');
+    Route::get('getPostRead','GetMealController@getPostRead');
+    Route::get('getPostsReads','GetMealController@getPostsReads');
 
 });
 
