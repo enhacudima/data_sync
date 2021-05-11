@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-data-table
     :headers="headers"
     :items="roles"
@@ -212,6 +213,13 @@
         mdi-pencil
       </v-icon>
       <v-icon
+        small
+        class="mr-2"
+        @click="featuresAdd(item.id)"
+      >
+        mdi-plus
+      </v-icon>
+      <v-icon
         v-if="!item.deleted_at"
         small
         @click="deleteItem(item)"
@@ -243,14 +251,89 @@
       </v-btn>
     </template>
   </v-data-table>
+      <v-dialog
+        v-model="featuresShow"
+        max-width="500px"
+      >
+        <v-card>
+          <v-card-title>
+            <span class="headline">Features</span>
+          </v-card-title>
+
+          <v-card-text>
+            <v-container>
+              <v-row>
+                  <v-col
+                  cols="12"
+                  >
+                      <v-text-field
+                          dense
+                          outlined
+                          label="Number of posts"
+                          v-model="featuresForm.value"
+                          type="number"
+                      >
+                      </v-text-field>
+                  </v-col>
+                  <v-col
+                  cols="12"
+                  >
+                      <v-text-field
+                          dense
+                          outlined
+                          label="Resettable period"
+                          v-model="featuresForm.resettable_period"
+                          type="number"
+                      >
+                      </v-text-field>
+                  </v-col>
+                  <v-col
+                      cols="12"
+                  >
+                      <v-autocomplete
+                          v-model="featuresForm.resettable_interval"
+                          :items="permissions"
+                          label="Resettable interval"
+                          item-text="interval"
+                          item-value="interval"
+                          outlined
+                          dense
+                      >
+                      </v-autocomplete>
+                  </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="featuresShow = !featuresShow"
+            >
+              Cancel
+            </v-btn>
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="featuresSave"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+  </div>
 </template>
 
 <script>
   export default {
     data: () => ({
-        rules: {
-            required: value => !!value || "Required.",
-        },
+      featuresShow:false,
+      rules: {
+          required: value => !!value || "Required.",
+      },
       currencys:[],
       selected:[],
       permissions:[
@@ -305,6 +388,13 @@
         sort_order: 0,
         currency: '',
       },
+      featuresForm:{
+        name:'posts',
+        value:1,
+        sort_order:0,
+        resettable_period:0,
+        resettable_interval: ''
+      },
 
     }),
 
@@ -328,10 +418,26 @@
     },
 
     methods: {
+    featuresAdd(id){
+      this.editedID = id
+      this.featuresShow=!this.featuresShow
+
+    },
 
     formatBrithDate(date) {
         return moment(date).format('DD-MM-YYYY');
     },
+    getFeature(){
+         axios
+          .get('plan-get-feature/'+this.editedID)
+          .then(response => (
+              this.featuresForm.name = response.data.name,
+              this.featuresForm.value = response.data.value,
+              this.featuresForm.sort_order = response.data.sort_order,
+              this.featuresForm.resettable_period = response.data.resettable_period,
+              this.featuresForm.resettable_interval = response.data.resettable_interval
+            ));
+        },
       initialize () {
          axios
           .get('plan-get-full')
@@ -387,15 +493,14 @@
           this.editedIndex = -1
         })
       },
-
-      save () {
-        this.sendData(this.editedItem)
+      featuresSave(){
+        this.sendFeaturesSave(this.featuresForm)
       },
 
 
-        sendData(data) {
+        sendFeaturesSave(data) {
             axios
-            .post("plan-create-validate", { data: { formData: data,planDatID: this.editedID} })
+            .post("plan-features-save", { data: { formData: data,planDatID: this.editedID} })
             .then(response => {
                 this.allerros = [];
                 this.sucess = true;
@@ -404,8 +509,7 @@
                     response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
 
                 } else {
-                    this.initialize ()
-                    this.close()
+                    this.featuresShow=!this.featuresShow
                     this.openNotification('success', 'Save', 'You have been store all data successfully');
 
                 }
@@ -435,6 +539,71 @@
                 }
             });
         },
+
+      save () {
+        this.sendData(this.editedItem)
+      },
+
+
+    sendData(data) {
+            axios
+            .post("plan-create-validate", { data: { formData: data,planDatID: this.editedID} })
+            .then(response => {
+                this.allerros = [];
+                this.sucess = true;
+                if (response.data.errors) {
+                   // console.log(response.data.errors);
+                    response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
+
+                } else {
+                    this.initialize ()
+                    this.close()
+                    this.openNotification('success', 'Save', 'You have been store all data successfully');
+
+                }
+            })
+            .catch((error) => {
+                //console.log(error.response.data.errors);
+                this.success = false;
+                var errors =null;
+                var status=error.response.status;
+               // console.log(status);
+                if (status == 405){
+                    errors=error.response.data.errors;
+                    //console.log(errors);
+
+                    let a = []
+
+                    a = Object.keys(errors).map((field) => {
+
+                    return {
+                        message: errors[field]
+                    }
+                    })
+                   a.forEach(error => { this.openNotification('error', 'Error on Save', error.message);});
+                    console.log(a)
+                }
+                    if (status == 422){
+                    errors=error.response.data.errors;
+                    //console.log(errors);
+
+                    let a = []
+
+                    a = Object.keys(errors).map((field) => {
+
+                    return {
+                        message: errors[field]
+                    }
+                    })
+                   a.forEach(error => { this.openNotification('error', 'Error on Save', error.message);});
+                    console.log(a)
+                }else{
+                    this.openNotification('error','Error on Save',error);
+                }
+            });
+        },
+
+
         openNotification: function (type, m, d) {
             this.$notification.config({
                 placement: 'topRight',

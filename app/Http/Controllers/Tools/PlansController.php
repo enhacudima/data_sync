@@ -55,81 +55,19 @@ class PlansController extends Controller
         return response()->json(['success'=>'Added deleted records.'], 200);
     }
 
-
-
-
-    public function createPermission(Request $request)
-    {
-        $roleData=$request->data['permissionData'];
+    public function createFeatures(Request $request){
+        $formData=$request->data['formData'];
+        $planDatID=$request->data['planDatID'];
 
         $myRequest = new Request();
         $myRequest->setMethod('POST');
-        $myRequest->request->add($roleData);
-
-        $validator = Validator::make($myRequest->all(), [
-            'name' => 'required|string|max:255|unique:roles.name',
-        ],
-        [
-
-        ]
-    	);
-        if ($validator->fails()) {
-                    return response()->json(['errors'=>$validator->errors()->all()], 422);
-                }
+        $myRequest->request->add($formData);
 
         $input = $myRequest->all();
 
-                $role=Permission::Create(
-                    [
-                        'name'=> $input['name'],
+        $result=Subscription::createFeatures($input,$planDatID);
 
-                    ]
-                );
-
-        return response()->json(['success'=>'Added new records.'], 200);
-    }
-
-    public function getRoles()
-    {
-        $data = Role::with('permissions')->get();
-
-        return response()->json($data, 200);
-    }
-    public function getPermissions()
-    {
-        $data = Permission::all();
-
-        return response()->json($data, 200);
-    }
-    public function getUserRoles($key){
-        $data = User::where('key',$key)->with('roles')->first();
-        $data = $data->roles;
-        return response()->json($data, 200);
-    }
-
-    public function setUserRoles(Request $request, $key){
-        $roles=$request->data['roles'];
-        $user = User::where('key',$key)->first();
-        $user->syncPermissions([]);
-        $user->syncRoles([]);
-
-        if(is_array($roles)){
-            foreach ($roles as $key => $role) {
-                $user->assignRole($role['name']);
-            }
-        }
         return response()->json(['success'=>'Remove records.'], 200);
     }
 
-    public function setUserRole($role, $key){
-        $user = User::where('key',$key)->first();
-        $role = Role::where('name',$role)->first();
-
-        if(isset($user) || isset($role)){
-            $user->syncPermissions([]);
-            $user->syncRoles([]);
-            $user->assignRole($role);
-        }
-
-    }
 }

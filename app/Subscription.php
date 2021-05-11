@@ -98,6 +98,38 @@ class Subscription extends Model
         $plans = app('rinvex.subscriptions.plan')->get();
         return $plans;
     }
+    public static function getFeature($id){
+        $plan = app('rinvex.subscriptions.plan')::withTrashed()->find($id);
+        $features = $plan->getFeatureBySlug($id);
+
+        return $features;
+    }
+
+    public static function createFeatures($input,$id){
+        $plan = app('rinvex.subscriptions.plan')::withTrashed()->find($id);
+        $features = $plan->getFeatureBySlug($input['name']);
+
+        if(isset($features)){
+            $features['value'] = $input['value'];
+            $features['resettable_period'] = $input['resettable_period'];
+            $features['resettable_interval'] = $input['resettable_interval'];
+            $features->save();
+        }else{
+            $features=new PlanFeature;
+            $features['plan_id'] = $id;
+            $features['value'] = $input['value'];
+            $features['slug'] = $input['name'];
+            $features['name'] = $input['name'];
+            $features['sort_order'] = $input['sort_order'];
+            $features['resettable_period'] = $input['resettable_period'];
+            $features['resettable_interval'] = $input['resettable_interval'];
+            $features->save();
+        }
+
+
+
+
+    }
     public static function getPlanDetails($plan,$type){
         $plan = app('rinvex.subscriptions.plan')->find($plan);
         switch ($type) {
@@ -278,11 +310,7 @@ class Subscription extends Model
 
     public static function checkAnyUserPlan($plan_id,$user){
 
-        $plan = app('rinvex.subscriptions.plan')->find($plan_id);
-        $plan_id = $plan->id;
-        $subscription_title=$plan->slug;
         $check_plan = Subscription::getUserSubscriptions($user,$plan_id);
-
         return $check_plan;
     }
 

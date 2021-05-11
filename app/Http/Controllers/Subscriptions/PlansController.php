@@ -10,6 +10,7 @@ use App\Http\Controllers\Helpers\FilesController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Subscription;
+use App\User;
 
 
 class PlansController extends Controller{
@@ -33,8 +34,12 @@ class PlansController extends Controller{
 
 
     public function getPlansFull(){
-    $data = Subscription::getPlansFull();
-    return response()->json($data, 200);
+        $data = Subscription::getPlansFull();
+        return response()->json($data, 200);
+    }
+    public function getFeature($id){
+        $data = Subscription::getFeature($id);
+        return response()->json($data, 200);
     }
 
     public function getFeatureValue($subscription,$feature){
@@ -176,17 +181,16 @@ class PlansController extends Controller{
         }
 
 
-        $plan = app('rinvex.subscriptions.plan')->find($data->plan_id);
+        $plan = app('rinvex.subscriptions.plan')->withTrashed()->find($data->plan_id);
         $plan_id = $plan->id;
         $subscription_title=$plan->slug;
         $user=$data->user_id;
         $check_plan = Subscription::getUserSubscriptions($user,$plan_id);
         $check_amount = $plan->price == $myRequest->amount;
 
-        /*$subscription = app('rinvex.subscriptions.plan_subscription')
-        ->where('subscriber_id',$user)
-        ->where('plan_id',$plan_id)
-        ->first();*/
+        $plans = Subscription::getUserPlan($user);
+        $plans = $plans->where('plan_id',$plan_id)->first();
+
 
         switch ($myRequest['operation']) {
             case 'Renew':
@@ -194,12 +198,15 @@ class PlansController extends Controller{
                     return response()->json(['errors'=>["You cannot renew subscription because is not existe or is canceled."]], 422);
                 }
                 $type = "renew";
-                $this->renewSubscription($type,$subscription->slug,$user);
+                $this->renewSubscription($type,$subscription_title,$user);
                 $this->update_invoice($data,$myRequest,2);
                 break;
             case 'New':
                 if($check_plan){
                     return response()->json(['errors'=>["You cannot create new subscription because is ready existe."]], 422);
+                }
+                if(isset($plans)){
+                    $plans->delete();
                 }
                 $this->creatSubscription($plan_id,$subscription_title, $user);
                 $this->update_invoice($data,$myRequest,2);
@@ -233,16 +240,52 @@ class PlansController extends Controller{
         $data["operation"] = $myRequest['operation'];
         $data["amount"] = $myRequest['amount'];
         $data["status"] = $status;
-        $data->save();
+        //$data->save();
     }
 
     public function checkAnyUserPlan($user){
-        $data=$data = Subscription::getUserPlan($user);
+        $plans = Subscription::getUserPlan($user);
 
         $checked = false;
-        foreach ($data as $key => $value) {
+        foreach ($plans as $key => $value) {
             $data = Subscription::checkAnyUserPlan($value->plan_id,$user);
             if($data){
+               $checked =$data;
+               break;
+            }
+        }
+        return $checked;
+    }
+
+    public $temp_plan_name_check_feature;
+
+    public function checkAnyUserPlanCan($user,$can){
+
+        return $this->checkAnyUserPlanCanHelper($user,$can);
+    }
+
+
+    public function recordFeatureUsageHelper($user,$can,$value,$type){
+        $plan=$this->checkAnyUserPlanCanHelper($user,$can);
+        if($plan){
+            $this->recordFeatureUsage($type,$this->temp_plan_name_check_feature,$can,$user,$value);
+        }
+    }
+
+    public function checkAnyUserPlanCanHelper($user,$can){
+        $feature = app('rinvex.subscriptions.plan_feature')->where('slug', $can)->first();
+        if(!$feature){
+            return "This feature do not existe";
+        }
+        $plans = Subscription::getUserPlan($user);
+
+        $user = User::find($user);
+
+        $checked = false;
+        foreach ($plans as $key => $plan) {
+            $this->temp_plan_name_check_feature = $plan->name;
+            $data = $user->subscription($plan->name)->getFeatureRemainings($can);
+            if($data>=0){
                $checked =$data;
                break;
             }

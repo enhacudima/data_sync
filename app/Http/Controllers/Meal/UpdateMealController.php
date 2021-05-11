@@ -32,6 +32,16 @@ class UpdateMealController extends Controller
             return response()->json(['errors'=>["Voce não esta subscrito a nenhum plano."]], 422);
         }
 
+        $checkPlan = $plan->recordFeatureUsageHelper(Auth::user()->id,'posts',1,'usage');
+
+        $checkPlan = $plan->checkAnyUserPlanCan(Auth::user()->id,'posts');
+        if(!$checkPlan){
+            return response()->json(['errors'=>["You have exceeded the number of publications, subscribe to a plan according to your needs."]], 422);
+        }
+
+
+
+
     	$mealData=$request->data['mealData'];
         $tags=$request->data['tags'];
         $file_id=null;
