@@ -87,7 +87,7 @@
             });
             this.value = arrvalue
             this.labels = arrlabels
-            console.log(this.value )
+            //console.log(this.value )
         }
     },
     mounted(){

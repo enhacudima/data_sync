@@ -46,6 +46,21 @@ const messages = {
         reset: "Reset",
         views: "Views",
         my_plan:"My Plan",
+        no_data: "Sorry, nothing to display here :(",
+        cancel_login:"Cancel",
+        name:"Name",
+        created_at:"Created at",
+        updated_at: "Updated at",
+        starts_at: "Starts at",
+        ends_at: "Ends at",
+        trial_ends_at: "Trial and at",
+        canceled_at: "Canceled at",
+        actions: "Actions",
+        subscriptions: "Subscriptions",
+        subscription: "Subscription",
+        painel:'Painel',
+        publicacoes:'Publicações',
+        definicoes: 'Definições',
     },
     'pt_BR': {
         login:'Iniciar sessão',
@@ -87,6 +102,8 @@ const messages = {
         reset: "Redifinir",
         views: "Visualizações",
         my_plan: "Meu Plano",
+        no_data: "Sem dados para mostrar",
+        cancel_login:"Cancelar",
     }
 };
 

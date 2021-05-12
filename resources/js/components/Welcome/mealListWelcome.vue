@@ -21,7 +21,7 @@
         max-height="650"
     >
       <v-row
-         v-if="!meals.length"
+         v-if="!meals.length && isLoadingSearch === false"
       >
           <v-col
             cols="12"
@@ -33,7 +33,7 @@
             elevation="2"
             icon="mdi-cloud-off-outline"
             >
-            Sorry, nothing to display here :(
+            {{$('no_data')}}
             </v-alert>
           </v-col>
       </v-row>
@@ -183,10 +183,12 @@ export default {
             //console.log(this.mealIDShow);
         },
         getMeals() {
+                this.isLoadingSearch = true;
                 window.axios.get('/getPagmMalsW?page=' + this.pagination.current)
                     .then(response => {
                         this.meals = response.data.data;
                         this.isSearch = true;
+                        this.isLoadingSearch = false;
                         this.pagination.current = response.data.current_page;
                         this.pagination.total = response.data.last_page;
                     });

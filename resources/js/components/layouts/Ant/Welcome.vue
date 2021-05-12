@@ -82,7 +82,7 @@
         align="center"
         justify="center"
         >
-        DataSync
+
         </v-row>
 
         <v-row
@@ -195,21 +195,21 @@ import {i18n} from '../../../i18n.js'
       ],
       linksNames: [
         'Publicações',
-        'about_us',
+        /*'about_us',*/
         'contact',
-        'terms_and_conditions',
+        /*'terms_and_conditions',*/
       ],
       links:[
         '/',
-        'about',
+        /*'about',*/
         'contact',
-        'terms',
+        /*'terms',*/
       ],
       icons: [
         'mdi-view-grid',
-        'mdi-information',
+        /*'mdi-information',*/
         'mdi-phone',
-        'mdi-hammer-screwdriver',
+        /*'mdi-hammer-screwdriver',*/
       ],
     }),
   }

@@ -8,7 +8,7 @@
 
       <v-card >
         <v-card-title class="headline grey lighten-2">
-        Subscriptions
+        {{$t('subscriptions')}}
         </v-card-title>
 
         <v-card-text>
@@ -25,29 +25,29 @@
                             #
                         </th>
                         <th class="text-left">
-                            name
+                            {{$t('name')}}
                         </th>
                         <th class="text-left">
-                            created_at
+                            {{$t('created_at')}}
                         </th>
                         <th class="text-left">
-                            updated_at
+                            {{$t('updated_at')}}
                         </th>
                         <th class="text-left">
-                            starts_at
+                            {{$t('starts_at')}}
                         </th>
                         <th class="text-left">
-                            ends_at
+                            {{$t('ends_at')}}
                         </th>
                         <th class="text-left">
-                            trial_ends_at
+                            {{$t('trial_ends_at')}}
                         </th>
                         <th class="text-left">
-                            canceled_at
+                            {{$t('canceled_at')}}
                         </th>
 
-                        <th class="text-left">
-                            actions
+                        <th class="text-left" v-if="$can('cancel_subscription')">
+                            {{$t('actions')}}
                         </th>
                         </tr>
                     </thead>
@@ -64,7 +64,7 @@
                         <td>{{formatDate(item.ends_at)}}</td>
                         <td>{{formatDate(item.trial_ends_at)}}</td>
                         <td>{{formatDate(item.canceled_at)}}</td>
-                        <td>
+                        <td v-if="$can('cancel_subscription')">
                             <v-btn
                             small
                             color="#e1b80d"

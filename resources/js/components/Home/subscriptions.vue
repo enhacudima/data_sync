@@ -56,7 +56,7 @@
 
                     >
                         <template v-slot:item="{ item }">
-                            {{item.name}} - {{item.description}} [{{item.price}}{{item.currency}}, {{item.invoice_interval}}, Trial {{item.trial_period}} {{item.trial_interval}}]
+                            {{item.name}} - {{item.description}} [{{item.price}}{{item.currency}},{{item.invoice_period}} {{item.invoice_interval}}, Trial {{item.trial_period}} {{item.trial_interval}}]
 
                         </template>
 
@@ -131,6 +131,15 @@
     <template v-slot:item.created_at="{ item }">
         {{formatBrithDate(item.created_at)}}
     </template>
+    <template v-slot:item.invoice_interval="{ item }">
+        {{uperfirst(item.plan.invoice_interval)}}
+    </template>
+    <template v-slot:item.grace_interval="{ item }">
+        {{uperfirst(item.plan.grace_interval)}}
+    </template>
+    <template v-slot:item.status_name="{ item }">
+        {{uperfirst(item.status_name.name)}}
+    </template>
 
   </v-data-table>
 </template>
@@ -166,11 +175,11 @@ function hasErrors(fieldsError) {
         { text: 'Description', value: 'plan.description' },
         { text: 'Price', value: 'plan.price' },
         { text: 'Currency', value: 'plan.currency' },
-        { text: 'Period', value: 'plan.invoice_interval' },
+        { text: 'Period', value: 'invoice_interval' },
         { text: 'Grace Period', value: 'plan.grace_period' },
-        { text: 'Grace Interval', value: 'plan.grace_interval' },
+        { text: 'Grace Interval', value: 'grace_interval' },
         { text: 'Reference', value: 'reference' },
-        { text: 'Status', value: 'status_name.name'},
+        { text: 'Status', value: 'status_name'},
         { text: 'Actions', value: 'actions', sortable: false },
         { text: 'Note', value: 'note'},
       ],
@@ -207,7 +216,9 @@ function hasErrors(fieldsError) {
     },
 
     methods: {
-
+        uperfirst(l){
+            return (l).charAt(0).toUpperCase()+(l).slice(1)
+        },
         formatBrithDate(date) {
             return moment(date).format('DD-MM-YYYY');
         },

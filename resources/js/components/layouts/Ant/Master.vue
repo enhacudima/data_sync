@@ -104,14 +104,14 @@
                                 </v-list-item-action>
                                 <v-list-item-title>{{$t('my_plan')}}</v-list-item-title>
                             </v-list-item>
-                            <v-list-item>
+                            <!--<v-list-item>
                                 <v-list-item-action>
                                 <v-btn icon @click="toggle_dark_mode">
                                     <v-icon>mdi-theme-light-dark</v-icon>
                                 </v-btn>
                                 </v-list-item-action>
                                 <v-list-item-title>{{$t('dark_moee')}}</v-list-item-title>
-                            </v-list-item>
+                            </v-list-item>-->
 
                         <v-list-item>
                             <v-list-item-action>
@@ -303,22 +303,22 @@
       message: false,
       hints: false,
       linksNames: [
-          'Painel',
-        'Publicações',
-        'Definições',
+        'painel',
+        'publicacoes',
+        'definicoes',
       ],
       links:[
-          'Statistics',
+        'Statistics',
         'home',
         'tools',
       ],
       icons: [
-          'mdi-chart-pie',
+        'mdi-chart-pie',
         'mdi-view-grid',
         'mdi-hammer-screwdriver',
       ],
       can: [
-          'statistics',
+        'statistics',
         'home',
         'admin',
       ],

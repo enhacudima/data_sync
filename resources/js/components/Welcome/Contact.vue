@@ -81,10 +81,10 @@
                     mdi-map-marker
                     </v-icon>
 
-                    <div class="font-weight-medium"> </div>
+                    <div class="black--text font-weight-medium"> </div>
                 </v-row>
                 <v-row class="pl-6 pt-3">
-                    <p class="font-weight-light">
+                    <p class="black--text font-weight-light">
                         <strong>Mozambique</strong> - Maputo, Rua Simões da Silva, 111
                     </p>
                 </v-row>
@@ -111,12 +111,12 @@
                     </v-icon>
                 </v-row>
                 <v-row class="pl-6 pt-3">
-                    <p class="font-weight-light">
+                    <p class="black--text font-weight-light">
                         <strong>Email</strong> - geral@moz-concursopublico.info
                     </p>
                 </v-row>
                 <v-row class="pl-6 pt-1">
-                    <p class="font-weight-light">
+                    <p class="black--text font-weight-light">
                         <strong>Web</strong> - moz-concursopublico.info
                     </p>
                 </v-row>
@@ -131,11 +131,9 @@
         <v-col cols="12">
 
             <section id="team">
-                <p class="font-weight-medium" >
+                <p class="black--text font-weight-medium" >
                 Thank You.
                 </p>
-                <p class="font-weight-light">
-                Our Team is grateful for using our services. <v-icon  color="red">mdi-heart</v-icon><v-icon small color="red">mdi-heart</v-icon><v-icon x-small color="red">mdi-heart</v-icon></p>
             </section>
 
         </v-col>

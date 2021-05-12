@@ -58,7 +58,7 @@
       <v-btn text
        to="/"
       >
-        Cancel
+        {{$t('cancel_login')}}
       </v-btn>
     </v-card-actions>
   </v-card>
