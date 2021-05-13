@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App;
 
-class SetLocale
+class SetLocaleDynamically
 {
     /**
      * Handle an incoming request.
@@ -14,16 +15,17 @@ class SetLocale
      * @param  \Closure  $next
      * @return mixed
      */
-    public $locale= 'en';
     public function handle($request, Closure $next)
     {
+        $locale='en';
         if (Auth::guard('api')->check()) {
-            $this->locale = Auth::guard('api')->user()->locale;
+            $locale = Auth::guard('api')->user()->locale;
         }
-        if ($this->locale == 'pt'){
-            $this->locale = 'pt_BR';
+        if ($locale == 'pt'){
+            $locale = 'pt_BR';
         }
-        app()->setLocale($this->locale);
+        app()->setLocale($locale);
+
         return $next($request);
     }
 }

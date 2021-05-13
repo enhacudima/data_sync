@@ -182,7 +182,7 @@ Route::group(['namespace' => 'Wellcome','middleware' => []], function() {
 
 });
 
-Route::group(['namespace' => 'Meal','middleware' => []], function() {
+Route::group(['namespace' => 'Meal','middleware' => ['CheckStatus','SetLocaleDynamically']], function() {
 	Route::get('GetMeals','GetMealController@getAllMeals');
 	Route::get('getMealsV2/{currency}','GetMealController@getMealsV2');
 	Route::get('getPagmMals','GetMealController@getPagmMals');

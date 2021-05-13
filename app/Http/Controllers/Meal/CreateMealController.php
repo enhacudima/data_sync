@@ -60,6 +60,7 @@ class CreateMealController extends Controller
 
         $mealData['tags'] = $tags;
         $mealData['file_id'] = $file_id;
+        $mealData['ficheiro'] = $file_id;
 
         $myRequest = new Request();
         $myRequest->setMethod('POST');
@@ -67,7 +68,7 @@ class CreateMealController extends Controller
 
 
         $validator = Validator::make($myRequest->all(), [
-            'file_id' => 'required|numeric',
+            'ficheiro' => 'required|numeric',
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:255',
             'web' => 'nullable|url|max:255',
@@ -79,9 +80,10 @@ class CreateMealController extends Controller
             'tags' => 'nullable',
         ],
         [
-     	    'file_id.required'=>'Please add PDF file.'
+     	    //'file_id.required'=>'Please add PDF file.'
         ]
     	);
+
     if ($validator->fails()) {
                 return response()->json(['errors'=>$validator->errors()->all()], 422);
             }

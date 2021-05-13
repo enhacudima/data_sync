@@ -81,7 +81,7 @@ class Kernel extends HttpKernel
         'CheckStatus' => \App\Http\Middleware\CheckStatus::class,
         'CheckChefe'=>\App\Http\Middleware\CheckChefe::class,
         'UserType'=>\App\Http\Middleware\UserType::class,
-        'setlocale' => \App\Http\Middleware\SetLocale::class,
+        'SetLocaleDynamically' => \App\Http\Middleware\SetLocaleDynamically::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
