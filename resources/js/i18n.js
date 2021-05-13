@@ -35,7 +35,6 @@ const messages = {
         terms_service:"Terms of Service",
         open_terms_and_conditions:"Open Terms and condition",
         register:"Register",
-        save:"Save",
         o_password:"Old Password",
         full_address:"Full Address",
         update_avatar:"Update Picture",
@@ -48,21 +47,75 @@ const messages = {
         my_plan:"My Plan",
         no_data: "Sorry, nothing to display here :(",
         cancel_login:"Cancel",
-        name:"Name",
         created_at:"Created at",
         updated_at: "Updated at",
+        actions: "Actions",
+        //nav bar
+        painel:'Painel',
+        publicacao:'Publicação',
+        publicacoes:"Publicações",
+        nova_publicacao:"Nova Publicação",
+        definicoes: 'Definições',
+        //pub card
+        inicio_pub :'Início de submissões', //deve ser simplificado
+        fim_pub :'Fim de submissões', //deve ser simplificado
+        //contact form
+        title_conta : "Send message for us",
+        sub_title_conta : "Our team will answer you as soon as possible",
+        result_title_conta :"Message received successfully",
+        message : "Message",
+        contact_form : "Contact Form",
+        team : "Team",
+        thank_you : "Thank you.",
+        //geral
+        submit : "Submit",
+        clear : "Clear",
+        name:"Name",
+        ok:"Ok",
+        contents:"Contents",
+        email: "E-mail",
+        save:"Save",
+        website :"Website",
+        titlo_pub: "Titlo",
+        close: "Fechar",
+        pdf_file:"PDF File",
+        date:"Date",
+        update:"Update",
+        title:"Title",
+        no:"No",
+        yes:"Yes",
+        yes_rigth_now:"Yes Rigth now",
+        cancel:"Cancel",
+        //new pub
+        upload_pdf:"Upload PDF",
+        location:"Location",
+        details:"Details",
+        category:"Category",
+        select:"Select",
+        options:"Options",
+        tags:"Tags",
+        //subscription
+        plan:'Plan',
+        subscriptions: "Subscriptions",
+        subscription: "Subscription",
         starts_at: "Starts at",
         ends_at: "Ends at",
         trial_ends_at: "Trial and at",
         canceled_at: "Canceled at",
-        actions: "Actions",
-        subscriptions: "Subscriptions",
-        subscription: "Subscription",
-        painel:'Painel',
-        publicacoes:'Publicações',
-        definicoes: 'Definições',
+        new_invoice: "New Invoice",
+        invoices: "Invoices",
+        confirm_cancelation:"Are you sure you want to cancel this subscription?",
+
+        //graf
+        post_reation:"Post Creation",
+        last_post_performance:"Last Post Performance",
+        last_registration:"last registration",
+        post_read:"Post Read",
+        last_post_read_performance:"Last Post Read Performance",
+        last_read:"last read",
+
     },
-    'pt_BR': {
+    'pt': {
         login:'Iniciar sessão',
         search: 'Pesquisa',
         welcome: 'Bem Vindo',
@@ -104,11 +157,77 @@ const messages = {
         my_plan: "Meu Plano",
         no_data: "Sem dados para mostrar",
         cancel_login:"Cancelar",
+        actions: "Actions",
+        //nav bar
+        painel:'Painel',
+        publicacao:'Publicação',
+        publicacoes:"Publicações",
+        nova_publicacao:"Nova Publicação",
+        definicoes: 'Definições',
+        //pub card
+        inicio_pub :'Início de submissões', //deve ser simplificado
+        fim_pub :'Fim de submissões', //deve ser simplificado
+        //contact form
+        title_conta : "Send message for us",
+        sub_title_conta : "Our team will answer you as soon as possible",
+        result_title_conta :"Message received successfully",
+        message : "Message",
+        contact_form : "Contact Form",
+        team : "Team",
+        thank_you : "Thank you.",
+        //geral
+        created_at:"Created at",
+        updated_at: "Updated at",
+        submit : "Submit",
+        clear : "Clear",
+        name:"Name",
+        ok:"Ok",
+        contents:"Contents",
+        email: "E-mail",
+        save:"Save",
+        website :"Website",
+        titlo_pub: "Titlo",
+        close: "Fechar",
+        pdf_file:"PDF File",
+        date:"Date",
+        update:"Update",
+        title:"Title",
+        no:"No",
+        yes:"Yes",
+        yes_rigth_now:"Yes Rigth now",
+        cancel:"Cancelar",
+        //new pub
+        upload_pdf:"Upload PDF",
+        location:"Location",
+        details:"Details",
+        category:"Category",
+        select:"Select",
+        options:"Options",
+        tags:"Tags",
+        //subscription
+        plan:'Plan',
+        subscriptions: "Subscriptions",
+        subscription: "Subscription",
+        starts_at: "Starts at",
+        ends_at: "Ends at",
+        trial_ends_at: "Trial and at",
+        canceled_at: "Canceled at",
+        new_invoice: "New Invoice",
+        invoices: "Invoices",
+        confirm_cancelation:"Are you sure you want to cancel this subscription?",
+
+        //graf
+        post_reation:"Post Creation",
+        last_post_performance:"Last Post Performance",
+        last_registration:"last registration",
+        post_read:"Post Read",
+        last_post_read_performance:"Last Post Read Performance",
+        last_read:"last read",
     }
 };
 
 const i18n = new VueI18n({
-    locale: 'pt_BR', // set locale
+    locale: 'pt', // set locale
     fallbackLocale: 'en', // set fallback locale
     messages, // set locale messages
 });

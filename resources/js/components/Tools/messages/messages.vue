@@ -18,6 +18,9 @@
             Email
           </th>
           <th class="text-left">
+            Phone
+          </th>
+          <th class="text-left">
             Message
           </th>
           <th class="text-left">
@@ -33,6 +36,7 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.email }}</td>
+          <td>{{ item.phone }}</td>
           <td>{{ item.message }}</td>
           <td>{{ item.created_at }}</td>
         </tr>

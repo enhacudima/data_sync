@@ -183,8 +183,8 @@ import {i18n} from '../../../i18n.js'
     },
 
     data: () => ({
-      my_lang:'pt_BR',
-      langs: ['en', 'pt_BR'] ,
+      my_lang:'pt',
+      langs: ['en', 'pt'] ,
       states:[],
       drawer: false,
       iconsFoot: [
@@ -194,7 +194,7 @@ import {i18n} from '../../../i18n.js'
         'mdi-instagram',
       ],
       linksNames: [
-        'Publicações',
+        'publicacoes',
         /*'about_us',*/
         'contact',
         /*'terms_and_conditions',*/

@@ -6,7 +6,7 @@
       hide-overlay
       transition="dialog-bottom-transition"
     >
-      <v-card>        
+      <v-card>
         <v-toolbar
           dark
           background-color="indigo"
@@ -20,7 +20,7 @@
               @click="showDialog = false"
             >
             <v-icon>mdi-close</v-icon>
-              Close
+              {{$t('close')}}
             </v-btn>
           </v-toolbar-items>
         </v-toolbar>
@@ -54,10 +54,10 @@
     },
     data() {
         return {
-           
+
         }
     },
- 
+
     computed: {
         showDialog: {
         get () {
@@ -70,13 +70,13 @@
     },
     mounted() {
       //console.log(this.codMeal)
-        
+
     },
     watch: {
     codMeal (val, oldVal) {
       //console.log(val)
     }
     }
-    
+
   }
 </script>

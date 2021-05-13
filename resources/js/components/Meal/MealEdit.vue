@@ -3,7 +3,7 @@
     <v-tabs
     v-model="tab"
     >
-      <v-tab href="#tab-1">This Pub</v-tab>
+      <v-tab href="#tab-1">{{$t('publicacao')}}</v-tab>
     </v-tabs>
 
 
@@ -23,7 +23,7 @@
         <template >
           <a-form  :form="form" @submit="handleSubmit" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" >
           <a-row>
-            <a-form-item label="PDF File">
+            <a-form-item :label="$t('pdf_file')">
                 <a-upload
                     name="file"
                     action="/data_sync/public/api/fileOtherFormat"
@@ -32,89 +32,89 @@
                     :loading="loading"
                     :multiple="false"
                 >
-                    <a-button> <a-icon type="upload" /> Upload PDF </a-button>
+                    <a-button> <a-icon type="upload" />{{$t('upload_pdf')}} </a-button>
                 </a-upload>
             </a-form-item>
 
-            <a-form-item label="Title" :validate-status="nameError() ? 'error' : ''" :help="nameError() || ''">
+            <a-form-item :label="$t('title')" :validate-status="nameError() ? 'error' : ''" :help="nameError() || ''">
               <a-input
                 v-decorator="[
                   'name',
-                  { initialValue:this.thisMeal.name,rules: [{ required: true, message: 'Please input Title!' }] },
+                  { initialValue:this.thisMeal.name,rules: [{ required: true, message: $t('title') }] },
                 ]"
-                placeholder="Title"
+                :placeholder="$t('title')"
                 allow-clear
               >
               </a-input>
             </a-form-item>
 
-            <a-form-item label="Email">
+            <a-form-item :label="$t('email')">
               <a-input
                 v-decorator="[
                   'email',
                   { initialValue:this.thisMeal.email,rules: [
                 {
                 type: 'email',
-                message: 'The input is not valid E-mail!',
+                message: $t('email'),
                 },
 
-                  { required: true, message: 'Please input email!' }] },
+                  { required: true, message: $t('email') }] },
                 ]"
-                placeholder="Email"
+                :placeholder="$t('email')"
                 allow-clear
               >
               </a-input>
             </a-form-item>
 
-            <a-form-item label="Web">
+            <a-form-item :label="$t('website')">
               <a-input
                 v-decorator="[
                   'web',
                   { initialValue:this.thisMeal.web,rules: [
 
-                  { required: false, message: 'Please input Web!' }] },
+                  { required: false, message: $t('website') }] },
                 ]"
-                placeholder="Web"
+                :placeholder="$t('website')"
                 allow-clear
               >
               </a-input>
             </a-form-item>
 
-            <a-form-item label="Location">
+            <a-form-item :label="$t('location')">
               <a-input
                 v-decorator="[
                   'location',
                   { initialValue:this.thisMeal.location,rules: [
 
-                  { required: false, message: 'Please input Location!' }] },
+                  { required: false, message: $t('location') }] },
                 ]"
-                placeholder="Location"
+                :placeholder="$t('location')"
                 allow-clear
               >
               </a-input>
             </a-form-item>
 
-            <a-form-item label="Phone">
+            <a-form-item :label="$t('phone_number')">
               <a-input
                 v-decorator="[
                   'phone',
                   { initialValue:this.thisMeal.phone,rules: [
 
-                  { required: false, message: 'Please input Phone!' }] },
+                  { required: false, message: $t('phone_number') }] },
                 ]"
-                placeholder="Phone"
+                :placeholder="$t('phone_number')"
                 allow-clear
               >
               </a-input>
             </a-form-item>
 
-            <a-form-item label="Details" :validate-status="detailsError() ? 'error' : ''" :help="detailsError() || ''">
+            <a-form-item :label="$t('details')" :validate-status="detailsError() ? 'error' : ''" :help="detailsError() || ''">
               <a-textarea
                 placeholder="Details about the meal"
                 :rows="2"
                 v-decorator="[
                   'details',
-                  { initialValue:this.thisMeal.details,rules: [{ required: true, message: 'Please input meal details!' }] },
+                  { initialValue:this.thisMeal.details,rules: [{ required: true, message: $t('details') }] },
                 ]"
 
                 allow-clear
@@ -122,13 +122,13 @@
               />
             </a-form-item>
 
-            <a-form-item label="Category" :validate-status="experienceError() ? 'error' : ''" :help="experienceError() || ''">
+            <a-form-item :label="$t('category')" :validate-status="experienceError() ? 'error' : ''" :help="experienceError() || ''">
               <a-select
                 v-decorator="[
                   'experience',
-                  { initialValue:this.thisMeal.experience_id,rules: [{ required: true, message: 'Please input Category!' }] },
+                  { initialValue:this.thisMeal.experience_id,rules: [{ required: true, message: $t('category') }] },
                 ]"
-                placeholder="Select Category"
+                :placeholder="$t('select')+' '+ $t('category')"
               >
                 <a-select-option v-for="experience in experiences"  v-bind:value="experience.id" :key="experience.id" >
                   ({{ experience.ref }}) {{ experience.title }} - {{ experience.description }}
@@ -137,7 +137,7 @@
             </a-form-item>
 
 
-            <a-form-item label="Start/End Date" :validate-status="commonTimingError() ? 'error' : ''" :help="commonTimingError() || ''">
+            <a-form-item :label="$t('inicio_pub')+'/'+$t('fim_pub')" :validate-status="commonTimingError() ? 'error' : ''" :help="commonTimingError() || ''">
             <a-range-picker
             show-time
             format="YYYY-MM-DD HH:mm:ss"
@@ -145,20 +145,20 @@
                 'commonTiming',
                 {
                     initialValue:[moment(this.thisMeal.start_date, 'YYYY-MM-DD HH:mm'), moment(this.thisMeal.end_date, 'YYYY-MM-DD HH:mm')],
-                    rules: [{ required: true, message: 'Please input Start Date!' }] },
+                    rules: [{ required: true, message: $t('date') }] },
                 ]"
             >
 
             </a-range-picker>
             </a-form-item>
 
-            <a-form-item label="Options" :validate-status="optionsError() ? 'error' : ''" :help="optionsError() || ''" >
+            <a-form-item :label="$t('options')" :validate-status="optionsError() ? 'error' : ''" :help="optionsError() || ''" >
                 <template>
                   <a-select mode="tags" style="width: 100%" :token-separators="[',']" @change="handleOptChange"
                   v-decorator="[
                   'options',
                       {
-                          initialValue:iniOpttions,rules: [{ required: false, message: 'Please input options!' }],
+                          initialValue:iniOpttions,rules: [{ required: false, message: $t('options') }],
                       },
                     ]"
                     >
@@ -169,7 +169,7 @@
                 </template>
             </a-form-item>
 
-            <a-form-item label="Tags">
+            <a-form-item :label="$t('tags')">
               <template v-for="tag in tags">
                 <a-checkable-tag
                   :key="tag.id"
@@ -184,7 +184,7 @@
             <a-form-item >
               <a-col :xs="{ span: 24, offset: 0}" :lg="{ span: 20, offset: 10}">
                   <a-button icon="check-circle"  type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())" >
-                      Update
+                      {{$t('update')}}
                   </a-button >
               </a-col>
             </a-form-item>

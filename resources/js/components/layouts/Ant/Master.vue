@@ -295,7 +295,7 @@
       checkPlan: false,
       new_lang:null,
       my_lang:null,
-      langs: ['en', 'pt_BR'] ,
+      langs: ['en', 'pt'] ,
       showDialogAvatar: false,
       showDialog: false,
       fav: false,

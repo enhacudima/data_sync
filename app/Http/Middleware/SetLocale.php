@@ -20,6 +20,9 @@ class SetLocale
         if (Auth::guard('api')->check()) {
             $this->locale = Auth::guard('api')->user()->locale;
         }
+        if ($this->locale == 'pt'){
+            $this->locale = 'pt_BR';
+        }
         app()->setLocale($this->locale);
         return $next($request);
     }

@@ -10,7 +10,7 @@
         flat
       >
 
-        <v-toolbar-title>Invoices</v-toolbar-title>
+        <v-toolbar-title>{{$t('invoices')}}</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -29,7 +29,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              New Invoice
+              {{$t('new_invoice')}}
             </v-btn>
           </template>
 
@@ -63,7 +63,7 @@
                     </v-autocomplete>
                   </v-col>
                   <v-col>
-                    <a-form-item label="PDF File">
+                    <a-form-item :label="$t('pdf_file')">
                         <a-upload
                             name="file"
                             action="/data_sync/public/api/fileOtherFormat"
@@ -72,7 +72,7 @@
                             :loading="loading"
                             :multiple="false"
                         >
-                            <a-button> <a-icon type="upload" /> Upload PDF </a-button>
+                            <a-button> <a-icon type="upload" /> {{$t('upload_pdf')}} </a-button>
                         </a-upload>
                     </a-form-item>
                   </v-col>
@@ -87,14 +87,14 @@
                 text
                 @click="close"
               >
-                Cancel
+                {{$t('cancel')}}
               </v-btn>
               <v-btn
                 color="blue darken-1"
                 text
                 @click="save"
               >
-                Save
+                {{$t('save')}}
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -204,6 +204,7 @@ function hasErrors(fieldsError) {
 
     watch: {
       dialog (val) {
+        this.getPlans()
         val || this.close()
       },
       dialogDelete (val) {
@@ -226,10 +227,13 @@ function hasErrors(fieldsError) {
          axios
           .get('plan-get-invoice')
           .then(response => (this.invoices = response.data));
+        this.getPlans()
+      },
+      getPlans(){
+          axios
+           .get('plan-get-plans')
+           .then(response => (this.plans = response.data));
 
-         axios
-          .get('plan-get-plans')
-          .then(response => (this.plans = response.data));
       },
 
       editItem (item) {

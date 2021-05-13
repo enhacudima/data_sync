@@ -86,8 +86,9 @@
             <strong>{{  meal.meal_user.name && meal.meal_user.name.length < 10 ? meal.meal_user.name : meal.meal_user.name.substring(0,10)+".."}}</strong>
             </div>
                 <div  class="black--text">  <v-list-item-action-text >{{meal.name && meal.name.length < 38 ? meal.name : meal.name.substring(0,38)+".." }}</v-list-item-action-text> </div>
-                <div  class="black--text">  <v-list-item-action-text >Início de submissões- {{meal.start_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
-                <div  class="black--text">  <v-list-item-action-text >Fim de submissões - {{meal.end_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
+                <div class="black--text">  <v-list-item-action-text >{{$t('inicio_pub')}} - {{meal.start_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
+                <div class="black--text">  <v-list-item-action-text >{{$t('fim_pub')}} - {{meal.end_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
+                <div class="black--text">  <v-list-item-action-text >{{$t('category')}} - {{meal.meal_category.title}}</v-list-item-action-text> </div>
             </v-card-subtitle>
 
 

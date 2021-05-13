@@ -20,10 +20,10 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        Post Creation
+        {{$t('post_reation')}}
       </div>
       <div class="subheading font-weight-light grey--text">
-        Last Post Performance
+        {{$t('last_post_performance')}}
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -32,7 +32,7 @@
       >
         mdi-clock
       </v-icon>
-      <span class="caption grey--text font-weight-light">last registration {{last}}</span>
+      <span class="caption grey--text font-weight-light">{{$t('last_registration')}} {{last}}</span>
     </v-card-text>
   </v-card>
 </template>

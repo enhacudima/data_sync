@@ -6,15 +6,15 @@
         <v-card
         elevation="2"
         >
-        <v-card-title v-if="!respMessage">Send message for us</v-card-title>
-        <v-card-title v-else >Message received successfully</v-card-title>
-        <v-card-subtitle>Our team will answer you as soon as possible</v-card-subtitle>
+        <v-card-title v-if="!respMessage">{{$t('title_conta')}}</v-card-title>
+        <v-card-title v-else >{{$t('result_title_conta')}}</v-card-title>
+        <v-card-subtitle>{{$t('sub_title_conta')}}</v-card-subtitle>
             <v-form class="pa-6" ref="Form" v-model="valid" lazy-validation>
                 <v-text-field
                 v-model="name"
                 :error-messages="nameErrors"
                 :counter="45"
-                label="Name"
+                :label="$t('name')"
                 required
                 @input="$v.name.$touch()"
                 @blur="$v.name.$touch()"
@@ -22,16 +22,25 @@
                 <v-text-field
                 v-model="email"
                 :error-messages="emailErrors"
-                label="E-mail"
+                :label="$t('email')"
                 required
                 @input="$v.email.$touch()"
                 @blur="$v.email.$touch()"
+                ></v-text-field>
+                <v-text-field
+                v-model="phone"
+                :error-messages="emailPhone"
+                :label="$t('phone_number')"
+                type="number"
+                required
+                @input="$v.phone.$touch()"
+                @blur="$v.phone.$touch()"
                 ></v-text-field>
 
                 <v-textarea
                 rows="2"
                 v-model="message"
-                label="Message"
+                :label="$t('message')"
                 :counter="255"
                 :error-messages="messageErrors"
                 @change="$v.message.$touch()"
@@ -47,14 +56,14 @@
                 @click="submit"
                 :disabled="!valid"
                 >
-                submit
+                {{$t('submit')}}
                 </v-btn>
                 <v-btn
                 outlined
                 @click="clear"
                 color="indigo"
                 >
-                clear
+                {{$t('clear')}}
                 </v-btn>
 
             </v-card-actions>
@@ -64,6 +73,15 @@
 
     </section>
     </v-col>
+    <v-col cols="12">
+
+        <v-row class="pl-5 pt-2">
+            <p class="black--text font-weight-light">
+                <strong>{{$t('email')}}</strong> - geral@moz-concursopublico.info
+            </p>
+        </v-row>
+    </v-col>
+    <!--
     <v-col cols="12">
 
         <v-row class="mt-10">
@@ -126,13 +144,14 @@
         </v-row>
 
     </v-col>
+    -->
 
-    <v-row class="mt-10">
+    <v-row class="mt-10 pl-2">
         <v-col cols="12">
 
             <section id="team">
-                <p class="black--text font-weight-medium" >
-                Thank You.
+                <p   class="font-weight-medium text-color" >
+                {{$t('thank_you')}}
                 </p>
             </section>
 
@@ -149,7 +168,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">
-            Contents
+            {{$t('contents')}}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -167,7 +186,7 @@
 
         >
             <v-list-item-content>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
+                <v-list-item-title v-text="$t(item.title)"></v-list-item-title>
             </v-list-item-content>
         </v-list-item>
             </v-list-item-group>
@@ -199,6 +218,7 @@
     validations: {
       name: { required, maxLength: maxLength(45) },
       email: { required, email ,maxLength: maxLength(255)},
+      phone: { required ,maxLength: maxLength(21)},
       message: { required,maxLength: maxLength(255) },
     },
 
@@ -212,11 +232,12 @@
             'mdi-instagram',
         ],
         items: [
-            { title: 'Contact Form',link:'#contactform', icon: 'mdi-ray-start-vertex-end' },
-            { title: 'Team',link:'#team', icon: 'mdi-account' },
+            { title: 'contact_form',link:'#contactform', icon: 'mdi-ray-start-vertex-end' },
+            { title: 'team',link:'#team', icon: 'mdi-account' },
         ],
       name: '',
       email: '',
+      phone: '',
       message: '',
     }),
 
@@ -241,6 +262,12 @@
         !this.$v.email.required && errors.push('E-mail is required')
         return errors
       },
+      emailPhone () {
+        const errors = []
+        if (!this.$v.phone.$dirty) return errors
+        !this.$v.phone.required && errors.push('Phone is required')
+        return errors
+      },
     },
 
     methods: {
@@ -251,6 +278,7 @@
              var form={
                 "name":this.name,
                 "email":this.email,
+                "phone":this.phone,
                 "message":this.message,
             }
             this.sendData(form);
@@ -291,6 +319,7 @@
         this.$v.$reset()
         this.name = ''
         this.email = ''
+        this.phone = ''
         this.message = ''
       },
 
@@ -308,4 +337,9 @@
     },
   }
 </script>
+<style>
+ .text-color{
+    color: #E1B80D;
+ }
+</style>
 

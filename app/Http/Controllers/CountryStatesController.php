@@ -7,10 +7,10 @@ use App\CountryStates;
 
 class CountryStatesController extends Controller
 {
-    
+
     public function getCountryStates()
     {
-    	$data=CountryStates::select('phone')->orderby('internet','asc')->get()->toArray();
-    	return response()->json($data, 200); 
+    	$data=CountryStates::select('phone','country')->orderby('internet','asc')->get()->toArray();
+    	return response()->json($data, 200);
     }
 }

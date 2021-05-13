@@ -20,7 +20,7 @@ class Meals extends Model
     {
         return $this->belongsTo('App\User','user_id','id');
     }
-    
+
     public function mealCuisine()
     {
         return $this->belongsTo('App\Cuisines','cuisine_id','id');
@@ -50,12 +50,16 @@ class Meals extends Model
     {
         return $this->hasMany('App\Files','source_id','id')->where('files.table','meals');
     }
-    
+
     public function mealFile()
     {
         return $this->belongsTo('App\Files','id','source_id')->where('files.table','meals');
     }
 
+    public function mealCategory()
+    {
+        return $this->belongsTo('App\Experiences','experience_id','id');
+    }
     	public function mealChefs()
     {
         return $this->hasMany('App\CvChefeV','exy_id','experience_id');

@@ -55,7 +55,7 @@
                                     >
                                     </v-list-item-avatar>
                                     <v-list-item-content>
-                                    <v-list-item-title class="title" style="margin-top:20px;" v-if="meal.meal_user">{{meal.meal_user.name}} {{meal.meal_user.lastName}} </v-list-item-title>
+                                    <v-list-item-title  style="margin-top:20px;" v-if="meal.meal_user"><strong>{{meal.meal_user.name}} {{meal.meal_user.lastName}}</strong> </v-list-item-title>
 
                                     </v-list-item-content>
                                 </v-list-item>
@@ -68,7 +68,7 @@
 
                                     <v-list-item-content>
                                     <v-list-item-title>{{meal.phone}}</v-list-item-title>
-                                    <v-list-item-subtitle>Phone</v-list-item-subtitle>
+                                    <v-list-item-subtitle>{{$t('phone_number')}}</v-list-item-subtitle>
                                     </v-list-item-content>
 
                                     <v-list-item-icon>
@@ -88,7 +88,7 @@
 
                                     <v-list-item-content>
                                     <v-list-item-title><a :href="meal.web" >{{meal.web}}</a></v-list-item-title>
-                                    <v-list-item-subtitle>Website</v-list-item-subtitle>
+                                    <v-list-item-subtitle>{{$t('website')}}</v-list-item-subtitle>
                                     </v-list-item-content>
 
                                     <v-list-item-icon>
@@ -108,7 +108,7 @@
 
                                     <v-list-item-content>
                                     <v-list-item-title>{{meal.email}}</v-list-item-title>
-                                    <v-list-item-subtitle>Email</v-list-item-subtitle>
+                                    <v-list-item-subtitle>{{$t('email')}}</v-list-item-subtitle>
                                     </v-list-item-content>
 
                                     <v-list-item-icon>

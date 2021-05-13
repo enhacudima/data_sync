@@ -15,7 +15,7 @@ class Message extends Model
     public $timestamps=true;
 
     protected $fillable = [
-        'name', 'email', 'message','key',
+        'name', 'email', 'phone','message','key',
     ];
 
 }

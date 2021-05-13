@@ -78,7 +78,7 @@ class GetMealController extends Controller
 
     public function getPagmMals()
     {
-    	$data=Meals::where('user_id',Auth::user()->id)->with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
+    	$data=Meals::where('user_id',Auth::user()->id)->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
 
         return response()->json($data, 200);
     }
@@ -92,7 +92,7 @@ class GetMealController extends Controller
         ->orwhere('location','like',"%".$search."%")
         ->orwhere('start_date','like',"%".$search."%")
         ->orwhere('end_date','like',"%".$search."%")
-        ->with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')
+        ->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')
         ->get();
     	return response()->json($data, 200);
     }
@@ -100,7 +100,7 @@ class GetMealController extends Controller
     public function getThisMeal ($idMeal)
     {
         $data=Meals::where('id',$idMeal)
-        ->with('mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName','mealOptions')
+        ->with('mealUser.userType','mealCategory','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName','mealOptions')
         ->first();
     	return response()->json($data, 200);
     }

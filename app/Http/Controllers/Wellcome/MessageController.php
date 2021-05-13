@@ -22,6 +22,7 @@ class MessageController extends Controller
         $validator = Validator::make($myRequest->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email',
+            'phone' => 'required|numeric',
             'message' => 'required|string|max:255',
         ],
         [
@@ -37,6 +38,7 @@ class MessageController extends Controller
             	[
             		'name'=> $input['name'],
             		'email' => $input['email'],
+                    'phone' => $input['phone'],
                     'message' => $input['message'],
             		'key' => md5(time()),
             	],
@@ -45,7 +47,7 @@ class MessageController extends Controller
     return response()->json(['success'=>'Message received successfully'], 200);
     }
     public function getMessages(){
-        $data = Message::get();
+        $data = Message::orderby('id','desc')->get();
         return response()->json($data, 200);
     }
 }

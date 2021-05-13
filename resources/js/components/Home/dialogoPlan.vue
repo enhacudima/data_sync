@@ -76,7 +76,7 @@
                                     mdi-close-octagon-outline
                                 </v-icon>
                                 <template v-else>
-                                    Cancel
+                                    {{$t('cancel')}}
                                 </template>
                             </v-btn>
 
@@ -97,7 +97,7 @@
             text
             @click="showDialogoPlan= !showDialogoPlan"
           >
-            Close
+            {{$t('close')}}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -105,12 +105,12 @@
 
     <v-dialog v-model="showConfimation" max-width="500px">
         <v-card>
-        <v-card-title class="headline">Are you sure you want to cancel this subscription?</v-card-title>
+        <v-card-title class="headline">{{$t('confirm_cancelation')}}</v-card-title>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red darken-1" text @click="now">Yes Rigth now</v-btn>
-            <v-btn color="blue darken-1" text @click="yes">Yes</v-btn>
-            <v-btn color="blue darken-1" text @click="showConfimation=!showConfimation">No</v-btn>
+            <v-btn color="red darken-1" text @click="now">{{$t('yes_rigth_now')}}</v-btn>
+            <v-btn color="blue darken-1" text @click="yes">{{$t('yes')}}</v-btn>
+            <v-btn color="blue darken-1" text @click="showConfimation=!showConfimation">{{$t('no')}}</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
         </v-card>
