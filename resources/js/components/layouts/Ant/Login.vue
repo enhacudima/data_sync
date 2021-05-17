@@ -78,7 +78,7 @@ import {i18n} from '../../../i18n.js'
     }
     },
     data: () => ({
-      my_lang:'en',
+      my_lang:'pt',
       langs: ['en', 'pt'] ,
     }),
   }
