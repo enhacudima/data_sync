@@ -13,44 +13,44 @@
         </v-row>
         <v-row>
             <v-tabs class="pt-6" >
-                <v-tab>
+                <v-tab v-if="$can('payment_make')">
                     <v-icon left>
                     mdi-receipt
                     </v-icon>
                     Invoices
                 </v-tab>
-                <v-tab>
+                <v-tab v-if="$can('admin')">
                     <v-icon left>
                     mdi-playlist-check
                     </v-icon>
                     Plans Maneger
                 </v-tab>
-                <v-tab>
+                <v-tab v-if="$can('admin')">
                     <v-icon left>
                     mdi-account-supervisor-outline
                     </v-icon>
                     Users
                 </v-tab>
-                <v-tab>
+                <v-tab v-if="$can('admin')">
                     <v-icon left>
                     mdi-script-text-outline
                     </v-icon>
                     Roles
                 </v-tab>
-                <v-tab>
+                <v-tab v-if="$can('admin')">
                     <v-icon left>
                     mdi-wrench-outline
                     </v-icon>
                     Options
                 </v-tab>
-                <v-tab>
+                <v-tab v-if="$can('admin_messages')">
                     <v-icon left>
                     mdi-email-outline
                     </v-icon>
                     Messages
                 </v-tab>
 
-                <v-tab-item>
+                <v-tab-item v-if="$can('payment_make')">
                     <v-card flat>
                     <v-card-text>
                         <subscriptions/>
@@ -58,7 +58,7 @@
                     </v-card>
                 </v-tab-item>
 
-                <v-tab-item>
+                <v-tab-item v-if="$can('admin')">
                     <v-card flat>
                     <v-card-text>
                         <plans/>
@@ -66,26 +66,26 @@
                     </v-card>
                 </v-tab-item>
 
-                <v-tab-item>
+                <v-tab-item v-if="$can('admin')">
                     <v-card flat>
                     <v-card-text>
                         <users/>
                     </v-card-text>
                     </v-card>
                 </v-tab-item>
-                <v-tab-item>
+                <v-tab-item v-if="$can('admin')">
                     <v-card flat>
                     <v-card-text>
                         <roles/>
                     </v-card-text>
                     </v-card>
                 </v-tab-item>
-                <v-tab-item>
+                <v-tab-item v-if="$can('admin')">
                     <v-card flat>
                         <chefConf/>
                     </v-card>
                 </v-tab-item>
-                <v-tab-item>
+                <v-tab-item v-if="$can('admin_messages')">
                     <v-card flat>
                         <messages/>
                     </v-card>

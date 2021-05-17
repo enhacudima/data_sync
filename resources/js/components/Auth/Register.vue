@@ -40,7 +40,7 @@
                                         <v-col cols="12" sm="8" md="8">
                                             <v-text-field dense v-model="formReg.phone1" type="number"  :rules="[rulesPhone.required]" :label="$t('phone_number')" maxlength="21"  required></v-text-field>
                                         </v-col>
-                                        <v-col cols="12">
+                                        <!--<v-col cols="12">
                                           <v-menu
                                             ref="menu"
                                             v-model="menu"
@@ -69,7 +69,7 @@
                                               dense
                                             ></v-date-picker>
                                           </v-menu>
-                                        </v-col>
+                                        </v-col>-->
                                         <v-col cols="12">
                                             <v-text-field dense v-model="formReg.password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min,rules.password]" :type="show1 ? 'text' : 'password'" name="input-10-1" :label="$t('password')" hint="At least 8 characters" counter @click:append="show1 = !show1"></v-text-field>
                                         </v-col>

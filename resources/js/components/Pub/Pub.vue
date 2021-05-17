@@ -245,7 +245,8 @@ import vuePdf from 'vue-pdf-worker-fix'
     data() {
 
         return {
-            baseUrl:'http://localhost/data_sync/public/',
+            //baseUrl:'http://localhost/data_sync/public/',
+            baseUrl:'http://moz-concursopublico.info/',
             drawer:true,
             meal:[],
             profile:[],

@@ -38,7 +38,7 @@
                 ></v-text-field>
 
                 <v-textarea
-                rows="2"
+                rows="5"
                 v-model="message"
                 :label="$t('message')"
                 :counter="255"
@@ -74,12 +74,13 @@
     </section>
     </v-col>
     <v-col cols="12">
-
+        <v-spacer></v-spacer>
         <v-row class="pl-5 pt-2">
             <p class="black--text font-weight-light">
                 <strong>{{$t('email')}}</strong> - geral@moz-concursopublico.info
             </p>
         </v-row>
+        <v-spacer></v-spacer>
     </v-col>
     <!--
     <v-col cols="12">
@@ -157,7 +158,7 @@
 
         </v-col>
     </v-row>
-
+    `<!--
     <v-navigation-drawer
       app
       clipped
@@ -205,6 +206,7 @@
                 </v-btn>
             </v-row>
     </v-navigation-drawer>
+    -->
     </v-row>
 </div>
 </template>

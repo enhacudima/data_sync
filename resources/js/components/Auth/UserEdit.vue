@@ -29,6 +29,7 @@
                 <v-col cols="12" sm="8" md="8">
                     <v-text-field v-model="formReg.phone1" type="number"  :rules="[rulesPhone.required]" :label="$t('phone_number')" maxlength="21"  required></v-text-field>
                 </v-col>
+                <!--
                 <v-col cols="12">
                     <v-menu
                     ref="menu"
@@ -56,7 +57,7 @@
                     ></v-date-picker>
                     </v-menu>
                 </v-col>
-
+                -->
                 <v-col cols="12">
                     <v-text-field v-model="formReg.fullAddress" type="text"  :label="$t('full_address')" :rules="[]" maxlength="255" :counter="255" ></v-text-field>
                 </v-col>
