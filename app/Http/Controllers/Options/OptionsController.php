@@ -10,14 +10,19 @@ use Auth;
 
 class OptionsController extends Controller
 {
-    
 
+
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
     public function getOptions()
     {
         $data =  Options::select('name')->groupby('name')->get();
 
-    return response()->json($data, 200); 
+    return response()->json($data, 200);
 
     }
 }

@@ -24,7 +24,7 @@ class GetMealController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        //$this->middleware('role_or_permission:pub_create', ['only' => ['newMeal']]);
+        $this->middleware('role_or_permission:pub_get');
     }
     public function getAllMeals()
     {
@@ -78,12 +78,29 @@ class GetMealController extends Controller
 
     public function getPagmMals()
     {
-    	$data=Meals::where('user_id',Auth::user()->id)->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
+    	if(Auth::user()->can('pub_get_all')){
+            $data=Meals::with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
+        }else{
+
+            $data=Meals::where('user_id',Auth::user()->id)->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
+        }
 
         return response()->json($data, 200);
     }
     public function searchMeals($search)
     {
+        if(Auth::user()->can('pub_get_all')){
+        $data=Meals::limit(20)
+        ->where('name','like',"%".$search."%")
+        ->orwhere('email','like',"%".$search."%")
+        ->orwhere('phone','like',"%".$search."%")
+        ->orwhere('location','like',"%".$search."%")
+        ->orwhere('start_date','like',"%".$search."%")
+        ->orwhere('end_date','like',"%".$search."%")
+        ->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')
+        ->get();
+
+        }else{
         $data=Meals::limit(20)
         ->where('user_id',Auth::user()->id)
         ->where('name','like',"%".$search."%")
@@ -94,6 +111,7 @@ class GetMealController extends Controller
         ->orwhere('end_date','like',"%".$search."%")
         ->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')
         ->get();
+        }
     	return response()->json($data, 200);
     }
 

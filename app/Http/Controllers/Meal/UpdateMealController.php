@@ -22,6 +22,7 @@ class UpdateMealController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('role_or_permission:pub_edit', ['only' => ['updateMeal']]);
     }
 
     public function updateMeal(Request $request,$id)

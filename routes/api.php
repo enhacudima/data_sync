@@ -57,7 +57,7 @@ Route::group(['namespace' => 'Auth'], function() {
     Route::get('abilities','AbilitiesController@abilities');
 });
 
-Route::group(['namespace' => 'Subscriptions','middleware' => []], function() {
+Route::group(['namespace' => 'Subscriptions','middleware' => ['auth.api','UserType']], function() {
     Route::get('plan-create','PlansController@create');
     Route::get('plan-details/{plane}/{type}','PlansController@getDetails');
     Route::get('plan-feature-value/{subscription}/{feature}','PlansController@getFeatureValue');
@@ -78,7 +78,7 @@ Route::group(['namespace' => 'Subscriptions','middleware' => []], function() {
     Route::get('plan-get-feature/{id}','PlansController@getFeature');
 });
 
-Route::group(['namespace' => 'Auth','middleware' => ['auth.api']], function() {
+Route::group(['namespace' => 'Auth','middleware' => ['auth.api','UserType']], function() {
     Route::post('logout', 'AuthController@logout');
     Route::post('logoutAll', 'AuthController@logoutAll');
     Route::get('userMode/{mode}','ToolsController@mode');
@@ -93,7 +93,7 @@ Route::group(['namespace' => 'Auth','middleware' => ['auth.api']], function() {
 });
 
 
-Route::group(['namespace' => 'Helpers','middleware' => []], function() {
+Route::group(['namespace' => 'Helpers','middleware' => ['auth.api','UserType']], function() {
 	Route::post('filePicture','FilesController@filePicture');
 	Route::post('fileOtherFormat','FilesController@fileOtherFormat');
 	Route::post('createComments','CommentsController@createComments');
@@ -130,25 +130,14 @@ Route::group(['namespace' => 'Chefe','middleware' => ['auth.api','CheckStatus','
 });
 
 
-Route::group(['namespace' => 'Meal','middleware' => ['auth.api','CheckStatus','UserType']], function() {
 
-
-});
-
-Route::group(['namespace' => 'Chefe','middleware' => ['auth.api','CheckStatus','UserType','CheckChefe']], function() {
-
-});
-
-//move to middleware
-
-
-Route::group(['namespace' => 'Chefe','middleware' => []], function() {
+Route::group(['namespace' => 'Chefe','middleware' => ['auth.api']], function() {
 	Route::get('getAllCVData','CVController@getAllCVData');
 
 });
 
 
-Route::group(['namespace' => 'Tools','middleware' => []], function() {
+Route::group(['namespace' => 'Tools','middleware' => ['auth.api','UserType']], function() {
 	Route::get('getThisMealPrices/{idMeal}','ToolsController@getThisMealPrices');
 	Route::post('tools/experience/update/{key}','ExperienceController@update');
 	Route::post('tools/experience/create','ExperienceController@create');
@@ -169,20 +158,20 @@ Route::group(['namespace' => 'Tools','middleware' => []], function() {
 
 });
 
-Route::group(['namespace' => 'Meal','middleware' => []], function() {
+Route::group(['namespace' => 'Meal','middleware' => ['auth.api','UserType']], function() {
 	Route::get('getPagmMalsW','GetMealWelcomeController@getPagmMals');
 	Route::get('getPagmMalsSearchW/{search}','GetMealWelcomeController@searchMeals');
 
 });
 
 
-Route::group(['namespace' => 'Wellcome','middleware' => []], function() {
+Route::group(['namespace' => 'Wellcome','middleware' => []], function() {//not
 	Route::post('contact/send/message','MessageController@sendMessage');
 	Route::get('contact/get/messages','MessageController@getMessages');
 
 });
 
-Route::group(['namespace' => 'Meal','middleware' => ['CheckStatus','SetLocaleDynamically']], function() {
+Route::group(['namespace' => 'Meal','middleware' => ['auth.api','UserType','CheckStatus','SetLocaleDynamically']], function() {
 	Route::get('GetMeals','GetMealController@getAllMeals');
 	Route::get('getMealsV2/{currency}','GetMealController@getMealsV2');
 	Route::get('getPagmMals','GetMealController@getPagmMals');
@@ -201,35 +190,35 @@ Route::group(['namespace' => 'Meal','middleware' => ['CheckStatus','SetLocaleDyn
 
 });
 
-Route::group(['namespace' => 'Cuisines','middleware' => []], function() {
+Route::group(['namespace' => 'Cuisines','middleware' => ['auth.api','UserType']], function() {
 	Route::get('getCuisines','CuisinesController@getCuisines');
 	Route::get('getCuisinesV2','CuisinesController@getCuisinesV2');
 
 });
 
-Route::group(['namespace' => 'Options','middleware' => []], function() {
+Route::group(['namespace' => 'Options','middleware' => ['auth.api','UserType']], function() {
 	Route::get('getOptions','OptionsController@getOptions');
 
 });
 
 
-Route::group(['namespace' => 'Kitchen','middleware' => []], function() {
+Route::group(['namespace' => 'Kitchen','middleware' => ['auth.api','UserType']], function() {
 	Route::post('createKitchen','KitchenController@createKitchen');
 	Route::get('getKitchen/{user_id}','KitchenController@getKitchen');
 
 });
 
 
-Route::group(['namespace' => 'Booking','middleware' => []], function() {
+Route::group(['namespace' => 'Booking','middleware' => ['auth.api','UserType']], function() {
 	Route::post('createBooking','BookingController@createBooking');
 
 });
 
-Route::group(['namespace' => 'Tags','middleware' => []], function() {
+Route::group(['namespace' => 'Tags','middleware' => ['auth.api','UserType']], function() {
 	Route::get('getTags/{type}','TagsController@getTags');
 
 });
-Route::group(['namespace' => 'Ingredients','middleware' => []], function() {
+Route::group(['namespace' => 'Ingredients','middleware' => ['auth.api','UserType']], function() {
 	Route::get('getIngredients','IngredientsController@getIngredients');
 
 });

@@ -10,6 +10,12 @@ use App\Message;
 
 class MessageController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware('role_or_permission:admin_messages', ['only' => ['getMessages']]);
+
+    }
 
     public function sendMessage(Request $request)
     {

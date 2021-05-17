@@ -19,6 +19,8 @@ class PlansController extends Controller{
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('role_or_permission:payment_make', ['only' => ['applyInvoce','getInvoices','changePlanSubscription']]);
+        $this->middleware('role_or_permission:admin', ['only' => ['create',]]);
     }
 
 

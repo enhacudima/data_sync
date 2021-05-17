@@ -23,7 +23,7 @@ class CreateMealController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        //$this->middleware('role_or_permission:pub_create', ['only' => ['newMeal']]);
+        $this->middleware('role_or_permission:pub_create', ['only' => ['newMeal']]);
     }
 
     public function newMeal(Request $request)

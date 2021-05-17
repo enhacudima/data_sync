@@ -10,9 +10,13 @@ use Auth;
 
 class TagsController extends Controller
 {
-    
 
 
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function getTags($Tagstype)
     {
 
@@ -21,7 +25,7 @@ class TagsController extends Controller
                     ->where('tags_type.id',$Tagstype)
                     ->get();
 
-    return response()->json($data, 200); 
+    return response()->json($data, 200);
 
     }
 }

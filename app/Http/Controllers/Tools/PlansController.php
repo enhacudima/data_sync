@@ -18,7 +18,7 @@ class PlansController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        //$this->middleware('role_or_permission:admin_roles_permissions');
+        $this->middleware('role_or_permission:admin');
 
     }
 
