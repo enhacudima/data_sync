@@ -20,7 +20,7 @@ class GetMealWelcomeController extends Controller
 
     public function getPagmMals()
     {
-    	$data=Meals::with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName')->orderby('end_date','asc')->where('start_date', '<=', Now())->where('end_date', '>=', Now())->paginate(20);
+    	$data=Meals::with('mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->where('start_date', '<=', Now())->where('end_date', '>=', Now())->paginate(20);
 
         return response()->json($data, 200);
     }
