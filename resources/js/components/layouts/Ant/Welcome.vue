@@ -11,8 +11,8 @@
       <v-spacer></v-spacer>
             <v-img
              v-if="!drawer"
-                src="storage/icons/CP - AF_70px negative.png"
-                lazy-src="storage/icons/CP - AF_70px negative.png"
+                src="storage/icons/CPAF70pxnegative.png"
+                lazy-src="storage/icons/CPAF70pxnegative.png"
                 aspect-ratio="2"
                 max-height="70"
                 max-width="200"
@@ -39,7 +39,7 @@
             color="white"
             >
             <v-icon>mdi-account</v-icon>
-            {{$t('login')}}
+            <!--{{$t('login')}}-->
             </v-btn>
 
             </router-link>

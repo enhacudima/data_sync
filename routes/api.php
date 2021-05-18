@@ -158,7 +158,7 @@ Route::group(['namespace' => 'Tools','middleware' => ['auth.api','UserType']], f
 
 });
 
-Route::group(['namespace' => 'Meal','middleware' => ['auth.api','UserType']], function() {
+Route::group(['namespace' => 'Meal','middleware' => []], function() {
 	Route::get('getPagmMalsW','GetMealWelcomeController@getPagmMals');
 	Route::get('getPagmMalsSearchW/{search}','GetMealWelcomeController@searchMeals');
 
