@@ -33,7 +33,7 @@ class GetMealWelcomeController extends Controller
         ->orwhere('location','like',"%".$search."%")
         ->orwhere('start_date','like',"%".$search."%")
         ->orwhere('end_date','like',"%".$search."%")
-        ->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')
+        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')
         ->orderby('end_date','asc')
         ->where('start_date', '<=', Now())->where('end_date', '>=', Now())
         ->get();

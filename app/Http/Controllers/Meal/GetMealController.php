@@ -28,61 +28,18 @@ class GetMealController extends Controller
     }
     public function getAllMeals()
     {
-    	$data=Meals::with('mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->get();
+    	$data=Meals::with('mealUser','mealCategory','mealTags.tagName','mealOptions')->get();
     	return response()->json($data, 200);
     }
 
-    public function getMealsV2($currency_id)
-    {
-        $currency_id=$currency_id;
-        $data=MealsAPI2::with('mealAllergies.allergiesIngredients','mealTags.tagName','mealOptions');
-        $data=$this->selectCurrency($currency_id,$data)
-        ->select('meal_v_api2.*','meal_prices.amount','currency.currency')
-        ->distinct();
-        $data=$data->get()->toArray();
-        $dataRemove=([
-            [
-            'relaction'=>'meal_allergies',
-            'subRelaction'=>'allergies_ingredients',
-            'subRelaField'=>'name',
-            'newArray'=>'allergies',
-            ],
-            [
-            'relaction'=>'meal_tags',
-            'subRelaction'=>'tag_name',
-            'subRelaField'=>'name',
-            'newArray'=>'tags',
-            ],
-            [
-            'relaction'=>null,
-            'subRelaction'=>'meal_options',
-            'subRelaField'=>'name',
-            'newArray'=>'options',
-            ]
-        ]);
-        $remove= new RemoveRelections($data,$dataRemove);
-        $data=$remove->readRelections();
-
-        //$data=$this->readMelsRelections($data,$dataRemove);
-    	return response()->json($data, 200);
-    }
-
-    public function selectCurrency($currency_id,$data){
-        $data->leftjoin('meal_prices','meal_prices.meal_id','meal_v_api2.id')
-             ->where('meal_prices.currency_id',$currency_id)
-             ->where('meal_prices.status',1)
-             ->leftjoin('currency','currency.id','meal_prices.currency_id');
-
-        return $data;
-    }
 
     public function getPagmMals()
     {
     	if(Auth::user()->can('pub_get_all')){
-            $data=Meals::with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
+            $data=Meals::with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->paginate(20);
         }else{
 
-            $data=Meals::where('user_id',Auth::user()->id)->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')->paginate(20);
+            $data=Meals::where('user_id',Auth::user()->id)->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->paginate(20);
         }
 
         return response()->json($data, 200);
@@ -97,7 +54,7 @@ class GetMealController extends Controller
         ->orwhere('location','like',"%".$search."%")
         ->orwhere('start_date','like',"%".$search."%")
         ->orwhere('end_date','like',"%".$search."%")
-        ->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')
+        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')
         ->get();
 
         }else{
@@ -109,7 +66,7 @@ class GetMealController extends Controller
         ->orwhere('location','like',"%".$search."%")
         ->orwhere('start_date','like',"%".$search."%")
         ->orwhere('end_date','like',"%".$search."%")
-        ->with('mealCuisine','mealCategory','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs')->orderby('end_date','asc')
+        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')
         ->get();
         }
     	return response()->json($data, 200);
@@ -118,22 +75,12 @@ class GetMealController extends Controller
     public function getThisMeal ($idMeal)
     {
         $data=Meals::where('id',$idMeal)
-        ->with('mealUser.userType','mealCategory','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName','mealOptions')
+        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')
         ->first();
     	return response()->json($data, 200);
     }
 
 
-    public function getThisMealPrices($id){
-        $data=MealPrices::where('meal_id',$id)->with('users','priceCurrency','priceStatus')->get();
-        return response()->json($data, 200);
-    }
-
-
-    public function getMealType(){
-        $data=MealType::get();
-        return response()->json($data, 200);
-    }
 
 
     public function getPosts(){
