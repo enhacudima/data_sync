@@ -24,7 +24,7 @@ class PubController extends Controller
     {
 
 
-        $data=Meals::with('mealCuisine','mealUser.userType','mealAllergies.allergiesSync','mealAllergies.allergiesIngredients','mealtiming','mealPrices','mealPrices.priceCurrency','mealType','mealFiles','mealFile','mealChefs','mealTags.tagName')
+        $data=Meals::with('mealUser','mealCategory','mealTags.tagName','mealOptions')
                     ->where('key',$token)->first();
 
 
