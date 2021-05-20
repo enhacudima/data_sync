@@ -155,6 +155,7 @@ Route::group(['namespace' => 'Tools','middleware' => ['auth.api','UserType']], f
     Route::get('plan-delete/{id}','PlansController@delete');
     Route::get('plan-restor-delete/{id}','PlansController@recoverPlan');
     Route::post('plan-features-save','PlansController@createFeatures');
+	Route::get('contact/get/messages','MessageController@getMessages');
 
 });
 
@@ -167,7 +168,6 @@ Route::group(['namespace' => 'Meal','middleware' => []], function() {
 
 Route::group(['namespace' => 'Wellcome','middleware' => []], function() {//not
 	Route::post('contact/send/message','MessageController@sendMessage');
-	Route::get('contact/get/messages','MessageController@getMessages');
 
 });
 
