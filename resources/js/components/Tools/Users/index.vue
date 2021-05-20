@@ -102,7 +102,7 @@
                 </v-btn>
             </div>
              <div slot="phone1" slot-scope="props">
-                 +{{ props.row.phone1 }}
+                 +{{ props.row.prefix_phone_1+' '+props.row.phone1 }}
              </div>
              <div slot="Subscription" slot-scope="props">
                 <v-btn
