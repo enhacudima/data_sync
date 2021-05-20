@@ -40,7 +40,7 @@
                   </v-col>
                   <v-spacer></v-spacer>
                   <v-col class="d-flex" cols="12" sm="12" xsm="12" align-end>
-                      <v-btn elevation="1"  block  color="#e1b80d" type="submit"> {{$t('login')}} </v-btn>
+                      <v-btn elevation="1"  block :loading="dialogW" :disabled="dialogW" color="#e1b80d" type="submit"> {{$t('login')}} </v-btn>
                   </v-col>
               </v-row>
           </v-form>
