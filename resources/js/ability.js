@@ -5,7 +5,7 @@ const { can, rules } =  new AbilityBuilder(Ability);
 const loggedIn =  localStorage.getItem('permissions');
 var  permissions = null;
 
-if(loggedIn.length > 0 ){
+if(loggedIn && loggedIn.length > 0 ){
     const userData = JSON.parse(loggedIn);
     permissions = userData;
     //console.log(permissions);
