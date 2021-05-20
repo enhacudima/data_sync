@@ -116,12 +116,12 @@ class UserListController extends Controller
         ->groupby('month')
         ->get();
 
+
         $last =User::latest()->first();
         $last=($last->created_at)->diffForHumans();
 
 
         return response()->json(["data"=>$data,"last"=>$last], 200);
     }
-
 
 }

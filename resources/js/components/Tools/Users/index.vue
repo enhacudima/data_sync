@@ -41,7 +41,7 @@
                     small
                     outlined
                     color="green"
-                    v-else-if="props.row.status === 1"
+                    v-else-if="props.row.status === '1'"
                     >
                     <v-icon small>mdi-check-all</v-icon>
                     Active
@@ -50,7 +50,7 @@
                     small
                     outlined
                     color="pink"
-                    v-else-if="props.row.status === 0 "
+                    v-else
                     >
                     <v-icon small>mdi-fire</v-icon>
                     Suspended
@@ -74,27 +74,27 @@
                 small
                 outlined
                 color="red"
-                v-if="props.row.type === 1 "
+                v-if="props.row.type === '1' "
                 @click="openUserType(props.row.key)"
                 >
-                <v-icon small>mdi-shield-check</v-icon>
-                {{ props.row.user_type}}
+                    <v-icon small>mdi-shield-check</v-icon>
+                    {{ props.row.user_type}}
                 </v-btn>
                 <v-btn
                 small
                 outlined
                 color="green"
-                v-if="props.row.type === 2 "
+                v-if="props.row.type === '2' "
                 @click="openUserType(props.row.key)"
                 >
-                <v-icon small>mdi-shield-check</v-icon>
-                {{ props.row.user_type}}
+                    <v-icon small>mdi-shield-check</v-icon>
+                    {{ props.row.user_type}}
                 </v-btn>
                 <v-btn
                 small
                 outlined
                 color="pink"
-                v-if="props.row.type === 3 "
+                v-if="props.row.type === '3' "
                 @click="openUserType(props.row.key)"
                 >
                 <v-icon small>mdi-shield-check</v-icon>
