@@ -179,7 +179,7 @@ export default {
         this.formReg.name=this.userDetail.name,
         this.formReg.lastName=this.userDetail.lastName,
         this.formReg.prefix_phone_1=this.userDetail.prefix_phone_1.replace('+',''),
-        this.formReg.phone1=this.userDetail.phone1.substr(-9),
+        this.formReg.phone1=this.userDetail.phone1,
         this.formReg.dataBrith= this.userDetail.dataBrith,
         this.formReg.email= this.userDetail.email,
         this.formReg.old_password="",

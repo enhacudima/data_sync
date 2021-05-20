@@ -100,7 +100,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="12" xsm="12" align-end>
-                                            <v-btn elevation="1" block :disabled="!valid | loading"   :loading="loading"  color="primary" @click="validate">{{$t('register')}} </v-btn>
+                                            <v-btn elevation="1" block :disabled="!valid || loading"   :loading="loading"  color="primary" @click="validate">{{$t('register')}} </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
