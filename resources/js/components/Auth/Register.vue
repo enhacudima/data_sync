@@ -100,7 +100,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="12" xsm="12" align-end>
-                                            <v-btn elevation="1" block :disabled="!valid" color="primary" @click="validate">{{$t('register')}}</v-btn>
+                                            <v-btn elevation="1" block :disabled="!valid | loading"   :loading="loading"  color="primary" @click="validate">{{$t('register')}} </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -153,6 +153,7 @@ export default {
       if (this.$refs.registerForm.validate()) {
         // submit form to server/API here...
         //console.log(this.formReg);
+        this.loading = true;
         this.sendData(this.formReg);
       }
     },
@@ -170,15 +171,17 @@ export default {
           this.sucess = true;
           if (response.data.errors) {
               //console.log(response.data.errors);
+              this.loading = false;
               response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
 
           } else {
-
+              this.loading = false;
               this.openNotification('success', 'Save', 'You have been store all data successfully');
               this.$router.push({ name: 'register/result' });
           }
       })
       .catch((error) => {
+        this.loading = false;
         this.success = false;
         var errors =null;
         var status=error.response.status;
@@ -208,6 +211,7 @@ export default {
   data: () => ({
     my_lang:'pt_BR',
     langs: ['en', 'pt_BR'] ,
+    loading: false,
     formReg:{
       name:null,
       lastName:null,
