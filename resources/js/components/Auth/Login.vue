@@ -15,6 +15,8 @@
                   </v-col>
                   <v-col cols="12">
                       <v-text-field dense outlined autocomplete="off" v-model="loginPassword" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" :label="$t('password')" :hint="$t('at_least_8_characters')"   @click:append="show1 = !show1"></v-text-field>
+                  </v-col>
+                  <v-col class="d-flex" cols="6" sm="6" xsm="12" >
 
                         <v-tooltip bottom class="mt-n1">
                         <template v-slot:activator="{ on }">
@@ -37,7 +39,7 @@
                         </router-link>
                   </v-col>
                   <v-spacer></v-spacer>
-                  <v-col class="d-flex" cols="6" sm="6" xsm="12" align-end>
+                  <v-col class="d-flex" cols="12" sm="12" xsm="12" align-end>
                       <v-btn elevation="1"  block  color="#e1b80d" type="submit"> {{$t('login')}} </v-btn>
                   </v-col>
               </v-row>
