@@ -73,16 +73,15 @@
 
     </section>
     </v-col>
-    <v-col cols="12">
-        <v-spacer></v-spacer>
-        <v-row class="pl-5 pt-2">
+    <!--
+    <v-row class="">
+        <v-col cols="12">
             <p class="black--text font-weight-light">
                 <strong>{{$t('email')}}</strong> - geral@moz-concursopublico.info
             </p>
-        </v-row>
-        <v-spacer></v-spacer>
-    </v-col>
-    <!--
+
+        </v-col>
+    </v-row>
     <v-col cols="12">
 
         <v-row class="mt-10">
@@ -147,10 +146,15 @@
     </v-col>
     -->
 
-    <v-row class="mt-10 pl-2">
-        <v-col cols="12">
+    <v-row class="mt-10 ">
+        <v-col   class="text-center" cols="12">
 
             <section id="team">
+
+                <p class="black--text font-weight-light">
+                    <strong>{{$t('email')}}</strong> - geral@moz-concursopublico.info
+                </p>
+
                 <p   class="font-weight-medium text-color" >
                 {{$t('thank_you')}}
                 </p>

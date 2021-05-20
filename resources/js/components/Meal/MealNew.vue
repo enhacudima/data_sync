@@ -14,6 +14,17 @@
             <a-button> <a-icon type="upload" /> {{$t('upload_pdf')}}</a-button>
         </a-upload>
     </a-form-item>
+    <a-form-item :label="$t('reference')" >
+      <a-input
+        v-decorator="[
+          'reference',
+          { rules: [{ required: true, message: $t('reference') }] },
+        ]"
+        :placeholder="$t('reference')"
+        allow-clear
+      >
+      </a-input>
+    </a-form-item>
 
     <a-form-item :label="$t('title')" :validate-status="nameError() ? 'error' : ''" :help="nameError() || ''">
       <a-input
@@ -369,30 +380,12 @@ export default {
       .get('getExperiences')
       .then(response => (this.experiences = response.data));
   axios
-      .get('getCommonTiming')
-      .then(response => (this.commonTimings = response.data));
-  axios
-      .get('getTimeCurrency')
-      .then(response => (this.currencys = response.data));
-  axios
-      .get('getCuisines')
-      .then(response => (this.cuisines = response.data));
-  axios
-      .get('getIngredients')
-      .then(response => (this.ingredients = response.data));
-  axios
       .get('getTags/2')
       .then(response => (this.tags = response.data));
-
-  axios
-      .get('getCVData/'+this.userID)
-      .then(response => (this.chefeCV = response.data));
   axios
       .get('getOptions')
       .then(response => (this.options = response.data));
-  axios
-      .get('getMealType')
-      .then(response => (this.mealTypes = response.data));
+
   },
 };
 </script>

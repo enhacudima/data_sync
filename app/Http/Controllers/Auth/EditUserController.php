@@ -49,21 +49,6 @@ class EditUserController extends Controller
 
     $input = $myRequest->all();
 
-    $phone1=$input['phone1'];
-
-    if(isset($userData['prefix_phone_1']['phone'])){
-        $prefix_phone_1 = $input['prefix_phone_1']['phone'];
-        $input['phone1']= $prefix_phone_1.$phone1;
-    }
-    elseif(isset($userData['prefix_phone_1'])){
-        $prefix_phone_1 = $input['prefix_phone_1'];
-        $input['phone1']= $prefix_phone_1.$phone1;
-    }else{
-        $prefix_phone_1 = substr($phone1, 0, -9);
-    }
-
-        $input['prefix_phone_1'] = '+'.$prefix_phone_1;
-
         $backup= new BackUpUserController(Auth::user()->key);
         $user = User::where('id',Auth::user()->id)->update([
             'name'=>$input['name'],
@@ -74,7 +59,7 @@ class EditUserController extends Controller
             'fullAddress'=>$input['fullAddress'],
         ]);
 
-        $location= new LocationController(Auth::user()->id,$prefix_phone_1, null, null, null);
+        $location= new LocationController(Auth::user()->id,$input['prefix_phone_1'], null, null, null);
         if( $input['isEditing']){
             $message=$this->changePassword($myRequest);
             return ($message);

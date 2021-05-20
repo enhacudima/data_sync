@@ -75,7 +75,7 @@ class GetMealController extends Controller
     public function getThisMeal ($idMeal)
     {
         $data=Meals::where('id',$idMeal)
-        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')
+        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions','mealFile')
         ->first();
     	return response()->json($data, 200);
     }

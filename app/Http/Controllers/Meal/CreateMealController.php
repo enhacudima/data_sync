@@ -78,6 +78,7 @@ class CreateMealController extends Controller
             'commonTiming'=>'required',
             'experience' => 'required|numeric|exists:experiences,id',
             'tags' => 'nullable',
+            'reference'=>'required|alpha_num|max:20',
         ],
         [
      	    //'file_id.required'=>'Please add PDF file.'
@@ -113,6 +114,7 @@ class CreateMealController extends Controller
             		'experience_id' => $input['experience'],
             		'key' => $input['key'],
                     'phone'=>$input['phone'],
+                    'reference'=>$input['reference'],
 
             	]
             );

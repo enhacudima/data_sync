@@ -24,20 +24,20 @@
                                         <v-col cols="12">
                                             <v-text-field dense v-model="formReg.email" :rules="emailRules" label="E-mail" :counter="255" required></v-text-field>
                                         </v-col>
-                                        <v-col cols="12" sm="4" md="4">
+                                        <v-col cols="12" sm="6" md="6">
                                           <v-autocomplete
                                             v-model="formReg.prefix_phone_1"
                                             :items="countrys"
                                             :label="$t('prefix_')"
                                             required
-                                            item-text="phone"
-                                            return-object
+                                            item-text="country"
+                                            item-value="phone"
                                             :rules="[rules.required]"
                                             dense
                                           >
                                           </v-autocomplete>
                                         </v-col>
-                                        <v-col cols="12" sm="8" md="8">
+                                        <v-col cols="12" sm="6" md="6">
                                             <v-text-field dense v-model="formReg.phone1" type="number"  :rules="[rulesPhone.required]" :label="$t('phone_number')" maxlength="21"  required></v-text-field>
                                         </v-col>
                                         <!--<v-col cols="12">

@@ -17,13 +17,10 @@
                     :items="countrys"
                     label="Prefix"
                     required
-                    item-text="phone"
-                    return-object
+                    item-text="country"
+                    item-value="phone"
                     :rules="[rules.required]"
                     >
-                        <template v-slot:selection="{ item }">
-                            <v-list-item-action-text >+{{item.phone }}</v-list-item-action-text>
-                        </template>
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="12" sm="8" md="8">

@@ -90,6 +90,7 @@
                 <div class="black--text">  <v-list-item-action-text >{{$t('inicio_pub')}} - {{meal.start_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
                 <div class="black--text">  <v-list-item-action-text >{{$t('fim_pub')}} - {{meal.end_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
                 <div class="black--text">  <v-list-item-action-text >{{$t('category')}} - {{meal.meal_category.title}}</v-list-item-action-text> </div>
+                <div class="black--text">  <v-list-item-action-text >{{$t('reference')}} - {{meal.reference}}</v-list-item-action-text> </div>
 
             </v-card-subtitle>
 

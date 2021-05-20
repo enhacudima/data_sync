@@ -36,6 +36,18 @@
                 </a-upload>
             </a-form-item>
 
+            <a-form-item :label="$t('reference')" >
+            <a-input
+                v-decorator="[
+                'reference',
+                { initialValue:this.thisMeal.reference,rules: [{ required: true, message: $t('reference') }] },
+                ]"
+                :placeholder="$t('reference')"
+                allow-clear
+            >
+            </a-input>
+            </a-form-item>
+
             <a-form-item :label="$t('title')" :validate-status="nameError() ? 'error' : ''" :help="nameError() || ''">
               <a-input
                 v-decorator="[
@@ -247,7 +259,7 @@ export default {
         //console.log('watch', val);
         axios
             .get('getThisMeal/'+this.codMealId)
-            .then(response => (this.inputValue1=response.data.people,this.handleIngredients(response.data.meal_allergies),this.handletags(response.data.meal_tags),this.handleOptions(response.data.meal_options),this.thisMeal = response.data,this.imageUrl = 'storage/'+response.data.meal_file.path+response.data.meal_file.name));
+            .then(response => (this.inputValue1=response.data.people,this.handletags(response.data.meal_tags),this.handleOptions(response.data.meal_options),this.thisMeal = response.data,this.imageUrl = 'storage/'+response.data.meal_file.path+response.data.meal_file.name));
       },
       deep: true,
       immediate: true
@@ -440,36 +452,15 @@ export default {
       // To disabled submit button at the beginning.
       this.form.validateFields();
     });
-
   axios
       .get('getExperiences')
       .then(response => (this.experiences = response.data));
   axios
-      .get('getCommonTiming')
-      .then(response => (this.commonTimings = response.data));
-  axios
-      .get('getTimeCurrency')
-      .then(response => (this.currencys = response.data));
-  axios
-      .get('getCuisines')
-      .then(response => (this.cuisines = response.data));
-  axios
-      .get('getIngredients')
-      .then(response => (this.ingredients = response.data));
-  axios
       .get('getTags/2')
       .then(response => (this.tags = response.data));
   axios
-      .get('getCVData/'+this.userID)
-      .then(response => (this.chefeCV = response.data));
-
-  axios
       .get('getOptions')
       .then(response => (this.options = response.data));
-  axios
-      .get('getMealType')
-      .then(response => (this.mealTypes = response.data));
-    //console.log(this.codMealId);
   },
 };
 </script>

@@ -14,14 +14,14 @@ const messages = {
         terms_and_conditions:'Terms and Condictions',
         type:'Type',
         language:"Language",
-        forgot_password:"Forgot password",
+        forgot_password:"Forgot password?",
         use_link_reset:"Use this link to reset your password",
         register_now:"Register Account",
         password:"Password",
         password_confirm:"Confirm Password",
         at_least_8_characters:"At least 8 characters",
         //registrer
-        f_name:"Company Name",
+        f_name:"Entity Name",
         l_name:"Alias",
         prefix_:"Prefix", // Alterar para Country
         phone_number:"Phone Number",
@@ -88,6 +88,7 @@ const messages = {
         select:"Select",
         options:"Options",
         tags:"Tags",
+        reference:"Reference",
         //subscription
         plan:'Plan',
         subscriptions: "Subscriptions",
@@ -117,7 +118,7 @@ const messages = {
         contact:'Contacte-nos',
         terms_and_conditions:'Termos e condições',
         language:"Idioma",
-        forgot_password:"Esqueceu senha",
+        forgot_password:"Esqueceu senha?",
         use_link_reset:"Use este link para redefinir sua senha",
         register_now:"Criar Conta",
         register:"Registar",
@@ -125,7 +126,7 @@ const messages = {
         password_confirm:"Confirmar senha",
         at_least_8_characters:"Pelo menos 8 caráteres",
          //registrer
-        f_name:"Nome da Empresa",
+        f_name:"Nome da Entidade",
         l_name:"Pseudônimo",
         prefix_:"Prefixo",
         phone_number:"Número de telefone",
@@ -194,6 +195,7 @@ const messages = {
         select:"Seleccionar",
         options:"Opções",
         tags:"Tags",
+        reference:"Referência",
         //subscription
         plan:'Plano',
         subscriptions: "Subscrições",
