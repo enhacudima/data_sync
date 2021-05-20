@@ -28,7 +28,7 @@ class UserListController extends Controller
 
     public function getUsersList()
     {
-        $t=UserV()->get();
+        $t=UserV::get();
         dd($t);
         $user =new UserV();
         $data=  new $user();
