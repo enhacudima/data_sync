@@ -287,7 +287,7 @@ import vuePdf from 'vue-pdf-worker-fix'
     mounted() {
     axios
         .get('pub/'+this.token)
-        .then(response => (this.meal = response.data, console.log(this.meal)));
+        .then(response => (this.meal = response.data));
     },
 
   }
