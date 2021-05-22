@@ -5,8 +5,8 @@
       <v-container>
             <v-row align="center" justify="center" class="pt-16 pt-md-16 mt-md-16" >
                 <v-img
-                    src="storage/icons/CPAF70px.png"
-                    lazy-src="storage/icons/CPAF70px.png"
+                    :src="baseUrl+'storage/icons/CPAF70px.png'"
+                    :lazy-src="baseUrl+'storage/icons/CPAF70px.png'"
                     aspect-ratio="2"
                     max-height="200"
                     max-width="130"
@@ -80,6 +80,8 @@ import {i18n} from '../../../i18n.js'
     data: () => ({
       my_lang:'pt',
       langs: ['en', 'pt'] ,
+       //baseUrl:'http://localhost/data_sync/public/',
+       baseUrl:'https://moz-concursopublico.info/',
     }),
   }
 </script>
