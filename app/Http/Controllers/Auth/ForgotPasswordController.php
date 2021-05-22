@@ -24,16 +24,16 @@ class ForgotPasswordController extends Controller
         $arr=null;
         $input = $request->all();
         $rules = array(
-            'email' => "required|email|exists:users,email",
+            'email' => "required|email",
         );
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()->all()], 422);
         }  else {
             try {
-                $response = Password::sendResetLink($request->only('email'), function (Message $message) {
+                $response = Password::sendResetLink($request->only('email')/*, function (Message $message) {
                     $message->subject($this->getEmailSubject());
-                });
+                }*/);
                 switch ($response) {
                     case Password::RESET_LINK_SENT:
                         return \Response::json(array("status" => 200, "message" => trans($response), "data" => array()));
