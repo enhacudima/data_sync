@@ -12,6 +12,24 @@
               </v-row>
           </v-form>
       </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+            <v-btn text>
+                <div class="locale-changer">
+                    <select v-model="$i18n.locale">
+                    <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+                        {{ lang.replaceAll('_', ' ').toUpperCase()}}
+                    </option>
+                    </select>
+                </div>
+            </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn text
+        to="/"
+        >
+            Cancel
+        </v-btn>
+        </v-card-actions>
 
     <v-dialog
       v-model="dialogW"
