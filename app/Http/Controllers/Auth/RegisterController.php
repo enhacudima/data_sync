@@ -70,7 +70,7 @@ class RegisterController extends Controller
         //difine user role for basic
         $role = new RolesPermissionsController();
         if($user){
-            $role->setUserRole("basic", $user->key);
+            $role->setUserRole("client", $user->key);
         }
 
 

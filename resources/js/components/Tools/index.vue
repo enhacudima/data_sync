@@ -1,13 +1,29 @@
 <template>
     <div>
         <v-row>
-            <v-col cols="4">
+            <v-col
+            xs="12"
+            sm="4"
+            md="4"
+            lg="4"
+            xl="4"
+            >
                 <graf/>
             </v-col>
-            <v-col cols="4">
+            <v-col
+            xs="12"
+            sm="4"
+            md="4"
+            lg="4"
+            xl="4">
                 <grafPostsReads/>
             </v-col>
-            <v-col cols="4">
+            <v-col
+            xs="12"
+            sm="4"
+            md="4"
+            lg="4"
+            xl="4">
                 <grafUser/>
             </v-col>
         </v-row>

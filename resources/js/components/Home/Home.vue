@@ -1,10 +1,20 @@
 <template>
     <div>
         <v-row>
-            <v-col cols="6">
+            <v-col
+            xs="12"
+            sm="6"
+            md="6"
+            lg="6"
+            xl="6">
                 <graf/>
             </v-col>
-            <v-col cols="6">
+            <v-col
+            xs="12"
+            sm="6"
+            md="6"
+            lg="6"
+            xl="6">
                 <grafPostRead/>
             </v-col>
         </v-row>

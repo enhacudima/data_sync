@@ -105,7 +105,11 @@ class GetMealController extends Controller
         ->get();
 
         $last =Meals::where('user_id',Auth::user()->id)->latest()->first();
-        $last=($last->created_at)->diffForHumans();
+        if(isset($last)){
+            $last=($last->created_at)->diffForHumans();
+        }else{
+            $last=null;
+        }
 
 
         return response()->json(["data"=>$data,"last"=>$last], 200);
