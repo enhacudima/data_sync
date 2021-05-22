@@ -83,7 +83,7 @@
 
             <v-card-subtitle>
             <div class="overline mb-1 black--text">
-            <strong>{{  meal.meal_user.name && meal.meal_user.name.length < 10 ? meal.meal_user.name : meal.meal_user.name.substring(0,10)+".."}}</strong>
+            <strong>{{  meal.meal_user.name && meal.meal_user.name.length < 16 ? meal.meal_user.name : meal.meal_user.name.substring(0,16)+".."}}</strong>
             </div>
                 <div  class="black--text">  <v-list-item-action-text >{{meal.name && meal.name.length < 38 ? meal.name : meal.name.substring(0,38)+".." }}</v-list-item-action-text> </div>
                 <div class="black--text">  <v-list-item-action-text >{{$t('inicio_pub')}} - {{meal.start_date | moment("D-M-Y")}}</v-list-item-action-text> </div>

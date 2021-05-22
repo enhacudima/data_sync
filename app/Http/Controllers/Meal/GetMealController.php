@@ -130,8 +130,11 @@ class GetMealController extends Controller
         ->select('read.created_at')
         ->latest('read.created_at')
         ->first();
-
+        if(isset($last)){
         $last=($last->created_at)->diffForHumans();
+        }else{
+            $last=null;
+        }
 
 
         return response()->json(["data"=>$data,"last"=>$last], 200);
