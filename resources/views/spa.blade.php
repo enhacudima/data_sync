@@ -7,12 +7,12 @@
         <link rel="icon" type="image/jpg" href="{{URL::asset('/storage/icons/icon.png')}}"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
-        <script src="{{ asset('js/app.js') }}" defer></script>
         <title>Concurso Público</title>
     </head>
     <body>
         <div id="app">
             <app></app>
         </div>
+        <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
     </body>
 </html>
