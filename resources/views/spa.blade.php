@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" value="{{ csrf_token() }}"/>
         <link rel="icon" type="image/jpg" href="{{URL::asset('/storage/icons/icon.png')}}"/>
-        <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <title>Concurso Público</title>
     </head>
     <body>
