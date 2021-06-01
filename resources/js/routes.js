@@ -1,4 +1,4 @@
-import Welcome from './components/welcome/mealListWelcome.vue';
+import Welcome from './components/Welcome/mealListWelcome.vue';
 import About from './components/Welcome/About.vue';
 import Terms from './components/Welcome/Terms.vue';
 import Contact from './components/Welcome/Contact.vue';
