@@ -13,6 +13,6 @@
         <div id="app">
             <app></app>
         </div>
-        <script src="{{ asset('js/app.js') }}" async></script>
+        <script src="{{ mix('/js/app.js') }}"></script>
     </body>
 </html>
