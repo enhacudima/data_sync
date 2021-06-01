@@ -19,6 +19,7 @@ import UserProfile from  './components/Profile/User.vue';
 import NoPermission from './components/NoPermission'
 
 
+
 export const routes = [
     {
         path :'*',
