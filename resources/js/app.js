@@ -56,6 +56,7 @@ axios.defaults.baseURL = 'https://moz-concursopublico.info/api'; //production
 
 const router = new VueRouter({
     mode: 'history',
+    linkExactActiveClass: 'active',
     //base: "/data_sync/public/", //dev
     base: "/", //production
     routes: routes
