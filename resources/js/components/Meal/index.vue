@@ -6,7 +6,7 @@
       <v-tab href="#tab-1">{{$t('publicacoes')}}</v-tab>
       <v-tab href="#tab-2">{{$t('nova_publicacao')}}</v-tab>
     </v-tabs>
-    <v-tabs-items v-model="tab" class="pt-4">
+    <v-tabs-items v-model="tab" class="pt-4  px-4">
         <v-tab-item
             :key="1"
             :value="'tab-' + 1"
