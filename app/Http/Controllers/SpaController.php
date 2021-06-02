@@ -8,6 +8,6 @@ class SpaController extends Controller
 {
     public function index()
     {
-        return view('spas');
+        return view('spa');
     }
 }
