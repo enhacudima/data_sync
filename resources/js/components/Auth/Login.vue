@@ -1,5 +1,5 @@
 <template>
-  <v-card class="px-4" outlined>
+  <v-card  outlined>
 
     <v-progress-linear
       :active="dialogW"
@@ -7,7 +7,7 @@
       color="#e1b80d"
     ></v-progress-linear>
 
-      <v-card-text>
+      <v-card-text class="px-4">
           <v-form ref="loginForm" v-model="valid" lazy-validation @submit.prevent="validate">
               <v-row class="pt-6">
                   <v-col cols="12">
