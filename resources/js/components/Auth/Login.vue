@@ -73,7 +73,7 @@ export default {
     return {
       my_lang:'pt',
       langs: ['en', 'pt'] ,
-      dialogW:true,
+      dialogW:false,
       loginError:null,
       dialog: true,
       tab: 0,
