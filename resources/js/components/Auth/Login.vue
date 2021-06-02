@@ -4,7 +4,7 @@
     <v-progress-linear
       :active="dialogW"
       indeterminate
-      color="primary"
+      color="#e1b80d"
     ></v-progress-linear>
 
       <v-card-text>
@@ -73,7 +73,7 @@ export default {
     return {
       my_lang:'pt',
       langs: ['en', 'pt'] ,
-      dialogW:false,
+      dialogW:true,
       loginError:null,
       dialog: true,
       tab: 0,
