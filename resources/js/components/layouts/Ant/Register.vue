@@ -1,4 +1,6 @@
 <template>
+<div>
+  <nprogress-container></nprogress-container>
   <v-app id="inspire">
 
     <v-main class="grey lighten-3">
@@ -64,11 +66,16 @@
       </v-container>
     </v-main>
   </v-app>
+  </div>
 </template>
 
 <script>
+import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
 import {i18n} from '../../../i18n.js'
   export default {
+    components: {
+        NprogressContainer
+    },
     name: 'locale-changer',
     methods: {
     changeLocale(locale) {

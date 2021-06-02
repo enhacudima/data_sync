@@ -16,7 +16,7 @@ import NotFound from './components/NotFound';
 import ResetPassword from './components/Auth/ResetPassword.vue';
 import Pub from  './components/Pub/Pub.vue';
 import UserProfile from  './components/Profile/User.vue';
-import NoPermission from './components/NoPermission'
+import NoPermission from './components/NoPermission';
 
 
 
@@ -32,6 +32,7 @@ export const routes = [
         props: true,
         meta: {
             antWelcomeLayout: true,
+            showProgressBar: true,
         },
     },
     {
@@ -50,6 +51,7 @@ export const routes = [
         props: true,
         meta: {
             antWelcomeLayout: true,
+            showProgressBar: true,
         },
     },
     {

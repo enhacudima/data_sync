@@ -26,7 +26,8 @@ import { abilitiesPlugin } from '@casl/vue';
 import {ability} from './ability.js'
 //laguang
 import {i18n} from './i18n.js'
-
+//progressbar
+import NProgress from 'vue-nprogress'
 
 Vue.config.productionTip = false;
 // Add a rule.
@@ -49,6 +50,7 @@ Vue.use(IconsPlugin)
 Vue.use(abilitiesPlugin, ability);
 
 
+
 window.moment = require('moment');//para funcionar o moment fora do js
 
 //axios.defaults.baseURL = 'http://localhost/data_sync/public/api'; //dev
@@ -61,6 +63,15 @@ const router = new VueRouter({
     base: "/", //production
     routes: routes
 });
+
+const options = {
+  latencyThreshold: 200, // Number of ms before progressbar starts showing, default: 100,
+  router: true, // Show progressbar when navigating routes, default: true
+  http: true // Show progressbar when doing Vue.http, default: true
+};
+Vue.use(NProgress, options)
+
+const nprogress = new NProgress()
 
 import { AbilityBuilder, Ability } from '@casl/ability';
 const { can, rules } = new AbilityBuilder(Ability);
@@ -96,6 +107,7 @@ const app = new Vue({
     router: router,
     store,
     i18n,
+    nprogress,
     created () {
 	    const userInfo = localStorage.getItem('user')
 	    if (userInfo) {

@@ -4,6 +4,9 @@ object-assign
 @license MIT
 */
 
+/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
+ * @license MIT */
+
 /*!
   Copyright (c) 2017 Jed Watson.
   Licensed under the MIT License (MIT), see
@@ -36,6 +39,12 @@ object-assign
 /*!
  * Vue.js v2.6.11
  * (c) 2014-2019 Evan You
+ * Released under the MIT License.
+ */
+
+/*!
+ * nprogress v0.1.5
+ * https://github.com/vue-bulma/nprogress
  * Released under the MIT License.
  */
 

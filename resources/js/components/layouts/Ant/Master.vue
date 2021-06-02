@@ -1,4 +1,6 @@
 <template>
+<div>
+  <nprogress-container></nprogress-container>
   <v-app id="inspire" :dark=true>
     <v-app-bar
       app
@@ -278,9 +280,11 @@
         <cookie-law theme="blood-orange--rounded"></cookie-law>
     </div>
   </v-app>
+  </div>
 </template>
 
 <script>
+  import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
   import dialogo from '../../Auth/dialogUser.vue';
   import dialogoPlan from '../../Home/dialogoPlan.vue';
   import dialogoAvatar from '../../Auth/dialogAvatar.vue';
@@ -289,7 +293,7 @@
   import {i18n} from '../../../i18n.js'
 
   export default {
-    components: { dialogo,dialogoAvatar, CookieLaw, dialogoPlan },
+    components: { NprogressContainer,dialogo,dialogoAvatar, CookieLaw, dialogoPlan },
 
     data: () => ({
       checkPlan: false,
