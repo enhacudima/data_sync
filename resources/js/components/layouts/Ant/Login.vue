@@ -5,17 +5,20 @@
 
     <v-main class="grey lighten-3">
       <v-container>
-            <v-row align="center" justify="center" class="pt-16 pt-md-16 mt-md-16" >
-                <v-img
-                    :src="baseUrl+'storage/icons/CPAF70px.png'"
-                    :lazy-src="baseUrl+'storage/icons/CPAF70px.png'"
-                    aspect-ratio="2"
-                    max-height="200"
-                    max-width="130"
-                    contain
-                    class="pt-md-16 mt-md-16"
-                >
-                </v-img>
+            <v-row align="center" justify="center" class=" pt-xs-2 mt-xs-2 pt-sm-4 mt-sm-4 pt-md-8 mt-md-8 pt-4 mt-4" >
+                <router-link to="/">
+                    <v-img
+                        :src="baseUrl+'storage/icons/CPAF70px.png'"
+                        :lazy-src="baseUrl+'storage/icons/CPAF70px.png'"
+                        aspect-ratio="2"
+                        max-height="200"
+                        max-width="130"
+                        contain
+                        class="pt-xs-2 mt-xs-2 pt-sm-4 mt-sm-4 pt-md-4 mt-md-4 pt-lg-4 mt-lg-4 pt-4 mt-4"
+                        to="/"
+                    >
+                    </v-img>
+                </router-link>
             </v-row>
             <v-row align="center" justify="center" >
 

@@ -7,7 +7,7 @@
       color="#e1b80d"
     ></v-progress-linear>
 
-      <v-card-text class="px-4">
+      <v-card-text >
           <v-form ref="loginForm" v-model="valid" lazy-validation @submit.prevent="validate">
               <v-row class="pt-6">
                   <v-col cols="12">

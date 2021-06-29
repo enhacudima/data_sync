@@ -42,7 +42,7 @@
       src="storage/icons/icon.jpg"
     ></v-img>
 
-    <v-card-title>EatInMore</v-card-title>
+    <v-card-title>Data Sync</v-card-title>
 
     <v-divider class="mx-4"></v-divider>
 
@@ -51,7 +51,7 @@
       <v-btn
         color="deep-purple lighten-2"
         text
-        
+
       >
         Login or Register
       </v-btn>
@@ -71,11 +71,11 @@
 
 <style>
 #components-layout-demo-basic {
-  text-align: center;     
+  text-align: center;
 }
 #components-layout-demo-basic .ant-layout-header,
 #components-layout-demo-basic .ant-layout-footer {
- 
+
 }
 #components-layout-demo-basic .ant-layout-footer {
   line-height: 1.5;

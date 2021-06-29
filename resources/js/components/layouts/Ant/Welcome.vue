@@ -11,8 +11,9 @@
     >
     <v-app-bar-nav-icon color="white"  @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
+        <router-link to="/">
             <v-img
-             v-if="!drawer"
+                v-if="!drawer"
                 src="storage/icons/CPAF70pxnegative.png"
                 lazy-src="storage/icons/CPAF70pxnegative.png"
                 aspect-ratio="2"
@@ -20,6 +21,7 @@
                 max-width="200"
                 contain
             ></v-img>
+        </router-link>
     <!--
       <v-responsive max-width="500">
         <v-text-field
@@ -30,7 +32,8 @@
           solo-inverted
           :placeholder="$t('search')+' todos'"
         ></v-text-field>
-      </v-responsive>-->
+      </v-responsive>
+      -->
       <v-spacer></v-spacer>
 
         <div class="pr-2">
@@ -57,27 +60,32 @@
             class="pa-4"
             color="grey lighten-4"
         >
-    <v-img
-        src="storage/icons/110x92px.png"
-        lazy-src="storage/icons/110x92px.png"
-        aspect-ratio="2"
-        max-height="95"
-        max-width="250"
-        contain
-      >
-        <template v-slot:placeholder>
-          <v-row
-            class="fill-height ma-0"
-            align="center"
-            justify="center"
-          >
-            <v-progress-circular
-              indeterminate
-              color="grey lighten-5"
-            ></v-progress-circular>
-          </v-row>
-        </template>
-      </v-img>
+
+        <router-link to="/">
+            <v-img
+                src="storage/icons/110x92px.png"
+                lazy-src="storage/icons/110x92px.png"
+                aspect-ratio="2"
+                max-height="95"
+                max-width="250"
+                contain
+                to="/"
+
+            >
+                <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                    <v-progress-circular
+                    indeterminate
+                    color="grey lighten-5"
+                    ></v-progress-circular>
+                </v-row>
+                </template>
+            </v-img>
+        </router-link>
 
         <v-row
         class="fill-height ma-0"

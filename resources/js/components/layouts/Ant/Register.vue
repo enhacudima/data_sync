@@ -13,6 +13,7 @@
                     max-height="200"
                     max-width="130"
                     contain
+                    to="/"
                 >
                 </v-img>
             </v-row>
