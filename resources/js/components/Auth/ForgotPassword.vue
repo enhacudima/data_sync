@@ -1,5 +1,5 @@
 <template>
-  <v-card class="px-4" outlined>
+  <v-card  outlined>
       <v-card-text>
           <v-form ref="loginForm" v-model="valid" lazy-validation>
               <v-row>
@@ -7,7 +7,7 @@
                       <v-text-field v-model="loginEmail" :rules="loginEmailRules" label="E-mail" required :error-messages="loginError"></v-text-field>
                   </v-col>
                   <v-col class="d-flex" cols="12" sm="12" xsm="12" align-end>
-                      <v-btn elevation="1" large block  color="success" @click="validate"> {{$t('send_link')}} </v-btn>
+                      <v-btn elevation="1" large block  color="#e1b80d" @click="validate"> {{$t('send_link')}} </v-btn>
                   </v-col>
               </v-row>
           </v-form>

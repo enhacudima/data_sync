@@ -1,5 +1,5 @@
 <template>
-  <v-card  class="px-4" outlined>
+  <v-card   outlined>
 
     <v-progress-linear
       :active="dialogW"
