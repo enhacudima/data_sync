@@ -26,7 +26,7 @@ return [
     'between'              => [
         'numeric' => 'O campo :attribute deve ser entre :min e :max.',
         'file'    => 'O campo :attribute deve ser entre :min e :max kilobytes.',
-        'string'  => 'O campo :attribute deve ser entre :min e :max caracteres.',
+        'string'  => 'O campo :attribute deve ser entre :min e :max carácters.',
         'array'   => 'O campo :attribute deve ter entre :min e :max itens.',
     ],
     'boolean'              => 'O campo :attribute deve ser verdadeiro ou falso.',
@@ -47,13 +47,13 @@ return [
     'gt' => [
         'numeric' => 'O campo :attribute deve ser maior que :value.',
         'file'    => 'O campo :attribute deve ser maior que :value kilobytes.',
-        'string'  => 'O campo :attribute deve ser maior que :value caracteres.',
+        'string'  => 'O campo :attribute deve ser maior que :value carácters.',
         'array'   => 'O campo :attribute deve conter mais de :value itens.',
     ],
     'gte' => [
         'numeric' => 'O campo :attribute deve ser maior ou igual a :value.',
         'file'    => 'O campo :attribute deve ser maior ou igual a :value kilobytes.',
-        'string'  => 'O campo :attribute deve ser maior ou igual a :value caracteres.',
+        'string'  => 'O campo :attribute deve ser maior ou igual a :value carácters.',
         'array'   => 'O campo :attribute deve conter :value itens ou mais.',
     ],
     'image'                => 'O campo :attribute deve ser uma imagem.',
@@ -67,19 +67,19 @@ return [
     'lt' => [
         'numeric' => 'O campo :attribute deve ser menor que :value.',
         'file'    => 'O campo :attribute deve ser menor que :value kilobytes.',
-        'string'  => 'O campo :attribute deve ser menor que :value caracteres.',
+        'string'  => 'O campo :attribute deve ser menor que :value carácters.',
         'array'   => 'O campo :attribute deve conter menos de :value itens.',
     ],
     'lte' => [
         'numeric' => 'O campo :attribute deve ser menor ou igual a :value.',
         'file'    => 'O campo :attribute deve ser menor ou igual a :value kilobytes.',
-        'string'  => 'O campo :attribute deve ser menor ou igual a :value caracteres.',
+        'string'  => 'O campo :attribute deve ser menor ou igual a :value carácters.',
         'array'   => 'O campo :attribute não deve conter mais que :value itens.',
     ],
     'max' => [
         'numeric' => 'O campo :attribute não pode ser superior a :max.',
         'file'    => 'O campo :attribute não pode ser superior a :max kilobytes.',
-        'string'  => 'O campo :attribute não pode ser superior a :max caracteres.',
+        'string'  => 'O campo :attribute não pode ser superior a :max carácters.',
         'array'   => 'O campo :attribute não pode ter mais do que :max itens.',
     ],
     'mimes'                => 'O campo :attribute deve ser um arquivo do tipo: :values.',
@@ -87,7 +87,7 @@ return [
     'min' => [
         'numeric' => 'O campo :attribute deve ser pelo menos :min.',
         'file'    => 'O campo :attribute deve ter pelo menos :min kilobytes.',
-        'string'  => 'O campo :attribute deve ter pelo menos :min caracteres.',
+        'string'  => 'O campo :attribute deve ter pelo menos :min carácters.',
         'array'   => 'O campo :attribute deve ter pelo menos :min itens.',
     ],
     'not_in'               => 'O campo :attribute selecionado é inválido.',
@@ -107,7 +107,7 @@ return [
     'size'                 => [
         'numeric' => 'O campo :attribute deve ser :size.',
         'file'    => 'O campo :attribute deve ser :size kilobytes.',
-        'string'  => 'O campo :attribute deve ser :size caracteres.',
+        'string'  => 'O campo :attribute deve ser :size carácters.',
         'array'   => 'O campo :attribute deve conter :size itens.',
     ],
     'starts_with'          => 'O campo :attribute deve começar com um dos seguintes valores: :values',

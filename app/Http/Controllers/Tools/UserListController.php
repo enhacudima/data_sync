@@ -49,7 +49,7 @@ class UserListController extends Controller
         $myRequest->request->add($experienceData);
 
         $validator = Validator::make($myRequest->all(), [
-            'commets' => 'required|string|min:12',
+            'comments' => 'required|string|min:5',
             'type' => 'nullable|',
             'chefType' => 'nullable|',
             'userStatus' => 'nullable|',

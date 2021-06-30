@@ -189,7 +189,7 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field
-                  v-model="formList.commets"
+                  v-model="formList.comments"
                   label="Comments*"
                   required
                   :rules="[rules.required]"
@@ -388,7 +388,7 @@
                 },
                 valid: true,
                 formList:{
-                    commets:null,
+                    comments:null,
                     type:null,
                     chefType:null,
                     userStatus:null,

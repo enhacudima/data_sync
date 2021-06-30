@@ -42,7 +42,7 @@
         dark
       >
         <v-card-text>
-          Please stand by
+          Please wait ...
           <v-progress-linear
             indeterminate
             color="white"
