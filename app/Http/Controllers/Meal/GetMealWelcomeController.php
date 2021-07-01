@@ -42,7 +42,7 @@ class GetMealWelcomeController extends Controller
                 })
                 ->orwhere('reference','like',"%".$search."%");
             })
-        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')
+        ->with('mealCategory','mealTags.tagName','mealOptions')
         ->orderby('end_date','asc')
         ->where('start_date', '<=', Now())->where('end_date', '>=', Now())
         ->get();
