@@ -28,13 +28,17 @@ class GetMealWelcomeController extends Controller
     {
         $data=Meals::limit(20)
         ->userName($search)
-        ->where('name','like',"%".$search."%")
-        ->orwhere('email','like',"%".$search."%")
-        ->orwhere('phone','like',"%".$search."%")
-        ->orwhere('location','like',"%".$search."%")
-        ->orwhere('start_date','like',"%".$search."%")
-        ->orwhere('end_date','like',"%".$search."%")
-        ->orwhere('reference','like',"%".$search."%")
+        ->where(
+           function($query) {
+             return $query
+                ->orwhere('name','like',"%".$search."%")
+                ->orwhere('email','like',"%".$search."%")
+                ->orwhere('phone','like',"%".$search."%")
+                ->orwhere('location','like',"%".$search."%")
+                ->orwhere('start_date','like',"%".$search."%")
+                ->orwhere('end_date','like',"%".$search."%")
+                ->orwhere('reference','like',"%".$search."%");
+            })
         ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')
         ->orderby('end_date','asc')
         ->where('start_date', '<=', Now())->where('end_date', '>=', Now())
