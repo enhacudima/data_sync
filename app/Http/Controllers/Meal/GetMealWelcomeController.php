@@ -27,6 +27,7 @@ class GetMealWelcomeController extends Controller
     public function searchMeals($search)
     {
         $data=Meals::limit(20)
+        ->userName($search)
         ->where(
            function($query) use ($search) {
              return $query
@@ -36,10 +37,6 @@ class GetMealWelcomeController extends Controller
                 ->orwhere('location','like',"%".$search."%")
                 ->orwhere('start_date','like',"%".$search."%")
                 ->orwhere('end_date','like',"%".$search."%")
-                ->orwhereHas('mealUser', function ($q) use ($search) {
-                    $q->orwhere('nam', 'like', '%' .$search. '%')
-                    ->orwhere('lastName', 'like', '%' .$search. '%');
-                })
                 ->orwhere('reference','like',"%".$search."%");
             })
         ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')
