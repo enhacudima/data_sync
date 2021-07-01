@@ -77,6 +77,9 @@ class Meals extends Model
 
         public function scopeUserName($query, $string)
     {
-        return $query->where('users.name', 'like', '%' .$string. '%');
+        return $query->whereHas('mealUser', function ($q) use ($string) {
+            $q->where('name', 'like', '%' .$string. '%');
+        });
+
     }
 }
