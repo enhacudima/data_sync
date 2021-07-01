@@ -13,9 +13,10 @@ use App\Read;
 class PubController extends Controller
 {
 
+    public $ip;
     public function __construct()
     {
-
+        $this->ip = Read::getIP();
 
     }
 
@@ -29,7 +30,7 @@ class PubController extends Controller
 
 
 
-        if(Read::where('pub_key', $token )->where('ip_address', Request::ip() )->exists()){
+        if(Read::where('pub_key', $token )->where('ip_address', $this->ip )->exists()){
         }else{
             $result=Read::make($token);
             if(isset($data)){

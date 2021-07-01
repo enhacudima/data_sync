@@ -27,4 +27,8 @@ class Read extends Model
         ]);
     }
 
+    public static function getIP(){
+        return Request::ip();
+    }
+
 }
