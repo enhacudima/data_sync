@@ -36,7 +36,7 @@ class GetMealWelcomeController extends Controller
                 ->orwhere('location','like',"%".$search."%")
                 ->orwhere('start_date','like',"%".$search."%")
                 ->orwhere('end_date','like',"%".$search."%")
-                ->whereHas('mealUser', function ($q) use ($search) {
+                ->orwhereHas('mealUser', function ($q) use ($search) {
                     $q->orwhere('name', 'like', '%' .$search. '%')
                     ->orwhere('lastName', 'like', '%' .$search. '%');
                 })
