@@ -29,7 +29,7 @@ class GetMealWelcomeController extends Controller
     {
         $data=Meals::limit(20)
         ->orwhereHas('mealUser', function (Builder $query) use ($search) {
-            $query->where('name', 'like','%'. $search.'%');
+            $query->where('nam', 'like','%'. $search.'%');
         })
         ->where(
            function($query) use ($search) {
