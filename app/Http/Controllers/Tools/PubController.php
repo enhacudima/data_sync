@@ -29,8 +29,7 @@ class PubController extends Controller
 
 
 
-
-        if(Read::where('pub_key', $token )->exists()){
+        if(Read::where('pub_key', $token )->where('ip_address', Request::ip() )->exists()){
         }else{
             $result=Read::make($token);
             if(isset($data)){
@@ -47,5 +46,6 @@ class PubController extends Controller
 
         return response()->json($data, 200);
     }
+
 
 }

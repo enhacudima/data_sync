@@ -58,6 +58,8 @@
 export default {
   data() {
     return {
+      my_lang:'pt',
+      langs: ['en', 'pt'] ,
       dialogW:false,
       loginError:null,
       dialog: true,

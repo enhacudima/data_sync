@@ -81,7 +81,7 @@ class UpdateMealController extends Controller
             'experience' => 'required|numeric|exists:experiences,id',
             'tags' => 'nullable',
             'id' =>'required|numeric|exists:meals,id',
-            'reference'=>'required|alpha_num|max:20',
+            'reference'=>'required|string|max:191',
         ],
         [
      	    'file_id.required'=>'Please add a pdf file.',

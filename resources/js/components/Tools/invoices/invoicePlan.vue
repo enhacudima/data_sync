@@ -20,7 +20,7 @@
         <v-spacer></v-spacer>
         <v-dialog v-model="apply" max-width="500px">
           <v-card>
-            <v-card-title class="headline">You are sure you want to apply payment for this invoice?</v-card-title>
+            <v-card-title class="headline">Are you sure you want to accept this invoice?</v-card-title>
               <v-container>
                 <v-row>
                   <v-col
@@ -271,7 +271,7 @@
 
                 } else {
 
-                    this.openNotification('success', 'Save', 'You have been store all data successfully');
+                    this.openNotification('success', 'Save', 'Your data has been stored successfully');
 
                 }
             })

@@ -3,7 +3,7 @@
     <template #extra>
       <router-link to="/login" class="nav-item nav-link" >
         <a-button key="buy" type="primary" icon="login">
-          login
+          Login
         </a-button>
       </router-link>
     </template>

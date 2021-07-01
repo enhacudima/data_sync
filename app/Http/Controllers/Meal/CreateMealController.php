@@ -78,7 +78,7 @@ class CreateMealController extends Controller
             'commonTiming'=>'required',
             'experience' => 'required|numeric|exists:experiences,id',
             'tags' => 'nullable',
-            'reference'=>'required|alpha_num|max:20',
+            'reference'=>'required|string|max:191',
         ],
         [
      	    //'file_id.required'=>'Please add PDF file.'

@@ -86,7 +86,7 @@
               <v-col
                 cols="12"
               >
-                                     
+
               <v-autocomplete
                 v-model="formPrice.currency"
                 :items="currencys"
@@ -126,7 +126,7 @@
       </v-card>
     </v-dialog>
   </v-row>
-    
+
   </div>
 </template>
 <script>
@@ -200,7 +200,7 @@
     },
     resetValidation() {
       this.$refs.form.resetValidation();
-    },  
+    },
     sendData(data) {
       axios
       .post("meal/price/new/"+this.codMealId, { data: { priceData: data} })
@@ -211,11 +211,11 @@
           if (response.data.errors) {
               //console.log(response.data.errors);
               response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
-              
+
           } else {
-              
-              this.openNotification('success', 'Save', 'You have been store all data successfully');
-              
+
+              this.openNotification('success', 'Save', 'Your data has been stored successfully');
+
           }
       })
       .catch((error) => {
@@ -242,11 +242,11 @@
           if (response.data.errors) {
               //console.log(response.data.errors);
               response.data.errors.forEach(error => { this.openNotification('error', 'Error on Save', error);});
-              
+
           } else {
-              
+
               this.openNotification('success', 'Save', 'You have been updated all data successfully');
-              
+
           }
       })
       .catch((error) => {

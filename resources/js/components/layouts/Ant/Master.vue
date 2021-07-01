@@ -13,7 +13,7 @@
 
       <v-spacer></v-spacer>
 
-        <router-link to="/">
+        <router-link to="/home">
             <v-img
              v-if="!drawer"
                 src="storage/icons/CPAF70pxnegative.png"
@@ -163,7 +163,7 @@
             color="grey lighten-4"
         >
 
-        <router-link to="/">
+        <router-link to="/home">
             <v-img
                 src="storage/icons/110x92px.png"
                 lazy-src="storage/icons/110x92px.png"
@@ -171,7 +171,6 @@
                 max-height="95"
                 max-width="250"
                 contain
-                to="/"
             >
                 <template v-slot:placeholder>
                 <v-row

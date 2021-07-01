@@ -54,6 +54,7 @@ class GetMealController extends Controller
         ->orwhere('location','like',"%".$search."%")
         ->orwhere('start_date','like',"%".$search."%")
         ->orwhere('end_date','like',"%".$search."%")
+        ->orwhere('reference','like',"%".$search."%")
         ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')
         ->get();
 
@@ -66,6 +67,7 @@ class GetMealController extends Controller
         ->orwhere('location','like',"%".$search."%")
         ->orwhere('start_date','like',"%".$search."%")
         ->orwhere('end_date','like',"%".$search."%")
+        ->orwhere('reference','like',"%".$search."%")
         ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')
         ->get();
         }

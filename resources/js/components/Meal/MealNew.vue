@@ -342,7 +342,7 @@ export default {
 
           } else {
 
-              this.openNotification('success', 'Save', 'You have been store all data successfully');
+              this.openNotification('success', 'Save', 'Your data has been stored successfully');
               this.form.resetFields()
               //this.$router.push({ name: 'register/result' });
           }

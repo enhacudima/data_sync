@@ -12,7 +12,7 @@
       </router-link>
       <router-link to="/login" class="nav-item nav-link">
         <a-button key="buy">
-          login
+          Login
         </a-button>
       </router-link>
     </template>

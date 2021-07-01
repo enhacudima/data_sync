@@ -278,7 +278,7 @@
 
                 } else {
 
-                    this.openNotification('success', 'Save', 'You have been store all data successfully');
+                    this.openNotification('success', 'Save', 'Your data has been stored successfully');
 
                 }
             })

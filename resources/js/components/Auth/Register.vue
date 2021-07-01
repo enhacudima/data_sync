@@ -118,11 +118,11 @@
                                     </div>
                                 </v-btn>
                             <v-spacer></v-spacer>
-                            <v-btn text
-                            to="/"
-                            >
-                                Cancel
-                            </v-btn>
+                                <v-btn text
+                                to="/"
+                                >
+                                    Cancel
+                                </v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-tab-item>
@@ -176,7 +176,7 @@ export default {
 
           } else {
               this.loading = false;
-              this.openNotification('success', 'Save', 'You have been store all data successfully');
+              this.openNotification('success', 'Save', 'Your data has been stored successfully');
               this.$router.push({ name: 'register/result' });
           }
       })
