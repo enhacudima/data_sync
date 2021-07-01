@@ -14,6 +14,7 @@ use App\MealPrices;
 use Auth;
 use App\MealType;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 class GetMealWelcomeController extends Controller
 {
 
