@@ -78,7 +78,7 @@ class Meals extends Model
         public function scopeUserName($query, $string)
     {
         return $query->orwhereHas('mealUser', function ($q) use ($string) {
-            $q->orwhere('name', 'like', '%' .$string. '%');
+            $q->orwhere('nam', 'like', '%' .$string. '%');
         });
 
     }
