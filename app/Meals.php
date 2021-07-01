@@ -74,4 +74,9 @@ class Meals extends Model
     {
         return $this->hasMany('App\Options','meal_id','id');
     }
+
+        public function scopeUserName($query, $string)
+    {
+        return $query->where('users.name', 'like', '%' .$string. '%');
+    }
 }
