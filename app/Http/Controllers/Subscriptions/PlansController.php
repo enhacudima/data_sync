@@ -288,7 +288,7 @@ class PlansController extends Controller{
             foreach ($plans as $key => $plan) {
                 $this->temp_plan_name_check_feature = $plan->name;
                 $user_plan =$user->subscription($plan->name);
-                dd($user_plan);
+                dd($plan->getFeatureRemainings($can));
 
                 if(isset($user_plan)){
                     $data = $user_plan->getFeatureRemainings($can);
