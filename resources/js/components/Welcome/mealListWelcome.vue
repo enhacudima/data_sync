@@ -51,6 +51,7 @@
             class="mx-auto"
             max-width="240"
             color="#E1B80D"
+            hover
 
         >
             <v-sheet>
@@ -82,7 +83,7 @@
             </v-sheet>
 
 
-            <v-card-subtitle>
+            <v-card-subtitle class="card-subtitle" >
             <div class="overline mb-1">
             <strong class="black--text">{{  meal.meal_user.name && meal.meal_user.name.length < 16 ? meal.meal_user.name : meal.meal_user.name.substring(0,16)+".."}}</strong>
             </div>
@@ -96,7 +97,7 @@
 
 
 
-            <v-card-actions>
+            <v-card-actions class="card-actions">
                 <v-list-item-action-text class="pl-2 black--text" >{{meal.views}} {{$t('views')}}</v-list-item-action-text>
                 <v-spacer></v-spacer>
                 <v-btn
@@ -230,3 +231,15 @@ export default {
     }
 }
 </script>
+
+<style>
+.card-subtitle {
+    height: 250px;
+    max-height: 250px;
+}
+.card-actions {
+  position: absolute;
+  bottom: 0;
+}
+
+</style>
