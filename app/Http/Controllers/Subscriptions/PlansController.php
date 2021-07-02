@@ -288,11 +288,14 @@ class PlansController extends Controller{
             foreach ($plans as $key => $plan) {
                 $this->temp_plan_name_check_feature = $plan->name;
                 $user_plan =$user->subscription($plan->name);
-                dd($plan->name);
-                $data = $user_plan->getFeatureRemainings($can);
-                if($data>=0){
-                $checked =$data;
-                break;
+                dd($user_plan);
+
+                if(isset($user_plan)){
+                    $data = $user_plan->getFeatureRemainings($can);
+                    if($data>=0){
+                        $checked =$data;
+                        break;
+                    }
                 }
             }
         }else{
