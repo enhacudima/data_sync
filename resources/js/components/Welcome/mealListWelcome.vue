@@ -234,8 +234,8 @@ export default {
 
 <style>
 .card-subtitle {
-    height: 250px;
-    max-height: 250px;
+    height: 210px;
+    max-height: 210px;
 }
 .card-actions {
   position: absolute;

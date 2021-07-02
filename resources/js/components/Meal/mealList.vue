@@ -83,7 +83,7 @@
 
             </v-sheet>
 
-            <v-card-subtitle class="card-subtitle " >
+            <v-card-subtitle class="card-subtitle" >
             <div class="overline mb-1 black--text">
             <strong>{{  meal.meal_user.name && meal.meal_user.name.length < 16 ? meal.meal_user.name : meal.meal_user.name.substring(0,16)+".."}}</strong>
             </div>
@@ -238,8 +238,8 @@ export default {
 </script>
 <style>
 .card-subtitle {
-    height: 250px;
-    max-height: 250px;
+    height: 210px;
+    max-height: 210px;
 }
 .card-actions {
   position: relative;
