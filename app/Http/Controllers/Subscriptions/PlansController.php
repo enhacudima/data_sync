@@ -284,13 +284,17 @@ class PlansController extends Controller{
         $user = User::find($user);
 
         $checked = false;
-        foreach ($plans as $key => $plan) {
-            $this->temp_plan_name_check_feature = $plan->name;
-            $data = $user->subscription($plan->name)->getFeatureRemainings($can);
-            if($data>=0){
-               $checked =$data;
-               break;
+        if(isset($plans)){
+            foreach ($plans as $key => $plan) {
+                $this->temp_plan_name_check_feature = $plan->name;
+                $data = $user->subscription($plan->name)->getFeatureRemainings($can);
+                if($data>=0){
+                $checked =$data;
+                break;
+                }
             }
+        }else{
+            return "We didn't find any plan, Please contact admin.";
         }
         return $checked;
     }

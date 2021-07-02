@@ -342,13 +342,13 @@ function hasErrors(fieldsError) {
         }
         },
         beforeUpload(file) {
-        const isJpgOrPng = file.type === 'application/pdf' || file.type === 'application/pdf';
+        const isJpgOrPng = file.type === 'application/pdf' || file.type === 'image/png' || file.type === 'image/jpeg';
         if (!isJpgOrPng) {
-            this.$message.error('You can only upload PDF file!');
+            this.$message.error('You can only upload PDF, PNG, JPEG file!');
         }
-        const isLt2M = file.size / 1024 / 1024 < 20;
+        const isLt2M = file.size / 1024 / 1024 < 10;
         if (!isLt2M) {
-            this.$message.error('Image must smaller than 20MB!');
+            this.$message.error('File must be smaller than 10MB!');
         }
         return isJpgOrPng && isLt2M;
         },
