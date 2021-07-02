@@ -31,7 +31,7 @@ class CreateMealController extends Controller
         $plan = new PlansController();
         $checkPlan =$plan->checkAnyUserPlan(Auth::user()->id);
         if(!$checkPlan){
-            return response()->json(['errors'=>["Voce não esta subscrito a nenhum plano."]], 422);
+            return response()->json(['errors'=>["You are not subscribed to any plan."]], 422);
         }
 
         $checkPlan = $plan->checkAnyUserPlanCan(Auth::user()->id,'posts');

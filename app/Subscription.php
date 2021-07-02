@@ -214,6 +214,7 @@ class Subscription extends Model
     }
     public static function recordFeatureUsage($type,$subscription,$feature,$user,$value){
         $user = User::find($user);
+        dd($user);
         switch ($type) {
             case 'usage':
                 $user->subscription($subscription)->recordFeatureUsage($feature, $value);
