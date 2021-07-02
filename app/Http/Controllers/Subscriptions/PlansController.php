@@ -287,16 +287,11 @@ class PlansController extends Controller{
         if(isset($plans)){
             foreach ($plans as $key => $plan) {
                 $this->temp_plan_name_check_feature = $plan->name;
-                $user_plan =$user->subscription($plan->name);
-                dd($plan->getFeatureRemainings($can));
-
-                if(isset($user_plan)){
-                    $data = $user_plan->getFeatureRemainings($can);
+                    $data = $plan->getFeatureRemainings($can);
                     if($data>=0){
                         $checked =$data;
                         break;
                     }
-                }
             }
         }else{
             return "We didn't find any plan, Please contact admin.";
