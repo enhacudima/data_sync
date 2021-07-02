@@ -287,6 +287,7 @@ class PlansController extends Controller{
         if(isset($plans)){
             foreach ($plans as $key => $plan) {
                 $this->temp_plan_name_check_feature = $plan->name;
+
                     $data = $plan->getFeatureRemainings($can);
                     if($data>=0){
                         $checked =$data;
