@@ -284,7 +284,6 @@ class PlansController extends Controller{
         $user = User::find($user);
 
         $checked = false;
-        dd($plans);
         if(isset($plans)){
             foreach ($plans as $key => $plan) {
                 $this->temp_plan_name_check_feature = $plan->name;
