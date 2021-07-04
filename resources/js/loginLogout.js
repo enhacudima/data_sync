@@ -7,8 +7,8 @@ import {ability} from './ability.js'
 
 Vue.use(Vuex,ability)
 
-//axios.defaults.baseURL = 'http://localhost/data_sync/public/api'
-axios.defaults.baseURL = 'https://moz-concursopublico.info/api'; //production
+axios.defaults.baseURL = 'http://localhost/data_sync/public/api'
+//axios.defaults.baseURL = 'https://moz-concursopublico.info/api'; //production
 
 export default new Vuex.Store({
   state: {
