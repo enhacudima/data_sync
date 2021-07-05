@@ -50,7 +50,7 @@ export default new Vuex.Store({
         .post('/logout')
         .then(({ data }) => {
           commit('clearUserData')
-          this.$router.push({ name: 'welcome' })
+          this.$router.push({ name: 'register/result' });
         })
     },
 
