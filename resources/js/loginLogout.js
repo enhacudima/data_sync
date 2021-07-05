@@ -31,7 +31,7 @@ export default new Vuex.Store({
     clearUserData () {
       localStorage.removeItem('user')
       localStorage.removeItem('permissions')
-      this.$router.push({ name: '/' })
+      this.$router.push({ name: 'welcome' })
       //location.reload()
     }
   },
