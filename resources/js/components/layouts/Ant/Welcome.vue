@@ -37,7 +37,7 @@
       <v-spacer></v-spacer>
 
         <div class="pr-2">
-            <router-link to="/login" tag="button">
+            <router-link to="/home" tag="button">
             <v-btn
             text
             small

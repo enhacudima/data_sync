@@ -13,7 +13,7 @@
 
       <v-spacer></v-spacer>
 
-        <router-link to="/home">
+        <router-link to="/">
             <v-img
              v-if="!drawer"
                 src="storage/icons/CPAF70pxnegative.png"
@@ -163,7 +163,7 @@
             color="grey lighten-4"
         >
 
-        <router-link to="/home">
+        <router-link to="/">
             <v-img
                 src="storage/icons/110x92px.png"
                 lazy-src="storage/icons/110x92px.png"
@@ -427,7 +427,7 @@
       this.$store
         .dispatch('logoutAll')
         .then(() => {
-          //this.$router.push({ name: 'home' })
+          //this.$router.push({ name: '/' })
         })
         .catch(err => {
             console.log(err);
