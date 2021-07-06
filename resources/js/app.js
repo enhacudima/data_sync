@@ -54,7 +54,8 @@ Vue.use(abilitiesPlugin, ability);
 window.moment = require('moment');//para funcionar o moment fora do js
 
 //axios.defaults.baseURL = 'http://localhost/data_sync/public/api'; //dev
-axios.defaults.baseURL = 'https://moz-concursopublico.info/api'; //production
+//axios.defaults.baseURL = 'https://moz-concursopublico.info/api'; //production
+axios.defaults.baseURL = 'https://concursopublico.co.mz/api'; //production
 
 const router = new VueRouter({
     mode: 'history',

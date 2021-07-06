@@ -109,7 +109,8 @@
     data() {
 
         return {
-            baseUrl:'https://moz-concursopublico.info/',
+            //baseUrl:'https://moz-concursopublico.info/',
+            baseUrl:'https://concursopublico.co.mz/',
            // baseUrl:'http://localhost/data_sync/public/',
             drawer:true,
             user:[],
