@@ -42,7 +42,7 @@ Route::get('getTimeCurrency','CurrencyController@getCurrency');
 Route::get('getCommonTiming','CommonTimingController@getCommonTiming');
 Route::get('getCurrencyArr','CurrencyController@getCurrencyArr');
 
-Route::group(['namespace' => 'Tools','middleware' => []], function() {
+Route::group(['namespace' => 'Tools','middleware' => ['cors']], function() {
     Route::get('user/profile/{token}','UserProfileController@userProfile');
     Route::get('pub/{token}','PubController@pub');
 });
@@ -171,7 +171,7 @@ Route::group(['namespace' => 'Wellcome','middleware' => []], function() {//not
 
 });
 
-Route::group(['namespace' => 'Meal','middleware' => ['auth.api','UserType','CheckStatus','SetLocaleDynamically']], function() {
+Route::group(['namespace' => 'Meal','middleware' => ['auth.api','UserType','CheckStatus','SetLocaleDynamically','cors']], function() {
 	Route::get('GetMeals','GetMealController@getAllMeals');
 	Route::get('getMealsV2/{currency}','GetMealController@getMealsV2');
 	Route::get('getPagmMals','GetMealController@getPagmMals');
