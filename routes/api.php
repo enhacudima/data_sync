@@ -44,8 +44,7 @@ Route::get('getCurrencyArr','CurrencyController@getCurrencyArr');
 
 Route::group(['namespace' => 'Tools','middleware' => ['cors']], function() {
     Route::get('user/profile/{token}','UserProfileController@userProfile');
-    //Route::get('pub/{token}','PubController@pub');
-    Route::match(['get', 'options'], "pub/{token}", "PubController@pub")->middleware("cors");
+    Route::get('pub/{token}','PubController@pub');
 });
 
 Route::group(['namespace' => 'Auth'], function() {
