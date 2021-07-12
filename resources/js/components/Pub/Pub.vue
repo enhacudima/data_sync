@@ -13,7 +13,6 @@
                 :src="baseUrl+'storage/icons/110x92px.png'"
                 :lazy-src="baseUrl+'storage/icons/110x92px.png'"
                 aspect-ratio="2"
-                max-height="95"
                 max-width="250"
                 contain
             >
