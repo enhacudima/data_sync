@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <?php header('Access-Control-Allow-Origin: *') ?>
     <head>
+        <?php
+            header('Access-Control-Allow-Origin: *');
+            header("Access-Control-Allow-Credentials: true");
+            header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+            header('Access-Control-Max-Age: 1000');
+            header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+        ?>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" value="{{ csrf_token() }}"/>
