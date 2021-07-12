@@ -12,8 +12,8 @@
             <v-img
                 :src="baseUrl+'storage/icons/110x92px.png'"
                 :lazy-src="baseUrl+'storage/icons/110x92px.png'"
-                aspect-ratio="2"
-                max-width="250"
+                aspect-ratio="1"
+                height="150px"
                 contain
             >
                 <template v-slot:placeholder>
