@@ -42,7 +42,7 @@ Route::get('getTimeCurrency','CurrencyController@getCurrency');
 Route::get('getCommonTiming','CommonTimingController@getCommonTiming');
 Route::get('getCurrencyArr','CurrencyController@getCurrencyArr');
 
-Route::group(['namespace' => 'Tools','middleware' => ['cors']], function() {
+Route::group(['namespace' => 'Tools','middleware' => []], function() {
     Route::get('user/profile/{token}','UserProfileController@userProfile');
     Route::get('pub/{token}','PubController@pub');
 });
