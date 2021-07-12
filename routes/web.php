@@ -12,5 +12,5 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/{any}', 'SpaController@index')->where('any', '.*')->middleware('cache.headers:no_cache,private,max_age=300;etag');
+Route::get('/{any}', 'SpaController@index')->where('any', '.*')->middleware('cache.headers:no_cache,private,max_age=300;etag','cors');
 
