@@ -43,7 +43,7 @@
             small
             color="white"
             >
-            <v-icon>mdi-account</v-icon>
+            <v-icon>{{icon_home}}</v-icon>
             <!--{{$t('login')}}-->
             </v-btn>
 
@@ -193,12 +193,20 @@ import {i18n} from '../../../i18n.js'
         i18n.locale = locale;
     }
     },
+    mounted() {
+        const userData = JSON.parse(this.userInfo);
+        if(userData){
+            this.icon_home ='mdi-home'
+        }
+    },
 
     data: () => ({
+      userInfo: localStorage.getItem('user'),
       my_lang:'pt',
       langs: ['en', 'pt'] ,
       states:[],
       drawer: false,
+      icon_home: "mdi-account",
       iconsFoot: [
         'mdi-facebook',
         'mdi-twitter',

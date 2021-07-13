@@ -9,27 +9,29 @@
             class="pa-4"
             color="white"
         >
-            <v-img
-                :src="baseUrl+'storage/icons/110x92px.png'"
-                :lazy-src="baseUrl+'storage/icons/110x92px.png'"
-                aspect-ratio="2"
-                max-height="95"
-                max-width="250"
-                contain
-            >
-                <template v-slot:placeholder>
-                <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
+            <router-link to="/">
+                <v-img
+                    :src="baseUrl+'storage/icons/110x92px.png'"
+                    :lazy-src="baseUrl+'storage/icons/110x92px.png'"
+                    aspect-ratio="2"
+                    max-height="95"
+                    max-width="250"
+                    contain
                 >
-                    <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                    ></v-progress-circular>
-                </v-row>
-                </template>
-            </v-img>
+                    <template v-slot:placeholder>
+                    <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                    >
+                        <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"
+                        ></v-progress-circular>
+                    </v-row>
+                    </template>
+                </v-img>
+            </router-link>
         </v-sheet>
     </v-navigation-drawer>
 
@@ -47,14 +49,14 @@
                     <v-row style="margin:2.5%; top: 0px">
 
                                 <v-list-item dense>
-                                <!--<v-list-item-avatar size="100">-->
+                                <v-list-item-avatar size="100" tile>
                                     <img
                                         v-if="meal.meal_user"
                                         :src="baseUrl+'storage/'+meal.meal_user.avatar"
                                         :lazy-src="baseUrl+'storage/'+meal.meal_user.avatar"
-                                        height="150px"
+
                                     >
-                                <!--</v-list-item-avatar>-->
+                                </v-list-item-avatar>
                                     <v-list-item-content>
                                     <v-list-item-title  style="margin-top:20px;" v-if="meal.meal_user"><strong>{{meal.meal_user.name}} {{meal.meal_user.lastName}}</strong> </v-list-item-title>
 
