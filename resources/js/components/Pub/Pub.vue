@@ -49,16 +49,29 @@
                     <v-row style="margin:2.5%; top: 0px">
 
                                 <v-list-item dense>
-                                <!--<v-list-item-avatar size="100" tile> -->
-                                    <img
-                                        v-if="meal.meal_user"
+
+                                    <v-img
                                         :src="baseUrl+'storage/'+meal.meal_user.avatar"
                                         :lazy-src="baseUrl+'storage/'+meal.meal_user.avatar"
+                                        aspect-ratio="2"
                                         max-height="95"
                                         max-width="250"
-
+                                        contain
                                     >
-                               <!-- </v-list-item-avatar> -->
+                                        <template v-slot:placeholder>
+                                        <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                        >
+                                            <v-progress-circular
+                                            indeterminate
+                                            color="grey lighten-5"
+                                            ></v-progress-circular>
+                                        </v-row>
+                                        </template>
+                                    </v-img>
+
                                     <v-list-item-content>
                                     <v-list-item-title  style="margin-top:20px;" v-if="meal.meal_user"><strong>{{meal.meal_user.name}} {{meal.meal_user.lastName}}</strong> </v-list-item-title>
 
