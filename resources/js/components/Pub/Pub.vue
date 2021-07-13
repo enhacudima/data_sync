@@ -210,6 +210,9 @@
                                             {{percent}}%
                                         </v-list-item-title>
                                         <v-list-item-action-text>
+                                        </v-list-item-action-text>
+                                    </v-list-item-content>
+                                </v-list-item>
                                         <vue-pdf
                                             v-if="meal.meal_file"
                                             :src="baseUrl+'storage/'+meal.meal_file.path+meal.meal_file.name"
@@ -221,9 +224,6 @@
                                             @link-clicked="currentPage = $event"
                                             :style="'border: 1px solid red; display: inline-block; width: '+percent+'%'"
                                         />
-                                        </v-list-item-action-text>
-                                    </v-list-item-content>
-                                </v-list-item>
                     </v-row>
                 </v-card>
 
