@@ -46,7 +46,7 @@
                     <!--<v-img height="200" :src="baseUrl+'storage/icons/fundo.jpg'"
                     lazy-src="storage/icons/fundo.jpeg"
                     ></v-img>-->
-                    <v-row style="margin:2.5%; top: 0px">
+                    <v-row style="margin:2.5%; top: 5px">
 
                                     <v-img
                                         v-if="meal.meal_user"
@@ -207,7 +207,6 @@
                                             >
                                             <v-icon>mdi-magnify-plus</v-icon>
                                             </v-btn>
-                                            {{percent}}%
                                         </v-list-item-title>
                                         <v-list-item-action-text>
                                         </v-list-item-action-text>
