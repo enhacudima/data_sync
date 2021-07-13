@@ -48,8 +48,6 @@
                     ></v-img>-->
                     <v-row style="margin:2.5%; top: 0px">
 
-                                <v-list-item dense>
-                                    <v-list-item-icon>
                                     <v-img
                                         v-if="meal.meal_user"
                                         :src="baseUrl+'storage/'+meal.meal_user.avatar"
@@ -72,8 +70,8 @@
                                         </v-row>
                                         </template>
                                     </v-img>
-                                    </v-list-item-icon>
 
+                                <v-list-item dense>
                                     <v-list-item-content>
                                         <v-list-item-title  style="margin-top:20px;" v-if="meal.meal_user"><strong>{{meal.meal_user.name}} {{meal.meal_user.lastName}}</strong> </v-list-item-title>
                                     </v-list-item-content>
