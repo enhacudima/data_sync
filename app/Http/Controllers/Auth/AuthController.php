@@ -71,8 +71,8 @@ class AuthController extends Controller
             'minutes' => 1440,
             'path' => null,
             'domain' => null,
-            // 'secure' => true, // for production
-            'secure' => null, // for localhost
+            'secure' => true, // for production
+            //'secure' => null, // for localhost
             'httponly' => true,
             'samesite' => true,
         ];
