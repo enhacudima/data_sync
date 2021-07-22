@@ -143,6 +143,20 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+      <v-btn
+            v-scroll="onScroll"
+            v-show="fab"
+            fab
+            dark
+            fixed
+            bottom
+            right
+            color="primary"
+            @click="toTop"
+            class="mb-10"
+          >
+            <v-icon>mdi-chevron-up</v-icon>
+          </v-btn>
 
     <v-main>
       <v-container
@@ -189,9 +203,17 @@ import {i18n} from '../../../i18n.js'
     name: 'locale-changer',
 
     methods: {
-    changeLocale(locale) {
-        i18n.locale = locale;
-    }
+        changeLocale(locale) {
+            i18n.locale = locale;
+        },
+        onScroll (e) {
+        if (typeof window === 'undefined') return
+        const top = window.pageYOffset ||   e.target.scrollTop || 0
+        this.fab = top > 20
+        },
+        toTop () {
+        this.$vuetify.goTo(0)
+        }
     },
     mounted() {
         const userData = JSON.parse(this.userInfo);
@@ -201,6 +223,7 @@ import {i18n} from '../../../i18n.js'
     },
 
     data: () => ({
+      fab: false,
       userInfo: localStorage.getItem('user'),
       my_lang:'pt',
       langs: ['en', 'pt'] ,

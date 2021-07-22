@@ -8,18 +8,13 @@
             :label="$t('search')"
             single-line
             hide-details
-            class="pl-10 pr-10"
+            class="pl-10 pr-10 mb-6"
             :loading = "isLoadingSearch"
             ></v-text-field>
         </v-col>
 
     </v-row>
 
-    <v-container fluid>
-    <v-responsive
-        class="overflow-y-auto spacing-playground pa-6"
-        max-height="650"
-    >
       <v-row
          v-if="!meals.length && isLoadingSearch === false"
       >
@@ -42,10 +37,10 @@
             v-for="(meal, index) in meals"
             :key="index"
             xs="12"
-            sm="3"
-            md="3"
-            lg="3"
-            xl="3"
+            sm="2"
+            md="2"
+            lg="2"
+            xl="2"
         >
        <v-card
             class="mx-auto"
@@ -83,25 +78,24 @@
             </v-sheet>
 
 
-            <v-card-subtitle class="card-subtitle" >
-            <div class="overline mb-1">
-            <strong class="black--text">{{  meal.meal_user.name && meal.meal_user.name.length < 16 ? meal.meal_user.name : meal.meal_user.name.substring(0,16)+".."}}</strong>
-            </div>
-                <div class="black--text">  <v-list-item-action-text >{{meal.name && meal.name.length < 38 ? meal.name : meal.name.substring(0,38)+".." }}</v-list-item-action-text> </div>
-                <div class="black--text">  <v-list-item-action-text >{{$t('inicio_pub')}} - {{meal.start_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
-                <div class="black--text">  <v-list-item-action-text >{{$t('fim_pub')}} - {{meal.end_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
-                <div class="black--text">  <v-list-item-action-text >{{$t('category')}} - {{meal.meal_category.title}}</v-list-item-action-text> </div>
-                <div class="black--text">  <v-list-item-action-text >{{$t('reference')}} - {{meal.reference}}</v-list-item-action-text> </div>
+            <v-card-subtitle  class="card-subtitle-w">
+                <div class="mb-1 black--text  transition-swing  font-weight-regular" >
+                {{  meal.meal_user.name && meal.meal_user.name.length < 20 ? meal.meal_user.name : meal.meal_user.name.substring(0,20)+".."}}
+                </div>
+                <div class="black--text font-weight-light">  <v-list-item-action-text >{{meal.name && meal.name.length < 33 ? meal.name : meal.name.substring(0,33)+".." }}</v-list-item-action-text> </div>
+                <div class="black--text font-weight-light">  <v-list-item-action-text > <v-icon  small>mdi-calendar</v-icon> - {{meal.start_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
+                <div class="black--text font-weight-light">  <v-list-item-action-text ><v-icon  small>mdi-calendar-remove</v-icon> - {{meal.end_date | moment("D-M-Y")}}</v-list-item-action-text> </div>
+                <div class="black--text font-weight-light">  <v-list-item-action-text ><v-icon  small>mdi-tag-outline</v-icon> - {{meal.meal_category.title}}</v-list-item-action-text> </div>
+                <div class="black--text font-weight-light">  <v-list-item-action-text ><v-icon  small>mdi-eye-plus-outline</v-icon>  - {{meal.views}}</v-list-item-action-text> </div>
 
             </v-card-subtitle>
 
 
 
-            <v-card-actions class="card-actions">
-                <v-list-item-action-text class="pl-2 black--text" >{{meal.views}} {{$t('views')}}</v-list-item-action-text>
+            <v-card-actions class="card-actions-w">
                 <v-spacer></v-spacer>
                 <v-btn
-                    small
+                    x-small
                     icon
                     color="#2D4262"
                     :to="'pub/'+meal.key"
@@ -109,7 +103,7 @@
                 >
                     <v-icon
 
-                    >mdi-eye-outline</v-icon>
+                    >mdi-open-in-new</v-icon>
                 </v-btn>
 
             <v-btn
@@ -125,7 +119,11 @@
                 <v-divider></v-divider>
 
                 <v-card-text dense>
-                    <v-list-item-action-text class="black--text">{{meal.details}}</v-list-item-action-text>
+                    <v-list-item-action-text class="black--text font-weight-light">
+                    <div class="black--text transition-swing  font-italic">  <v-list-item-action-text >{{$t('reference')}} - {{meal.reference}}</v-list-item-action-text> </div>
+                    <div class="black--text font-weight-light">  <v-list-item-action-text >{{meal.name}}</v-list-item-action-text> </div>
+                    {{meal.details}}
+                    </v-list-item-action-text>
                 </v-card-text>
             </div>
             </v-expand-transition>
@@ -138,15 +136,16 @@
     <dialogView v-model="showDialog" v-bind:codMeal="mealIDShow"/>
 
 
-    </v-responsive>
+
         <v-pagination
+            class="pt-6 mt-6"
             v-model="pagination.current"
             :length="pagination.total"
             @input="onPageChange"
             v-show="isSearch"
         ></v-pagination>
 
-    </v-container>
+
 </div>
 </template>
 <script>
@@ -232,13 +231,14 @@ export default {
 }
 </script>
 
+
 <style>
-.card-subtitle {
-    height: 210px;
-    max-height: 210px;
+.card-subtitle-w {
+    height: 160px;
+    max-height: 160px;
 }
-.card-actions {
-  position: absolute;
+.card-actions-w {
+  position: relative;
   bottom: 0;
 }
 
