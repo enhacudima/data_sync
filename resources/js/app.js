@@ -55,15 +55,11 @@ import interceptorsSetup from './interceptors'
 
 window.moment = require('moment');//para funcionar o moment fora do js
 
-//axios.defaults.baseURL = 'http://localhost/data_sync/public/api'; //dev
-//axios.defaults.baseURL = 'https://moz-concursopublico.info/api'; //production
-//axios.defaults.baseURL = 'https://concursopublico.co.mz/api'; //production new
-
 const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
-    base: "/data_sync/public/", //dev
-    //base: "/", //production
+    //base: "/data_sync/public/", //dev
+    base: "/", //production
     routes: routes
 });
 
