@@ -1,0 +1,18 @@
+<template>
+  <a-result status="403" title="403" sub-title="Sorry, Too Many Requests.">
+    <template #extra>
+      <router-link to="/home" tag="button">
+        <a-button type="primary">
+            Back Welcome
+        </a-button>
+      </router-link>
+    </template>
+  </a-result>
+</template>
+<script>
+export default {
+  data() {
+    return {};
+  },
+};
+</script>

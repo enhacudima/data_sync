@@ -5,9 +5,9 @@ window.moment = require('moment');//para funcionar o moment fora do js
 
 import App from './App.vue';
 import VueRouter from 'vue-router';
-import VueAxios from 'vue-axios';
-import axios from 'axios';
-import Vuex from 'vuex';
+//import VueAxios from 'vue-axios';
+//import axios from 'axios';
+//import Vuex from 'vuex';
 import {routes} from './routes';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
@@ -41,13 +41,15 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.use(Antd);
 Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
-Vue.use(Vuex);
+//Vue.use(VueAxios, axios);
+//Vue.use(Vuex);
 Vue.use(ServerTable, {}, false, 'bootstrap4')
 Vue.use(require('vue-moment'));
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(abilitiesPlugin, ability);
+
+import interceptorsSetup from './interceptors'
 
 
 
@@ -55,15 +57,17 @@ window.moment = require('moment');//para funcionar o moment fora do js
 
 //axios.defaults.baseURL = 'http://localhost/data_sync/public/api'; //dev
 //axios.defaults.baseURL = 'https://moz-concursopublico.info/api'; //production
-axios.defaults.baseURL = 'https://concursopublico.co.mz/api'; //production new
+//axios.defaults.baseURL = 'https://concursopublico.co.mz/api'; //production new
 
 const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
-    //base: "/data_sync/public/", //dev
-    base: "/", //production
+    base: "/data_sync/public/", //dev
+    //base: "/", //production
     routes: routes
 });
+
+interceptorsSetup()
 
 const options = {
   latencyThreshold: 200, // Number of ms before progressbar starts showing, default: 100,
@@ -102,6 +106,8 @@ router.beforeEach((to, from, next) => {
 
 
 
+
+
 const app = new Vue({
     vuetify:Vuetify,
     el: '#app',
@@ -115,15 +121,6 @@ const app = new Vue({
 	      const userData = JSON.parse(userInfo)
 	      this.$store.commit('setUserData', userData)
 	    }
-	    axios.interceptors.response.use(
-	      response => response,
-	      error => {
-	        if (error.response.status === 401) {
-	          this.$store.dispatch('logout')
-	        }
-	        return Promise.reject(error)
-	      }
-	    )
 	 },
     render: h => h(App),
 });

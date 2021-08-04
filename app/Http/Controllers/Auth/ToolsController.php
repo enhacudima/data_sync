@@ -50,6 +50,7 @@ class ToolsController extends Controller
         $path=str_replace("public/","",$request->data['path']);
         $user = User::where('id',$user_id)->update(["avatar"=>$path.$request->data['name']]);
         $file->deleteExcept($file_id,'Avatar','Users');
+        return response()->json('Success Avatar update.', 200);
     }
 
 
@@ -63,7 +64,7 @@ class ToolsController extends Controller
     {
         $user_id=Auth::user()->id;
         $user = User::where('id',$user_id)->update(["locale"=>$locale]);
-        return response()->json(['success'=>'Success locale update.'], 200);
+        return response()->json('Success locale update.', 200);
 
     }
 

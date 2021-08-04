@@ -214,9 +214,11 @@ export default {
             this.isLoadingSearch = true;
             axios.get('/getPagmMalsSearchW/'+val)
                 .then(response => {
-                    this.meals = response.data;
-                    this.isSearch = false;
-                    this.isLoadingSearch = false;
+                        this.meals = response.data.data;
+                        this.isSearch = true;
+                        this.isLoadingSearch = false;
+                        this.pagination.current = response.data.current_page;
+                        this.pagination.total = response.data.last_page;
                 })
                 .catch((error) => {
                     this.meals = null;

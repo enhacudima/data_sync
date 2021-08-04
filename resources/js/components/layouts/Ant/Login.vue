@@ -79,7 +79,8 @@ import {i18n} from '../../../i18n.js'
 
   export default {
     components: {
-        NprogressContainer
+        NprogressContainer,
+
     },
     name: 'locale-changer',
     methods: {

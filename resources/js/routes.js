@@ -17,6 +17,7 @@ import ResetPassword from './components/Auth/ResetPassword.vue';
 import Pub from  './components/Pub/Pub.vue';
 import UserProfile from  './components/Profile/User.vue';
 import NoPermission from './components/NoPermission';
+import TooManyRequests from './components/TooManyRequests';
 
 
 
@@ -67,6 +68,11 @@ export const routes = [
         name: 'register/result',
         path: '/registerResult',
         component: RegisterResult
+    },
+    {
+        name: '429',
+        path: '/429',
+        component: TooManyRequests
     },
     {
         name: '403',

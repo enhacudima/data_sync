@@ -285,6 +285,7 @@
     <div class="main-wrapper">
         <cookie-law theme="blood-orange--rounded"></cookie-law>
     </div>
+    <errors />
   </v-app>
   </div>
 </template>
@@ -297,9 +298,10 @@
   import CookieLaw from 'vue-cookie-law';
   import { AbilityBuilder, Ability } from '@casl/ability';
   import {i18n} from '../../../i18n.js'
+  import errors from "../../errors.vue";
 
   export default {
-    components: { NprogressContainer,dialogo,dialogoAvatar, CookieLaw, dialogoPlan },
+    components: { NprogressContainer,dialogo,dialogoAvatar, CookieLaw, dialogoPlan,errors },
 
     data: () => ({
       checkPlan: false,

@@ -36,41 +36,48 @@ class GetMealController extends Controller
     public function getPagmMals()
     {
     	if(Auth::user()->can('pub_get_all')){
-            $data=Meals::with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->paginate(20);
+            $data=Meals::with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->paginate(50);
         }else{
 
-            $data=Meals::where('user_id',Auth::user()->id)->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->paginate(20);
+            $data=Meals::where('user_id',Auth::user()->id)->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->paginate(50);
         }
 
         return response()->json($data, 200);
     }
     public function searchMeals($search)
     {
-        if(Auth::user()->can('pub_get_all')){
-        $data=Meals::limit(20)
-        ->where('name','like',"%".$search."%")
-        ->orwhere('email','like',"%".$search."%")
-        ->orwhere('phone','like',"%".$search."%")
-        ->orwhere('location','like',"%".$search."%")
-        ->orwhere('start_date','like',"%".$search."%")
-        ->orwhere('end_date','like',"%".$search."%")
-        ->orwhere('reference','like',"%".$search."%")
-        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')
-        ->get();
 
-        }else{
-        $data=Meals::limit(20)
-        ->where('user_id',Auth::user()->id)
-        ->where('name','like',"%".$search."%")
-        ->orwhere('email','like',"%".$search."%")
-        ->orwhere('phone','like',"%".$search."%")
-        ->orwhere('location','like',"%".$search."%")
-        ->orwhere('start_date','like',"%".$search."%")
-        ->orwhere('end_date','like',"%".$search."%")
-        ->orwhere('reference','like',"%".$search."%")
-        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')
-        ->get();
+        $data=Meals::where(
+           function($query) use ($search) {
+             return $query
+                ->orwhere('name','like',"%".$search."%")
+                ->orwhere('email','like',"%".$search."%")
+                ->orwhere('phone','like',"%".$search."%")
+                ->orwhere('location','like',"%".$search."%")
+                ->orwhere('start_date','like',"%".$search."%")
+                ->orwhere('end_date','like',"%".$search."%")
+                ->orwhere('reference','like',"%".$search."%")
+                ->orwhereHas('mealUser', function ($query) use ($search){
+                    $query->where('name', 'like', '%'.$search.'%')
+                          ->orwhere('lastName', 'like', '%'.$search.'%')
+                          ->orwhere('email', 'like', '%'.$search.'%');
+                })
+                ->orwhereHas('mealCategory', function ($query) use ($search){
+                    $query->where('title', 'like', '%'.$search.'%');
+                });
+            })
+
+        ->with(['mealUser','mealCategory','mealTags.tagName','mealOptions'])
+        ->orderby('end_date','asc')
+        ->where('start_date', '<=', Now())->where('end_date', '>=', Now())
+        ->paginate(50);
+
+        if(!Auth::user()->can('pub_get_all')){
+            $data->where('user_id',Auth::user()->id);
+
         }
+        $data->paginate(50);
+
     	return response()->json($data, 200);
     }
 

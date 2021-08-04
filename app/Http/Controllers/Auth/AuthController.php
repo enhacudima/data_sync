@@ -45,7 +45,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if(!$user->email_verified_at){
-                return response()->json(['error'=>'Please Verify Email','id'=>$user->id,'description' => 'You can click resend to verify your email.' ,'message'=>'Email verification', 'url' => 'email/resend', 'button' => 'Resend Link' ], 403);
+                return response()->json(['error'=>'Please Verify Email','id'=>$user->id,'description' => 'Você pode clicar em reenviar para verificar seu e-mail.' ,'message'=>'Verificação de e-mail', 'url' => 'email/resend', 'button' => 'Reenviar link' ], 403);
             };
             $token =  $user->createToken('Personal Access Token')->accessToken;
             $cookie = $this->getCookieDetails($token);
@@ -60,7 +60,7 @@ class AuthController extends Controller
         } else {
             $this->incrementLoginAttempts($request);
             return response()->json(
-                ['error' => 'These credentials do not match our records.'], 422);
+                ['errors' => 'Essas credenciais não correspondem aos nossos registros.'], 422);
         }
     }
     private function getCookieDetails($token)

@@ -21,17 +21,18 @@ class GetMealWelcomeController extends Controller
 
     public function getPagmMals()
     {
-    	$data=Meals::with('mealUser','mealCategory','mealTags.tagName','mealOptions')->orderby('end_date','asc')->where('start_date', '<=', Now())->where('end_date', '>=', Now())->paginate(20);
+    	$data=Meals::with('mealUser','mealCategory','mealTags.tagName','mealOptions')
+        ->orderby('end_date','asc')->where('start_date', '<=', Now())
+        ->where('end_date', '>=', Now())
+        ->paginate(50);
 
         return response()->json($data, 200);
     }
     public function searchMeals($search)
     {
-        $data=Meals::limit(20)
-        ->orwhereHas('mealUser', function (Builder $query) use ($search) {
-            $query->where('name', 'like','%'. $search.'%');
-        })
-        ->where(
+        $data=Meals::
+
+        where(
            function($query) use ($search) {
              return $query
                 ->orwhere('name','like',"%".$search."%")
@@ -40,12 +41,21 @@ class GetMealWelcomeController extends Controller
                 ->orwhere('location','like',"%".$search."%")
                 ->orwhere('start_date','like',"%".$search."%")
                 ->orwhere('end_date','like',"%".$search."%")
-                ->orwhere('reference','like',"%".$search."%");
+                ->orwhere('reference','like',"%".$search."%")
+                ->orwhereHas('mealUser', function ($query) use ($search){
+                    $query->where('name', 'like', '%'.$search.'%')
+                          ->orwhere('lastName', 'like', '%'.$search.'%')
+                          ->orwhere('email', 'like', '%'.$search.'%');
+                })
+                ->orwhereHas('mealCategory', function ($query) use ($search){
+                    $query->where('title', 'like', '%'.$search.'%');
+                });
             })
-        ->with('mealUser','mealCategory','mealTags.tagName','mealOptions')
+
+        ->with(['mealUser','mealCategory','mealTags.tagName','mealOptions'])
         ->orderby('end_date','asc')
         ->where('start_date', '<=', Now())->where('end_date', '>=', Now())
-        ->get();
+        ->paginate(50);
     	return response()->json($data, 200);
     }
 

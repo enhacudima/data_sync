@@ -264,7 +264,7 @@
       });
   },
   openNotification: function (type, m, d) {
-      this.$notification.config({
+      /*this.$notification.config({
           placement: 'topRight',
           top: 35,
           duration: 8,
@@ -272,7 +272,7 @@
       this.$notification[type]({
         message: m,
         description: d,
-      });
+      });*/
   },
 
     },

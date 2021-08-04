@@ -432,7 +432,7 @@ export default {
       });
   },
     openNotification: function (type, m, d) {
-        this.$notification.config({
+       /* this.$notification.config({
             placement: 'topRight',
             top: 35,
             duration: 8,
@@ -440,7 +440,7 @@ export default {
         this.$notification[type]({
           message: m,
           description: d,
-        });
+        });*/
     },
   },
 

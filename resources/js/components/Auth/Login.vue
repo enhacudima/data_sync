@@ -152,7 +152,7 @@ export default {
              const errors = err.response.data;
 
               //console.log(errors.error);
-              this.loginError=errors.error;
+              this.loginError=errors.errors;
               //this.openNotification('error', 'Error on Save', errors.error);
 
             }
